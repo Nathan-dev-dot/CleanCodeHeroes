@@ -1,14 +1,18 @@
 package com.cleancodeheroes.hero.domain;
 
 public class Rarity {
+    public final Rarities rarity ;
 
-    public enum Rarities {
-        Common,
-        Rare,
-        Legendary
+    public Rarity(String rarity) {
+        this.rarity = this.rarityFromString(rarity);
     }
 
-    public String rarityAsString (Rarity rarity) {
+    private Rarities rarityFromString (String value) {
+        return Rarities.valueOf(value);
+    }
+
+    @Override
+    public String toString () {
         return rarity.toString();
     }
 }
