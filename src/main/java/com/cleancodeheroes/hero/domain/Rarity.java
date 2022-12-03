@@ -3,7 +3,7 @@ package com.cleancodeheroes.hero.domain;
 public class Rarity {
     public final Rarities rarity ;
 
-    public Rarity(String rarity) {
+    public Rarity(String rarity) throws IllegalArgumentException {
         this.rarity = this.rarityFromString(rarity);
     }
 
