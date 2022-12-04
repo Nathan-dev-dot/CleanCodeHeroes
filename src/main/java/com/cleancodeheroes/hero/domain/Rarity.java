@@ -11,7 +11,7 @@ public class Rarity {
         return Rarities.valueOf(value);
     }
 
-    public Rarities getRarity() {
+    public Rarities value() {
         return rarity;
     }
 
