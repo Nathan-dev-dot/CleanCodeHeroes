@@ -1,7 +1,7 @@
 package com.cleancodeheroes.hero.domain;
 
 public class Rarity {
-    public final Rarities rarity ;
+    private final Rarities rarity ;
 
     public Rarity(String rarity) throws IllegalArgumentException {
         this.rarity = this.rarityFromString(rarity);
@@ -9,6 +9,10 @@ public class Rarity {
 
     private Rarities rarityFromString (String value) {
         return Rarities.valueOf(value);
+    }
+
+    public Rarities getRarity() {
+        return rarity;
     }
 
     @Override
