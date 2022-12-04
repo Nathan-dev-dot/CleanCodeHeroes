@@ -8,7 +8,7 @@ public class RarityTest {
     @Test
     public void shouldCreateRarity () {
         var commonRarity = new Rarity("Common");
-        Assertions.assertEquals(Rarities.Common, commonRarity.rarity);
+        Assertions.assertEquals(Rarities.Common, commonRarity.getRarity());
     }
 
     @Test
