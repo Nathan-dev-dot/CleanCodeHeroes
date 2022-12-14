@@ -21,8 +21,7 @@ public class HeroId {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HeroId heroId = (HeroId) o;
+        if (!(o instanceof HeroId heroId)) return false;
         return id.equals(heroId.id);
     }
 
