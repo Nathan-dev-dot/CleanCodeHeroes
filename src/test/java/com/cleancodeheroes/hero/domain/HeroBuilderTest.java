@@ -19,14 +19,14 @@ public class HeroBuilderTest {
     @Test
     public void shouldCreateHeroWithRandomId () {
         hero = heroBuilder.id().build();
-        Assertions.assertNotNull(hero.getId());
+        Assertions.assertNotNull(hero.Id());
     }
 
     @Test
     public void shouldCreateHeroWithGivenId () {
         UUID id = UUID.randomUUID();
         hero = heroBuilder.id(id.toString()).build();
-        Assertions.assertEquals(id.toString(), hero.getId().value().toString());
+        Assertions.assertEquals(id.toString(), hero.Id().value().toString());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class HeroBuilderTest {
     public void shouldBuildHeroWithName () {
         String name = "Hero";
         hero = heroBuilder.name(name).build();
-        Assertions.assertEquals(name, hero.getName());
+        Assertions.assertEquals(name, hero.Name());
     }
 
     @Test
@@ -60,19 +60,19 @@ public class HeroBuilderTest {
     @Test
     public void shouldBuildTank () {
         hero = heroBuilder.specialty("Tank").build() ;
-        Assertions.assertEquals(CharacterType.Tank, hero.getSpecialty().value());
+        Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
     }
 
     @Test
     public void shouldBuildAssassin () {
         hero = heroBuilder.specialty("Assassin").build() ;
-        Assertions.assertEquals(CharacterType.Assassin, hero.getSpecialty().value());
+        Assertions.assertEquals(CharacterType.Assassin, hero.Specialty().value());
     }
 
     @Test
     public void shouldBuildSorcerer () {
         hero = heroBuilder.specialty("Sorcerer").build() ;
-        Assertions.assertEquals(CharacterType.Sorcerer, hero.getSpecialty().value());
+        Assertions.assertEquals(CharacterType.Sorcerer, hero.Specialty().value());
     }
 
     @Test
@@ -87,34 +87,34 @@ public class HeroBuilderTest {
     public void shouldBuildTankBaseCharacteristics () {
         hero = heroBuilder.specialty("Tank").basicStats().build();
         SpecialtyCharacteristics tank = SpecialtyCharacteristics.Tank();
-        Assertions.assertEquals(CharacterType.Tank, hero.getSpecialty().value());
-        Assertions.assertEquals(tank.getBaseArmour(), hero.getArmour());
-        Assertions.assertEquals(tank.getBaseHealthPoints(), hero.getHealthPoints());
+        Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
+        Assertions.assertEquals(tank.getBaseArmour(), hero.Armour());
+        Assertions.assertEquals(tank.getBaseHealthPoints(), hero.HealthPoints());
     }
 
     @Test
     public void shouldBuildAssassinBaseCharacteristics () {
         hero = heroBuilder.specialty("Assassin").basicStats().build();
         SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assasin();
-        Assertions.assertEquals(assasin.getBaseArmour(), hero.getArmour());
-        Assertions.assertEquals(assasin.getBaseHealthPoints(), hero.getHealthPoints());
-        Assertions.assertEquals(assasin.getBasePower(), hero.getPower());
+        Assertions.assertEquals(assasin.getBaseArmour(), hero.Armour());
+        Assertions.assertEquals(assasin.getBaseHealthPoints(), hero.HealthPoints());
+        Assertions.assertEquals(assasin.getBasePower(), hero.Power());
     }
 
     @Test
     public void shouldBuildSorcererBaseCharacteristics () {
         hero = heroBuilder.specialty("Sorcerer").basicStats().build();
         SpecialtyCharacteristics sorcerer = SpecialtyCharacteristics.Sorcerer();
-        Assertions.assertEquals(sorcerer.getBaseArmour(), hero.getArmour());
-        Assertions.assertEquals(sorcerer.getBaseHealthPoints(), hero.getHealthPoints());
-        Assertions.assertEquals(sorcerer.getBasePower(), hero.getPower());
+        Assertions.assertEquals(sorcerer.getBaseArmour(), hero.Armour());
+        Assertions.assertEquals(sorcerer.getBaseHealthPoints(), hero.HealthPoints());
+        Assertions.assertEquals(sorcerer.getBasePower(), hero.Power());
     }
 
     @Test
     public void shouldCreateHeroWithHealthPoints () {
         Integer healthPoints = 30;
         hero = heroBuilder.healthPoints(healthPoints).build();
-        Assertions.assertEquals(healthPoints, hero.getHealthPoints());
+        Assertions.assertEquals(healthPoints, hero.HealthPoints());
     }
 
     @Test
@@ -128,7 +128,7 @@ public class HeroBuilderTest {
     public void shouldCreateHeroWithArmour () {
         Integer armour = 30;
         hero = heroBuilder.armour(armour).build();
-        Assertions.assertEquals(armour, hero.getArmour());
+        Assertions.assertEquals(armour, hero.Armour());
     }
 
     @Test
@@ -142,7 +142,7 @@ public class HeroBuilderTest {
     public void shouldCreateHeroWithPower () {
         Integer power = 30;
         hero = heroBuilder.power(power).build();
-        Assertions.assertEquals(power, hero.getPower());
+        Assertions.assertEquals(power, hero.Power());
     }
 
     @Test
@@ -156,13 +156,13 @@ public class HeroBuilderTest {
     public void shouldCreateHeroWithExperiencePoints () {
         Integer experiencePoints = 30;
         hero = heroBuilder.experiencePoints(experiencePoints).build();
-        Assertions.assertEquals(experiencePoints, hero.getExperiencePoints());
+        Assertions.assertEquals(experiencePoints, hero.ExperiencePoints());
     }
 
     @Test
     public void shouldCreateHeroWithBaseExperiencePoints () {
         hero = heroBuilder.build();
-        Assertions.assertEquals(0, hero.getExperiencePoints());
+        Assertions.assertEquals(0, hero.ExperiencePoints());
     }
 
     @Test
@@ -176,13 +176,13 @@ public class HeroBuilderTest {
     public void shouldCreateHeroWithLevel () {
         Integer level = 10;
         hero = heroBuilder.level(level).build();
-        Assertions.assertEquals(level, hero.getLevel());
+        Assertions.assertEquals(level, hero.Level());
     }
 
     @Test
     public void shouldCreateHeroWithBaseLevel () {
         hero = heroBuilder.build();
-        Assertions.assertEquals(1, hero.getLevel());
+        Assertions.assertEquals(1, hero.Level());
     }
 
     @Test
@@ -202,19 +202,19 @@ public class HeroBuilderTest {
     @Test
     public void shouldCreateHeroWithCommonRarity () {
         hero = heroBuilder.rarity("Common").build();
-        Assertions.assertEquals(Rarities.Common, hero.getRarity().value());
+        Assertions.assertEquals(Rarities.Common, hero.Rarity().value());
     }
 
     @Test
     public void shouldCreateHeroWithRareRarity () {
         hero = heroBuilder.rarity("Rare").build();
-        Assertions.assertEquals(Rarities.Rare, hero.getRarity().value());
+        Assertions.assertEquals(Rarities.Rare, hero.Rarity().value());
     }
 
     @Test
     public void shouldCreateHeroWithLegendaryRarity () {
         hero = heroBuilder.rarity("Legendary").build();
-        Assertions.assertEquals(Rarities.Legendary, hero.getRarity().value());
+        Assertions.assertEquals(Rarities.Legendary, hero.Rarity().value());
     }
 
     @Test
