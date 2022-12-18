@@ -3,16 +3,10 @@ package com.cleancodeheroes.hero.application.services;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroUseCase;
 import com.cleancodeheroes.hero.application.port.out.CreateHeroPort;
-import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.utils.IdUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 
 public class CreateHeroService implements CreateHeroUseCase {
