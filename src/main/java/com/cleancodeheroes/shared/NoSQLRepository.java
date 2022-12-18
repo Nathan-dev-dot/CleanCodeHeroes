@@ -1,11 +1,9 @@
 package com.cleancodeheroes.shared;
 
-import com.google.gson.Gson;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import io.github.cdimascio.dotenv.Dotenv;
-import org.bson.Document;
 
 public final class NoSQLRepository {
 
@@ -35,9 +33,4 @@ public final class NoSQLRepository {
         return this.database ;
     }
 
-    public static Document documentFromObject (Object object) {
-        final Gson gson = new Gson() ;
-        final String objectAsJsonStr = gson.toJson(object);
-        return Document.parse(objectAsJsonStr);
-    }
 }

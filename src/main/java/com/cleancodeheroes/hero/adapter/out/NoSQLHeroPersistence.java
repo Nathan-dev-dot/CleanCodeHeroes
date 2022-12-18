@@ -5,6 +5,7 @@ import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.shared.NoSQLRepository;
+import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -25,7 +26,7 @@ public class NoSQLHeroPersistence implements FindHeroPort, CreateHeroPort {
     }
     @Override
     public HeroId save(Hero hero) {
-        final Document heroDocument = NoSQLRepository.documentFromObject(hero);
+        final Document heroDocument = DocumentUtils.documentFromObject(hero);
         final String insertedId = registry.insertOne(heroDocument).getInsertedId().toString();
         return HeroId.of(IdUtils.UUIDFromString(insertedId));
     }
