@@ -1,0 +1,32 @@
+package com.cleancodeheroes.utils;
+
+import com.cleancodeheroes.shared.NoSQLRepository;
+import com.mongodb.client.MongoDatabase;
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+@ExtendWith(MockitoExtension.class)
+public class NoSQLRepositoryTest {
+
+    @Test
+    public void shouldGetRepositoryInstance () {
+        final NoSQLRepository repository = NoSQLRepository.getInstance() ;
+        Assertions.assertNotNull(repository);
+    }
+
+    @Test
+    public void shouldNotInstanciateRepositoryTwice () {
+        final NoSQLRepository firstRepository = NoSQLRepository.getInstance() ;
+        final NoSQLRepository secondRepository = NoSQLRepository.getInstance() ;
+        Assertions.assertEquals(firstRepository, secondRepository);
+    }
+
+    @Test
+    public void shouldGetDatabase () {
+        final NoSQLRepository repository = NoSQLRepository.getInstance() ;
+        final MongoDatabase database = repository.getDatabase() ;
+        Assertions.assertEquals("CleanCodeHeroes", database.getName());
+    }
+}
