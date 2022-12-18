@@ -1,9 +1,11 @@
 package com.cleancodeheroes.shared;
 
+import com.google.gson.Gson;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import io.github.cdimascio.dotenv.Dotenv;
+import org.bson.Document;
 
 public final class NoSQLRepository {
 
@@ -12,11 +14,11 @@ public final class NoSQLRepository {
     private final MongoDatabase database ;
 
     private NoSQLRepository () {
-        Dotenv dotenv = Dotenv.configure().load();
-        String username = dotenv.get("DB_USER");
-        String password = dotenv.get("DB_SECRET");
-        String cluster = dotenv.get("DB_CLUSTER");
-        String databaseName = dotenv.get("DB_NAME");
+        final Dotenv dotenv = Dotenv.configure().load();
+        final String username = dotenv.get("DB_USER");
+        final String password = dotenv.get("DB_SECRET");
+        final String cluster = dotenv.get("DB_CLUSTER");
+        final String databaseName = dotenv.get("DB_NAME");
         client = MongoClients.create("mongodb+srv://" + username +
                 ":" + password + "@" + cluster + "/?retryWrites=true&w=majority");
         database = client.getDatabase(databaseName);
@@ -31,5 +33,11 @@ public final class NoSQLRepository {
 
     public MongoDatabase getDatabase () {
         return this.database ;
+    }
+
+    public static Document documentFromObject (Object object) {
+        final Gson gson = new Gson() ;
+        final String objectAsJsonStr = gson.toJson(object);
+        return Document.parse(objectAsJsonStr);
     }
 }

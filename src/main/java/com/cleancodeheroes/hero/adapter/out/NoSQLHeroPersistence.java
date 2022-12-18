@@ -6,7 +6,6 @@ import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.shared.NoSQLRepository;
 import com.cleancodeheroes.utils.IdUtils;
-import com.google.gson.Gson;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +25,8 @@ public class NoSQLHeroPersistence implements FindHeroPort, CreateHeroPort {
     }
     @Override
     public HeroId save(Hero hero) {
-        Gson gson = new Gson() ;
-        String heroJSON = gson.toJson(hero);
-        Document heroDocument = Document.parse(heroJSON);
-        String insertedId = registry.insertOne(heroDocument).getInsertedId().toString();
+        final Document heroDocument = NoSQLRepository.documentFromObject(hero);
+        final String insertedId = registry.insertOne(heroDocument).getInsertedId().toString();
         return HeroId.of(IdUtils.UUIDFromString(insertedId));
     }
 
