@@ -16,6 +16,19 @@ final public class BsonAdapter {
 
 
     public String getString (String key) {
-        return this.document.get(key).asString().getValue();
+        return this.document.getString(key).asString().getValue();
+    }
+
+    public int getInt (String key) {
+        return this.document.get(key).asInt32().getValue();
+    }
+
+    public String getObjectId(String key) {
+        return IdUtils.fromObjectIdToString(
+                this.document.
+                        getObjectId(key).
+                        asObjectId().
+                        getValue()
+        );
     }
 }

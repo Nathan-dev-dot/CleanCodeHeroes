@@ -13,6 +13,10 @@ final public class IdUtils {
         return new ObjectId(id);
     }
 
+    public static String fromObjectIdToString (ObjectId id) {
+        return id.toString();
+    }
+
 //    public static UUID UUIDFromString (String id) throws IllegalArgumentException {
 //        return UUID.fromString(id);
 //    }
