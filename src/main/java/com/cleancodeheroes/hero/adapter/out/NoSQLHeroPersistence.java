@@ -3,19 +3,19 @@ package com.cleancodeheroes.hero.adapter.out;
 import com.cleancodeheroes.hero.application.port.out.CreateHeroPort;
 import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
-import com.cleancodeheroes.hero.domain.HeroBuilder;
-import com.cleancodeheroes.hero.domain.HeroException;
 import com.cleancodeheroes.hero.domain.HeroId;
+import com.cleancodeheroes.shared.NoSQLRepository;
+import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
 import lombok.RequiredArgsConstructor;
-
-import javax.naming.NameNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 @RequiredArgsConstructor
 public class NoSQLHeroPersistence implements FindHeroPort, CreateHeroPort {
-    private final Map<HeroId, Hero> registry = new HashMap<>();
+    private final MongoCollection<Document> registry = NoSQLRepository.getInstance().getDatabase().getCollection("heroes");
     private static NoSQLHeroPersistence INSTANCE;
 
     public static synchronized NoSQLHeroPersistence getInstance() {
@@ -26,14 +26,15 @@ public class NoSQLHeroPersistence implements FindHeroPort, CreateHeroPort {
     }
     @Override
     public HeroId save(Hero hero) {
-        registry.put(hero.Id(), hero);
-        return hero.Id();
+        final Document heroDocument = DocumentUtils.documentFromObject(hero);
+        final String insertedId = registry.insertOne(heroDocument).getInsertedId().toString();
+        return HeroId.of(IdUtils.UUIDFromString(insertedId));
     }
+
     @Override
     public Hero load(HeroId heroId) {
-        return registry.computeIfAbsent(heroId,
-                key -> {
-                    throw HeroException.notFoundHeroId(heroId);
-                });
+        var hero = registry.find(Filters.eq("_id", new ObjectId(heroId.toString())));
+        System.out.println(hero);
+        return null ;
     }
 }
