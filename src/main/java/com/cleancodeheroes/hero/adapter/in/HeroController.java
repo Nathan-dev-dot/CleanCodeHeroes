@@ -3,6 +3,7 @@ package com.cleancodeheroes.hero.adapter.in;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
 import com.cleancodeheroes.hero.domain.Hero;
+import com.cleancodeheroes.hero.domain.HeroException;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
@@ -10,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/hero")
@@ -42,16 +46,15 @@ public class HeroController {
     }
 
     @GetMapping
-    public GetHeroResponse getHero(@RequestParam String heroId){
+    public GetHeroResponse getHero(@RequestParam String heroId) throws ResponseStatusException {
         try{
             var hero = (Hero) queryBus.post(new FindHeroQuery(heroId));
             return ResponseEntity
                     .ok()
                     .body(new GetHeroResponse(hero))
                     .getBody();
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
+        } catch (HeroException e) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }
-
     }
 }

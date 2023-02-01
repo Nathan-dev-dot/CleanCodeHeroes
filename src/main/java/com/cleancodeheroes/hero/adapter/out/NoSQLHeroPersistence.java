@@ -31,15 +31,6 @@ public class NoSQLHeroPersistence implements FindHeroPort, CreateHeroPort {
     }
     @Override
     public Hero load(HeroId heroId) {
-        registry.put(HeroId.of(IdUtils.UUIDFromString("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197")),
-                new HeroBuilder()
-                        .id("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197")
-                        .specialty("Tank")
-                        .basicStats()
-                        .rarity("Rare")
-                        .name("nathan")
-                        .build()
-        );
         return registry.computeIfAbsent(heroId,
                 key -> {
                     throw HeroException.notFoundHeroId(heroId);

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.beans.ConstructorProperties;
 import java.util.UUID;
 
 
@@ -25,7 +26,6 @@ public class CreateHeroService implements CreateHeroUseCase {
 
     @Override
     public HeroId handle(CreateHeroCommand command) {
-
         var heroId = IdUtils.newUUID();
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())

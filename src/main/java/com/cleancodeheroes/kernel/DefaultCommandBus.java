@@ -6,11 +6,11 @@ import com.cleancodeheroes.kernel.command.CommandHandler;
 
 import java.util.Map;
 
-final class DefaultCommandBus<C extends Command> implements CommandBus<C> {
+public final class DefaultCommandBus<C extends Command> implements CommandBus<C> {
 
     private final Map<Class<C>, CommandHandler> registry;
 
-    DefaultCommandBus(Map<Class<C>, CommandHandler> registry) {
+    public DefaultCommandBus(Map<Class<C>, CommandHandler> registry) {
         this.registry = registry;
     }
 
