@@ -5,7 +5,6 @@ import com.cleancodeheroes.hero.application.port.in.FindHeroUseCase;
 import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
-import com.cleancodeheroes.utils.IdUtils;
 
 
 public class FindHeroService implements FindHeroUseCase {
@@ -17,6 +16,6 @@ public class FindHeroService implements FindHeroUseCase {
 
     @Override
     public Hero handle(FindHeroQuery query) {
-        return this.findHeroPort.load(HeroId.of(IdUtils.UUIDFromString(query.heroId)));
+        return this.findHeroPort.load(HeroId.of(query.heroId));
     }
 }

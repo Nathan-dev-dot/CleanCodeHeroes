@@ -6,6 +6,7 @@ import com.cleancodeheroes.hero.application.services.FindHeroService;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +31,7 @@ public class FindHeroServiceTest {
     @Test
     public void ShouldFindHeroInDatabase(){
         UUID uuid = UUID.fromString("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197");
-        HeroId heroId = HeroId.of(uuid);
+        HeroId heroId = HeroId.of(new ObjectId());
 
         Hero hero = new HeroBuilder()
                 .id("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197")

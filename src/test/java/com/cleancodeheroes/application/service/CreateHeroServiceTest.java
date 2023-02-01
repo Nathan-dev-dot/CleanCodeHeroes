@@ -57,8 +57,8 @@ public class CreateHeroServiceTest {
         UUID uuid = UUID.fromString("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197");
 
         try (MockedStatic<IdUtils> idUtilsMock = Mockito.mockStatic(IdUtils.class)) {
-            when(IdUtils.newUUID()).thenReturn(uuid);
-            when(database.save(hero)).thenReturn(HeroId.of(uuid));
+//            when(IdUtils.newUUID()).thenReturn(uuid);
+            when(database.save(hero)).thenReturn(HeroId.of("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197"));
             final var actual = service.handle(createHeroCommand);
             Assertions.assertEquals(hero.Id().value(), actual.value());
         }

@@ -1,9 +1,8 @@
 package com.cleancodeheroes.hero.domain;
 
-import com.cleancodeheroes.utils.IdUtils;
+import org.bson.types.ObjectId;
 
 import java.util.MissingResourceException;
-import java.util.UUID;
 
 public class HeroBuilder {
     private HeroId id = null ;
@@ -33,12 +32,12 @@ public class HeroBuilder {
     }
 
     public HeroBuilder id (String id) throws IllegalArgumentException {
-        this.id = HeroId.of(UUID.fromString(id));
+        this.id = HeroId.of(id);
         return this;
     }
 
     public HeroBuilder id () {
-        this.id = HeroId.of(IdUtils.newUUID());
+        this.id = HeroId.of(new ObjectId());
         return this;
     }
 

@@ -6,7 +6,7 @@ import com.cleancodeheroes.hero.application.port.out.CreateHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
-import com.cleancodeheroes.utils.IdUtils;
+import org.bson.types.ObjectId;
 
 public class CreateHeroService implements CreateHeroUseCase {
 
@@ -18,7 +18,7 @@ public class CreateHeroService implements CreateHeroUseCase {
 
     @Override
     public HeroId handle(CreateHeroCommand command) {
-        var heroId = IdUtils.newUUID();
+        var heroId = new ObjectId();
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())
                 .specialty(command.getSpecialty())

@@ -6,20 +6,14 @@ import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.services.CreateHeroService;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.BusFactory;
-import com.cleancodeheroes.kernel.DefaultCommandBus;
 import com.cleancodeheroes.kernel.command.CommandBus;
-import com.cleancodeheroes.utils.IdUtils;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-
-import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
@@ -56,7 +50,7 @@ public class HeroControllerTest {
                 createHeroRequest.level
         );
         
-        when(commandBus.post(createHeroCommand)).thenReturn(HeroId.of(IdUtils.newUUID()));
+        when(commandBus.post(createHeroCommand)).thenReturn(HeroId.of(new ObjectId()));
         heroController.create(createHeroRequest);
 
     }
