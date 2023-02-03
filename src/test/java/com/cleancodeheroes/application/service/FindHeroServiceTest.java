@@ -30,11 +30,10 @@ public class FindHeroServiceTest {
 
     @Test
     public void ShouldFindHeroInDatabase(){
-        UUID uuid = UUID.fromString("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197");
-        HeroId heroId = HeroId.of(new ObjectId());
+        HeroId heroId = HeroId.of(new ObjectId("636a251153fb870ab055eca6"));
 
         Hero hero = new HeroBuilder()
-                .id("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197")
+                .id("636a251153fb870ab055eca6")
                 .specialty("Tank")
                 .basicStats()
                 .rarity("Rare")
@@ -42,7 +41,7 @@ public class FindHeroServiceTest {
                 .build();
         when(database.load(heroId)).thenReturn(hero);
 
-        this.findHeroQuery = new FindHeroQuery("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197");
+        this.findHeroQuery = new FindHeroQuery("636a251153fb870ab055eca6");
 
         final var heroFind = this.service.handle(this.findHeroQuery);
         Assertions.assertEquals(hero.Id().value(), heroFind.Id().value());

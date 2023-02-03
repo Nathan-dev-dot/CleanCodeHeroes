@@ -2,6 +2,8 @@ package com.cleancodeheroes.hero.application.port.in;
 
 import com.cleancodeheroes.kernel.command.Command;
 
+import java.util.Objects;
+
 public class CreateHeroCommand implements Command {
 
     private final String name ;
@@ -65,4 +67,18 @@ public class CreateHeroCommand implements Command {
     public Integer getLevel() {
         return level;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CreateHeroCommand that)) return false;
+        return getName().equals(that.getName()) && getHealthPoints().equals(that.getHealthPoints()) && getExperiencePoints().equals(that.getExperiencePoints()) && getPower().equals(that.getPower()) && getArmour().equals(that.getArmour()) && getSpecialty().equals(that.getSpecialty()) && getRarity().equals(that.getRarity()) && getLevel().equals(that.getLevel());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getHealthPoints(), getExperiencePoints(), getPower(), getArmour(), getSpecialty(), getRarity(), getLevel());
+    }
+
 }

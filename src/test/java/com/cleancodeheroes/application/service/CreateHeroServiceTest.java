@@ -25,7 +25,6 @@ import static org.mockito.Mockito.when;
 public class CreateHeroServiceTest {
     @InjectMocks
     private CreateHeroService service;
-
     @Mock
     private NoSQLHeroPersistence database;
     private Hero hero;
@@ -34,13 +33,16 @@ public class CreateHeroServiceTest {
     @BeforeEach
     public void setUpHeroAndHeroCommand(){
         this.hero = new HeroBuilder()
-                .id("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197")
+                .id("636a251153fb870ab055eca6")
                 .specialty("Tank")
                 .basicStats()
                 .rarity("Rare")
                 .name("nathan")
                 .build();
-        
+    }
+
+    @Test
+    public void shouldReturnHeroId(){
         this.createHeroCommand = new CreateHeroCommand(
                 hero.Name(),
                 hero.HealthPoints(),
@@ -49,18 +51,12 @@ public class CreateHeroServiceTest {
                 hero.Armour(),
                 hero.Specialty().value().name(),
                 hero.Rarity().value().toString(),
-                hero.Level());
-    }
+                hero.Level()
+        );
 
-    @Test
-    public void shouldReturnHeroId(){
-        UUID uuid = UUID.fromString("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197");
-
-        try (MockedStatic<IdUtils> idUtilsMock = Mockito.mockStatic(IdUtils.class)) {
-//            when(IdUtils.newUUID()).thenReturn(uuid);
-            when(database.save(hero)).thenReturn(HeroId.of("717c4b00-b8ef-4a6d-a0ab-d4ac6df9d197"));
-            final var actual = service.handle(createHeroCommand);
-            Assertions.assertEquals(hero.Id().value(), actual.value());
-        }
+        final var heroId = HeroId.of("636a251153fb870ab055eca6");
+        when(database.save(this.hero)).thenReturn(heroId);
+        final var actual = this.service.handle(createHeroCommand);
+        Assertions.assertEquals(this.hero.Id().value(), actual.value());
     }
 }
