@@ -29,12 +29,12 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CreateHeroService createAccountUseCase() {
+    public CreateHeroService createHeroUseCase() {
         return new CreateHeroService(persistenceAdapter());
     }
 
     @Bean
-    public FindHeroService sendMoneyUseCase() {
+    public FindHeroService findHeroUseCase() {
         return new FindHeroService(persistenceAdapter());
     }
 }
