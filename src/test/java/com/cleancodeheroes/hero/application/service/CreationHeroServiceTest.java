@@ -1,30 +1,25 @@
-package com.cleancodeheroes.application.service;
+package com.cleancodeheroes.hero.application.service;
 
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
-import com.cleancodeheroes.hero.application.services.CreateHeroService;
+import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
-import com.cleancodeheroes.utils.IdUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.UUID;
 
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CreateHeroServiceTest {
+public class CreationHeroServiceTest {
     @InjectMocks
-    private CreateHeroService service;
+    private CreationHeroService service;
     @Mock
     private NoSQLHeroPersistence database;
     private Hero hero;

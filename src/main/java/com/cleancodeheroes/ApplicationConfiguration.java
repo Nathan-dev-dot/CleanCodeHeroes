@@ -1,8 +1,8 @@
 package com.cleancodeheroes;
 
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
-import com.cleancodeheroes.hero.application.services.CreateHeroService;
-import com.cleancodeheroes.hero.application.services.FindHeroService;
+import com.cleancodeheroes.hero.application.services.CreationHeroService;
+import com.cleancodeheroes.hero.application.services.FinderHeroService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
@@ -29,12 +29,12 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CreateHeroService createAccountUseCase() {
-        return new CreateHeroService(persistenceAdapter());
+    public CreationHeroService createAccountUseCase() {
+        return new CreationHeroService(persistenceAdapter());
     }
 
     @Bean
-    public FindHeroService sendMoneyUseCase() {
-        return new FindHeroService(persistenceAdapter());
+    public FinderHeroService sendMoneyUseCase() {
+        return new FinderHeroService(persistenceAdapter());
     }
 }

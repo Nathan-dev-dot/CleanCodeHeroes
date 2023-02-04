@@ -1,9 +1,7 @@
-package com.cleancodeheroes.adapter.in;
+package com.cleancodeheroes.hero.adapter.in;
 
-import com.cleancodeheroes.hero.adapter.in.CreateHeroRequest;
-import com.cleancodeheroes.hero.adapter.in.HeroController;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
-import com.cleancodeheroes.hero.application.services.CreateHeroService;
+import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
@@ -24,7 +22,7 @@ public class HeroControllerTest {
     private HeroController heroController;
 
     @Mock
-    private CreateHeroService createHeroUseCase;
+    private CreationHeroService createHeroUseCase;
     private CommandBus commandBus = BusFactory.defaultCommandBus();
 
     @BeforeEach
