@@ -14,7 +14,7 @@ public class Hero {
     private final Rarity rarity ;
     private final Integer level ;
 
-    public Hero (HeroProps heroProps) {
+    private Hero (HeroProps heroProps) {
 
         this.id = heroProps.getId();
         this.name = heroProps.getName();
