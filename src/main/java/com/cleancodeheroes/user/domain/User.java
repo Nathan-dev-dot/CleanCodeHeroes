@@ -1,5 +1,10 @@
 package com.cleancodeheroes.user.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.Objects;
+
+@JsonSerialize
 public final class User {
 
     private final UserId userId;
@@ -32,5 +37,17 @@ public final class User {
 
     public UserId getUserId() {
         return userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getUserId(), user.getUserId()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getToken(), user.getToken()) && Objects.equals(getDeck(), user.getDeck());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUserId(), getUsername(), getToken(), getDeck());
     }
 }

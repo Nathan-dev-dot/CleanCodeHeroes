@@ -1,8 +1,9 @@
 package com.cleancodeheroes.user.domain;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.bson.types.ObjectId;
 
 import java.util.Objects;
-
+@JsonSerialize
 public class UserId {
     private final String userId;
 
@@ -16,7 +17,7 @@ public class UserId {
         throw new IllegalArgumentException(userId);
     }
 
-    public String value(){
+    public String getUserId(){
         return this.userId;
     }
 

@@ -1,20 +1,20 @@
 package com.cleancodeheroes.user.adapter.in;
 
-import com.cleancodeheroes.hero.adapter.in.CreateHeroRequest;
-import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
-import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
+import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/user")
@@ -32,7 +32,18 @@ public class UserController {
     public String create(@RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserCommand createUserCommand = new CreateUserCommand(createUserRequest.username);
         var userId = (UserId) commandBus.post(createUserCommand);
-        return userId.value();
+        return userId.getUserId();
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String getHero (@PathVariable("id") String id) {
+        try{
+            User user = (User) queryBus.post(new FindUserQuery(id));
+            System.out.println(user.getUserId().getUserId());
+
+            return new JSONObject(user).toString();
+        } catch (Exception e) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        }
+    }
 }

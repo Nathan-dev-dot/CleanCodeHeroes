@@ -1,5 +1,8 @@
 package com.cleancodeheroes.user.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize
 public class Token {
     private final int numberOfToken;
 
@@ -11,6 +14,12 @@ public class Token {
         return new Token(numberOfToken);
     }
 
+    public int value(){
+        return this.numberOfToken;
+    }
+    public int getNumberOfToken(){
+        return this.numberOfToken;
+    }
     public Token minusOne(){
         if(this.numberOfToken > 0){
             return Token.of(this.numberOfToken - 1);
