@@ -30,31 +30,33 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
     private final CreateUserService createUserUserCase;
     private final FindUserService findUserUseCase;
+
     public StartupApplicationListener(
-            CommandBus commandBus,
-            QueryBus queryBus,
-            NoSQLHeroPersistence persistenceAdapter,
-            CreationHeroService createAccountUseCase,
-            FinderHeroService finderHeroService,
-            FinderHeroesService finderHeroesService) {
-            CreateUserService createUserUserCase,
-            FindUserService findUserUseCase) {
-        this.commandBus = commandBus;
-        this.queryBus = queryBus;
-        this.persistenceAdapter = persistenceAdapter;
-        this.createHeroUseCase = createAccountUseCase;
-        this.findHeroUseCase = finderHeroService;
-        this.findHeroesUseCase = finderHeroesService;
-        this.findUserUseCase = findUserUseCase;
-        this.createUserUserCase = createUserUserCase;
+        CommandBus commandBus,
+        QueryBus queryBus,
+        NoSQLHeroPersistence persistenceAdapter,
+        CreationHeroService createAccountUseCase,
+        FinderHeroService finderHeroService,
+        FinderHeroesService finderHeroesService,
+        CreateUserService createUserUserCase,
+        FindUserService findUserUseCase) {
+            this.commandBus = commandBus;
+            this.queryBus = queryBus;
+            this.persistenceAdapter = persistenceAdapter;
+            this.createHeroUseCase = createAccountUseCase;
+            this.findHeroUseCase = finderHeroService;
+            this.findHeroesUseCase = finderHeroesService;
+            this.findUserUseCase = findUserUseCase;
+            this.createUserUserCase = createUserUserCase;
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
+    public void onApplicationEvent (ContextRefreshedEvent event){
         commandBus.register(CreateHeroCommand.class, createHeroUseCase);
         commandBus.register(CreateUserCommand.class, createUserUserCase);
         queryBus.register(FindUserQuery.class, findUserUseCase);
         queryBus.register(FindHeroQuery.class, findHeroUseCase);
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
     }
+
 }

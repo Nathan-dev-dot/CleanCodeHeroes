@@ -37,13 +37,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CreateHeroService createHeroUseCase() {
-        return new CreateHeroService(heroPersistenceAdapter());
+    public CreationHeroService createHeroUseCase() {
+        return new CreationHeroService(heroPersistenceAdapter());
     }
 
     @Bean
-    public FindHeroService findHeroUseCase() {
-        return new FindHeroService(heroPersistenceAdapter());
+    public FinderHeroService findHeroUseCase() {
+        return new FinderHeroService(heroPersistenceAdapter());
     }
 
     @Bean
