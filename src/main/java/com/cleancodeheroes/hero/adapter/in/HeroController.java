@@ -16,8 +16,8 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
@@ -33,28 +33,32 @@ public class HeroController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@RequestBody @Valid CreateHeroRequest createAccountRequest) {
-        CreateHeroCommand createHeroCommand = new CreateHeroCommand(
-                createAccountRequest.name,
-                createAccountRequest.healthPoints,
-                createAccountRequest.experiencePoints,
-                createAccountRequest.power,
-                createAccountRequest.armour,
-                createAccountRequest.specialty,
-                createAccountRequest.rarity,
-                createAccountRequest.level
-        );
-        var heroId = (HeroId) commandBus.post(createHeroCommand);
-        return heroId.value();
+    public String create(@RequestBody @Valid CreateHeroRequest createAccountRequest) throws ResponseStatusException {
+        try {
+            CreateHeroCommand createHeroCommand = new CreateHeroCommand(
+                    createAccountRequest.name,
+                    createAccountRequest.healthPoints,
+                    createAccountRequest.experiencePoints,
+                    createAccountRequest.power,
+                    createAccountRequest.armour,
+                    createAccountRequest.specialty,
+                    createAccountRequest.rarity,
+                    createAccountRequest.level
+            );
+            var heroId = (HeroId) commandBus.post(createHeroCommand);
+            return heroId.value();
+        } catch (Exception e) {
+            throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
+        }
     }
 
     @GetMapping("/{id}")
     public GetHeroResponse getHero (@PathVariable("id") String id) {
         try{
-            Optional<Hero> hero = (Optional<Hero>) queryBus.post(new FindHeroQuery(id));
+            Hero hero = (Hero) queryBus.post(new FindHeroQuery(id));
             return ResponseEntity
                     .ok()
-                    .body(new GetHeroResponse(hero.get()))
+                    .body(new GetHeroResponse(hero))
                     .getBody();
         } catch (Exception e) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");

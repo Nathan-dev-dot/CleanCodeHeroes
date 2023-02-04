@@ -7,8 +7,6 @@ import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 
-import java.util.Optional;
-
 public class FinderHeroService implements FindHeroUseCase {
     private final FindHeroPort findHeroPort;
 
@@ -17,7 +15,7 @@ public class FinderHeroService implements FindHeroUseCase {
     }
 
     @Override
-    public Optional<Hero> handle(FindHeroQuery query) throws HeroNotFoundException {
+    public Hero handle(FindHeroQuery query) throws HeroNotFoundException {
         return this.findHeroPort.load(HeroId.of(query.heroId));
     }
 }

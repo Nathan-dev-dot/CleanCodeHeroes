@@ -18,7 +18,6 @@ import org.bson.BsonValue;
 import org.bson.Document;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, CreateHeroPort {
@@ -52,19 +51,19 @@ public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, Creat
     }
 
     @Override
-    public Optional<Hero> load (HeroId heroId) throws HeroNotFoundException {
+    public Hero load (HeroId heroId) throws HeroNotFoundException {
         var res = registry.find(Filters.eq(
                 "_id",
                 IdUtils.fromStringToObjectId(heroId.value())
         ));
         if (DocumentUtils.sizeof(res) == 0) throw new HeroNotFoundException();
-        return Optional.of(res.map(BsonHeroMapper::toDomain).first());
+        return res.map(doc -> new BsonHeroMapper(doc).toDomain()).first();
     }
 
     @Override
     public ArrayList<Hero> loadAll () throws HeroNotFoundException {
         var res = registry.find();
         if (DocumentUtils.sizeof(res) == 0) throw new HeroNotFoundException();
-        return res.map(BsonHeroMapper::toDomain).into(new ArrayList<>());
+        return res.map(doc -> new BsonHeroMapper(doc).toDomain()).into(new ArrayList<>());
     }
 }

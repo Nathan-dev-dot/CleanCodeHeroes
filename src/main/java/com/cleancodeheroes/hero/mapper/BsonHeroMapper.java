@@ -2,12 +2,18 @@ package com.cleancodeheroes.hero.mapper;
 
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
+import com.cleancodeheroes.shared.BsonMapper;
 import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
 
-public class BsonHeroMapper {
-    public static Hero toDomain(Document doc){
-        BsonAdapter heroAdapter = BsonAdapter.of(doc);
+public class BsonHeroMapper implements BsonMapper<Hero> {
+    private Document doc;
+
+    public BsonHeroMapper (Document doc) { this.doc = doc; }
+
+
+    public Hero toDomain(){
+        BsonAdapter heroAdapter = BsonAdapter.of(this.doc);
         return new HeroBuilder()
                 .id(heroAdapter.getObjectId("_id"))
                 .name(heroAdapter.getString("name"))

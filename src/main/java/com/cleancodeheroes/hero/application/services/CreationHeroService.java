@@ -17,7 +17,7 @@ public class CreationHeroService implements CreateHeroUseCase {
     }
 
     @Override
-    public HeroId handle(CreateHeroCommand command) {
+    public HeroId handle(CreateHeroCommand command) throws IllegalArgumentException {
         var heroId = new ObjectId();
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())
@@ -26,7 +26,6 @@ public class CreationHeroService implements CreateHeroUseCase {
                 .rarity(command.getRarity())
                 .name(command.getName())
                 .build();
-        System.out.println(hero.Id().value());
         return this.createHeroPort.save(hero);
     }
 }
