@@ -5,10 +5,10 @@ import org.bson.types.ObjectId;
 import java.util.Objects;
 @JsonSerialize
 public class UserId {
-    private final String userId;
+    private final String id;
 
     private UserId(String userId){
-        this.userId = userId;
+        this.id = userId;
     }
 
     public static UserId of(String userId){
@@ -17,19 +17,19 @@ public class UserId {
         throw new IllegalArgumentException(userId);
     }
 
-    public String getUserId(){
-        return this.userId;
+    public String getId(){
+        return this.id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserId userId1)) return false;
-        return userId.equals(userId1.userId);
+        return id.equals(userId1.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(id);
     }
 }

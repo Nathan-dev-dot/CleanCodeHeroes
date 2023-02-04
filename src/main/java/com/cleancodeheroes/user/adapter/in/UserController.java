@@ -32,14 +32,14 @@ public class UserController {
     public String create(@RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserCommand createUserCommand = new CreateUserCommand(createUserRequest.username);
         var userId = (UserId) commandBus.post(createUserCommand);
-        return userId.getUserId();
+        return userId.getId();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getHero (@PathVariable("id") String id) {
         try{
             User user = (User) queryBus.post(new FindUserQuery(id));
-            System.out.println(user.getUserId().getUserId());
+            System.out.println(user.getUserId().getId());
 
             return new JSONObject(user).toString();
         } catch (Exception e) {
