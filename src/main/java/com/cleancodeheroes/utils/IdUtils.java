@@ -1,13 +1,27 @@
 package com.cleancodeheroes.utils;
 
-import java.util.UUID;
+import org.bson.BsonValue;
+import org.bson.types.ObjectId;
 
-public final class IdUtils {
-    public static UUID UUIDFromString (String id) throws IllegalArgumentException {
-        return UUID.fromString(id);
+final public class IdUtils {
+
+    public static String fromBsonValueToString (BsonValue bson) {
+        return bson.asObjectId().getValue().toString();
     }
 
-    public static UUID newUUID () {
-        return UUID.randomUUID();
+    public static ObjectId fromStringToObjectId (String id) {
+        return new ObjectId(id);
     }
+
+    public static String fromObjectIdToString (ObjectId id) {
+        return id.toString();
+    }
+
+//    public static UUID UUIDFromString (String id) throws IllegalArgumentException {
+//        return UUID.fromString(id);
+//    }
+
+//    public static UUID newUUID () {
+//        return UUID.randomUUID();
+//    }
 }

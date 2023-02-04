@@ -1,28 +1,35 @@
 package com.cleancodeheroes.hero.domain;
 
+import org.bson.types.ObjectId;
+
 import java.util.Objects;
-import java.util.UUID;
 
 public class HeroId {
-    private final UUID id;
+    private final String id;
 
-    private HeroId(UUID id) {
+    private HeroId(String id) {
         this.id = id;
     }
 
-    public static HeroId of (UUID uuid) {
-        return new HeroId(uuid);
+    public static HeroId of (String stringId) {
+        if (ObjectId.isValid(stringId))
+            return new HeroId(stringId);
+        throw new IllegalArgumentException(stringId);
     }
 
-    public UUID value() {
+    public static HeroId of (ObjectId object) {
+        return new HeroId(object.toString());
+    }
+
+
+    public String value() {
         return id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HeroId heroId = (HeroId) o;
+        if (!(o instanceof HeroId heroId)) return false;
         return id.equals(heroId.id);
     }
 
