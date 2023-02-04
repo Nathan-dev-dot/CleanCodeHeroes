@@ -26,7 +26,6 @@ public class CreateHeroService implements CreateHeroUseCase {
                 .rarity(command.getRarity())
                 .name(command.getName())
                 .build();
-        System.out.println(hero.Id().value());
         return this.createHeroPort.save(hero);
     }
 }

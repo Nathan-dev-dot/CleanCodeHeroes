@@ -6,6 +6,9 @@ import com.cleancodeheroes.hero.application.services.FindHeroService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
+import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
+import com.cleancodeheroes.user.application.services.CreateUserService;
+import com.cleancodeheroes.user.application.services.FindUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,8 +17,13 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfiguration {
 
     @Bean
-    public NoSQLHeroPersistence persistenceAdapter() {
+    public NoSQLHeroPersistence heroPersistenceAdapter() {
         return new NoSQLHeroPersistence();
+    }
+
+    @Bean
+    public NoSQLUserPersistence userPersistenceAdapter() {
+        return new NoSQLUserPersistence();
     }
 
     @Bean
@@ -30,11 +38,21 @@ public class ApplicationConfiguration {
 
     @Bean
     public CreateHeroService createHeroUseCase() {
-        return new CreateHeroService(persistenceAdapter());
+        return new CreateHeroService(heroPersistenceAdapter());
     }
 
     @Bean
     public FindHeroService findHeroUseCase() {
-        return new FindHeroService(persistenceAdapter());
+        return new FindHeroService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public CreateUserService createUserUseCase() {
+        return new CreateUserService(userPersistenceAdapter());
+    }
+
+    @Bean
+    public FindUserService findUserUseCase() {
+        return new FindUserService(userPersistenceAdapter());
     }
 }
