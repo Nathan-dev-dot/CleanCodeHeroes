@@ -9,7 +9,7 @@ public class Specialty {
         this.specialty = specialty;
     }
 
-    public static Specialty of (String specialty) {
+    public static Specialty of (String specialty) throws IllegalArgumentException {
         return new Specialty(CharacterType.valueOf(specialty));
     }
 

@@ -16,7 +16,7 @@ final class DefaultQueryBus<Q extends Query> implements QueryBus<Q> {
     }
 
     @Override
-    public <R> R post(Q query) {
+    public <R> R post(Q query) throws Exception {
         var queryHandler = registry.get(query.getClass());
         return (R) queryHandler.handle(query);
     }

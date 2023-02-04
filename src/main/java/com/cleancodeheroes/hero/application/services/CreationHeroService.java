@@ -8,16 +8,16 @@ import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
 import org.bson.types.ObjectId;
 
-public class CreateHeroService implements CreateHeroUseCase {
+public class CreationHeroService implements CreateHeroUseCase {
 
     private final CreateHeroPort createHeroPort;
 
-    public CreateHeroService(CreateHeroPort createHeroPort) {
+    public CreationHeroService(CreateHeroPort createHeroPort) {
         this.createHeroPort = createHeroPort;
     }
 
     @Override
-    public HeroId handle(CreateHeroCommand command) {
+    public HeroId handle(CreateHeroCommand command) throws IllegalArgumentException {
         var heroId = new ObjectId();
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())

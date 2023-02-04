@@ -1,8 +1,8 @@
 package com.cleancodeheroes;
 
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
-import com.cleancodeheroes.hero.application.services.CreateHeroService;
-import com.cleancodeheroes.hero.application.services.FindHeroService;
+import com.cleancodeheroes.hero.application.services.CreationHeroService;
+import com.cleancodeheroes.hero.application.services.FinderHeroService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
