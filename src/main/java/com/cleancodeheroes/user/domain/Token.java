@@ -24,7 +24,7 @@ public class Token {
         if(this.numberOfToken > 0){
             return Token.of(this.numberOfToken - 1);
         }else {
-            throw new RuntimeException();
+            throw new ArithmeticException();
         }
     }
 

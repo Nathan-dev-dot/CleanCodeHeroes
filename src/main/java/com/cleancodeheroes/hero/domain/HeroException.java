@@ -1,6 +1,6 @@
 package com.cleancodeheroes.hero.domain;
 
-public class HeroException extends RuntimeException{
+public class HeroException extends Exception{
     private HeroException(String message) { super(message); }
 
     public static HeroException notFoundHeroId(HeroId heroId){
