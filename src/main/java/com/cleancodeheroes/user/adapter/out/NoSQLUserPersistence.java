@@ -24,12 +24,12 @@ public class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
     }
 
     @Override
-    public User load(UserId userId) {
+    public User load(UserId userId) throws UserNotFoundException{
         var res = registry.find(Filters.eq(
                 "_id",
                 IdUtils.fromStringToObjectId(userId.getId())
         ));
-        //if (DocumentUtils.sizeof(res) == 0) throw new HeroNotFoundException();
+        if (DocumentUtils.sizeof(res) == 0) throw new UserNotFoundException();
         User user = res.map(doc -> new BsonUserMapper(doc).toDomain()).first();
         return user;
     }

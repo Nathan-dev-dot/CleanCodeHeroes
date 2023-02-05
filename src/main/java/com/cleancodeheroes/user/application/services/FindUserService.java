@@ -1,6 +1,7 @@
 package com.cleancodeheroes.user.application.services;
 
 import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
+import com.cleancodeheroes.user.adapter.out.UserNotFoundException;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
 import com.cleancodeheroes.user.application.port.in.FindUserUseCase;
 import com.cleancodeheroes.user.application.port.out.FindUserPort;
@@ -16,7 +17,7 @@ public class FindUserService implements FindUserUseCase {
     }
 
     @Override
-    public User handle(FindUserQuery query) {
+    public User handle(FindUserQuery query) throws UserNotFoundException {
         return this.findHeroPort.load(UserId.of(query.userId));
     }
 }

@@ -19,7 +19,6 @@ public class BsonUserMapper implements BsonMapper<User> {
                 Token.of(jsonUser.getJSONObject("token").getInt("numberOfToken")),
                 new Deck()
         );
-        User user = User.of(userProps);
-        return user;
+        return User.of(userProps);
     }
 }
