@@ -12,9 +12,6 @@ public class CreateHeroRequest {
     @NotEmpty
     public Integer healthPoints  ;
 
-    @NotNull
-    @NotEmpty
-    public Integer experiencePoints ;
 
     @NotNull
     @NotEmpty
@@ -31,8 +28,4 @@ public class CreateHeroRequest {
     @NotNull
     @NotEmpty
     public String rarity ;
-    
-    @NotNull
-    @NotEmpty
-    public Integer level ;
 }

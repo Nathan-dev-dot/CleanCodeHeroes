@@ -41,12 +41,10 @@ public class CreationHeroServiceTest {
         this.createHeroCommand = new CreateHeroCommand(
                 hero.Name(),
                 hero.HealthPoints(),
-                hero.ExperiencePoints(),
                 hero.Power(),
                 hero.Armour(),
                 hero.Specialty().value().name(),
-                hero.Rarity().value().toString(),
-                hero.Level()
+                hero.Rarity().value().toString()
         );
 
         final var heroId = HeroId.of("636a251153fb870ab055eca6");

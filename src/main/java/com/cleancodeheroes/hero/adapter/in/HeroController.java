@@ -33,17 +33,15 @@ public class HeroController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@RequestBody @Valid CreateHeroRequest createAccountRequest) throws ResponseStatusException {
+    public String create(@RequestBody @Valid CreateHeroRequest createHeroRequest) throws ResponseStatusException {
         try {
             CreateHeroCommand createHeroCommand = new CreateHeroCommand(
-                    createAccountRequest.name,
-                    createAccountRequest.healthPoints,
-                    createAccountRequest.experiencePoints,
-                    createAccountRequest.power,
-                    createAccountRequest.armour,
-                    createAccountRequest.specialty,
-                    createAccountRequest.rarity,
-                    createAccountRequest.level
+                    createHeroRequest.name,
+                    createHeroRequest.healthPoints,
+                    createHeroRequest.power,
+                    createHeroRequest.armour,
+                    createHeroRequest.specialty,
+                    createHeroRequest.rarity
             );
             var heroId = (HeroId) commandBus.post(createHeroCommand);
             return heroId.value();

@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.mapper;
 
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
-import com.cleancodeheroes.shared.BsonMapper;
+import com.cleancodeheroes.shared.mapper.BsonMapper;
 import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
 
@@ -20,10 +20,8 @@ public class BsonHeroMapper implements BsonMapper<Hero> {
                 .rarity(heroAdapter.getString("rarity"))
                 .specialty(heroAdapter.getString("specialty"))
                 .healthPoints(heroAdapter.getInt("healthPoints"))
-                .experiencePoints(heroAdapter.getInt("experiencePoints"))
                 .power(heroAdapter.getInt("power"))
                 .armour(heroAdapter.getInt("armour"))
-                .level(heroAdapter.getInt("level"))
                 .build();
     }
 }

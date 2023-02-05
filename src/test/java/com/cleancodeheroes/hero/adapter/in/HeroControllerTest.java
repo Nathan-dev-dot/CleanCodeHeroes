@@ -40,12 +40,10 @@ public class HeroControllerTest {
         CreateHeroCommand createHeroCommand = new CreateHeroCommand(
                 createHeroRequest.name,
                 createHeroRequest.healthPoints,
-                createHeroRequest.experiencePoints,
                 createHeroRequest.power,
                 createHeroRequest.armour,
                 createHeroRequest.specialty,
-                createHeroRequest.rarity,
-                createHeroRequest.level
+                createHeroRequest.rarity
         );
         
         when(commandBus.post(createHeroCommand)).thenReturn(HeroId.of(new ObjectId()));

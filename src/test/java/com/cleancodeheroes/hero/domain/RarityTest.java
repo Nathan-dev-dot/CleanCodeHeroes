@@ -1,5 +1,7 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.shared.domain.Rarities;
+import com.cleancodeheroes.shared.domain.Rarity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

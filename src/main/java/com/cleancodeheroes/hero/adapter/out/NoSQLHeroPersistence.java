@@ -36,12 +36,10 @@ public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, Creat
                 hero.Id(),
                 hero.Name(),
                 hero.HealthPoints(),
-                hero.ExperiencePoints(),
                 hero.Power(),
                 hero.Armour(),
                 hero.Specialty(),
-                hero.Rarity(),
-                hero.Level()
+                hero.Rarity()
         );
         final NoSQLHeroPersistenceDTO noSQLHeroPersistenceDTO = new NoSQLHeroPersistenceDTO(heroProps);
         final Document heroDocument = DocumentUtils.documentFromObject(noSQLHeroPersistenceDTO);
