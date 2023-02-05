@@ -9,17 +9,15 @@ import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
+import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
+import com.cleancodeheroes.user.application.services.CreateUserService;
+import com.cleancodeheroes.user.application.services.FindUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @SuppressWarnings("all")
 public class ApplicationConfiguration {
-
-    @Bean
-    public NoSQLHeroPersistence persistenceAdapter() {
-        return new NoSQLHeroPersistence();
-    }
 
     @Bean
     public CommandBus commandBus() {
@@ -32,18 +30,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CreationHeroService createAccountUseCase() {
-        return new CreationHeroService(persistenceAdapter());
+    public NoSQLHeroPersistence heroPersistenceAdapter() {
+        return new NoSQLHeroPersistence();
     }
 
     @Bean
-    public FinderHeroService sendMoneyUseCase() {
-        return new FinderHeroService(persistenceAdapter());
-    }
-
-    @Bean
-    public FinderHeroesService createHeroesUseCase() {
-        return new FinderHeroesService(persistenceAdapter());
+    public NoSQLUserPersistence userPersistenceAdapter() {
+        return new NoSQLUserPersistence();
     }
 
     @Bean
@@ -52,5 +45,30 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CreationCardService createHeroUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
+    public CreationHeroService createHeroUseCase() {
+        return new CreationHeroService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public FinderHeroService findHeroUseCase() {
+        return new FinderHeroService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public CreateUserService createUserUseCase() {
+        return new CreateUserService(userPersistenceAdapter());
+    }
+
+    @Bean
+    public FindUserService findUserUseCase() {
+        return new FindUserService(userPersistenceAdapter());
+    }
+
+    @Bean
+    public FinderHeroesService createHeroesUseCase() {
+        return new FinderHeroesService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
 }

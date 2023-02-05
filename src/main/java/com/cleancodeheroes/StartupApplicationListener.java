@@ -12,6 +12,10 @@ import com.cleancodeheroes.hero.application.services.FinderHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
+import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
+import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.application.services.CreateUserService;
+import com.cleancodeheroes.user.application.services.FindUserService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -29,30 +33,42 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final NoSQLCardPersistence noSQLCardPersistence;
     private final CreationCardService creationCardUseCase;
 
+    private final CreateUserService createUserUserCase;
+    private final FindUserService findUserUseCase;
+
     public StartupApplicationListener(
-            CommandBus commandBus,
-            QueryBus queryBus,
-            NoSQLHeroPersistence heroPersistenceAdapter,
-            CreationHeroService creationHeroService,
-            FinderHeroService finderHeroService,
-            FinderHeroesService finderHeroesService,
-            NoSQLCardPersistence cardPersistenceAdapter,
-            CreationCardService creationCardService) {
+        CommandBus commandBus,
+        QueryBus queryBus,
+        NoSQLHeroPersistence heroPersistenceAdapter,
+        CreationHeroService creationHeroService,
+        FinderHeroService finderHeroService,
+        FinderHeroesService finderHeroesService,
+        CreateUserService createUserUserCase,
+        FindUserService findUserUseCase,
+        NoSQLCardPersistence cardPersistenceAdapter,
+        CreationCardService creationCardService
+    ) {
+            
         this.commandBus = commandBus;
         this.queryBus = queryBus;
         this.noSQLHeroPersistence = heroPersistenceAdapter;
         this.creationHeroUseCase = creationHeroService;
         this.findHeroUseCase = finderHeroService;
         this.findHeroesUseCase = finderHeroesService;
+        this.findUserUseCase = findUserUseCase;
+        this.createUserUserCase = createUserUserCase;
         this.noSQLCardPersistence = cardPersistenceAdapter;
         this.creationCardUseCase = creationCardService;
     }
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
+    public void onApplicationEvent (ContextRefreshedEvent event){
         commandBus.register(CreateHeroCommand.class, creationHeroUseCase);
         queryBus.register(FindHeroQuery.class, findHeroUseCase);
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
+        commandBus.register(CreateUserCommand.class, createUserUserCase);
+        queryBus.register(FindUserQuery.class, findUserUseCase);
         commandBus.register(CreateCardCommand.class, creationCardUseCase);
     }
+
 }
