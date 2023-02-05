@@ -1,6 +1,5 @@
 package com.cleancodeheroes.user.adapter.in;
 
-import com.cleancodeheroes.hero.adapter.in.GetHeroResponse;
 import com.cleancodeheroes.user.domain.Deck;
 import com.cleancodeheroes.user.domain.Token;
 import com.cleancodeheroes.user.domain.User;
@@ -15,7 +14,7 @@ public class GetUserResponse {
     private String username;
 
     private GetUserResponse(Deck deck, UserId userId, Token token, String username) {
-        this.id = userId.getId();
+        this.id = userId.value();
         this.token = token.value();
         this.username = username;
         this.deck = deck;

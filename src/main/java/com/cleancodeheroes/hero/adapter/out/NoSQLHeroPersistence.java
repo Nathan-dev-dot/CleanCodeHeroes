@@ -10,6 +10,7 @@ import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.hero.mapper.BsonHeroMapper;
 import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.cleancodeheroes.shared.domain.Rarity;
+import com.cleancodeheroes.utils.BsonFilter;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.MongoCollection;
@@ -35,10 +36,9 @@ public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, FindH
 
     @Override
     public Hero load (HeroId heroId) throws HeroNotFoundException {
-        var res = registry.find(Filters.eq(
-                "_id",
-                IdUtils.fromStringToObjectId(heroId.value())
-        ));
+        var res = registry.find(
+                BsonFilter.byId(heroId.value())
+        );
         if (DocumentUtils.sizeof(res) == 0) throw new HeroNotFoundException();
         return res.map(doc -> new BsonHeroMapper(doc).toDomain()).first();
     }

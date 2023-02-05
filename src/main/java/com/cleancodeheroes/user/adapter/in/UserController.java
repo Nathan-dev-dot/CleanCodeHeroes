@@ -32,7 +32,7 @@ public class UserController {
     public String create(@RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserCommand createUserCommand = new CreateUserCommand(createUserRequest.username);
         var userId = (UserId) commandBus.post(createUserCommand);
-        return userId.getId();
+        return userId.value();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
