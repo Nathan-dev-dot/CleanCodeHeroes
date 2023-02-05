@@ -12,15 +12,11 @@ public final class User {
     private final Token token;
     private final Deck deck;
 
-    private User(UserProps userProps){
+    public User(UserProps userProps){
         this.userId = userProps.userId;
         this.username = userProps.username;
         this.token = userProps.token;
         this.deck = userProps.deck;
-    }
-
-    public static User of(UserProps userProps){
-        return new User(userProps);
     }
 
     public String getUsername() {

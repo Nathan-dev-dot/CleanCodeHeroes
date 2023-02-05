@@ -13,7 +13,7 @@ public class Hero {
     private final Specialty specialty;
     private final Rarity rarity ;
 
-    private Hero (HeroProps heroProps) {
+    public Hero (HeroProps heroProps) {
 
         this.id = heroProps.getId();
         this.name = heroProps.getName();
@@ -22,10 +22,6 @@ public class Hero {
         this.armour = heroProps.getArmour();
         this.specialty = heroProps.getSpecialty();
         this.rarity = heroProps.getRarity();
-    }
-
-    public static Hero create (HeroProps heroProps) {
-        return new Hero(heroProps);
     }
 
     public HeroId Id() {

@@ -1,9 +1,9 @@
 package com.cleancodeheroes.user.application.services;
+
 import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.CreateUserUseCase;
 import com.cleancodeheroes.user.application.port.out.CreateUserPort;
 import com.cleancodeheroes.user.domain.*;
-import com.cleancodeheroes.utils.IdUtils;
 import org.bson.types.ObjectId;
 
 public class CreateUserService implements CreateUserUseCase {
@@ -17,10 +17,10 @@ public class CreateUserService implements CreateUserUseCase {
         UserProps userProps =  new UserProps(
                 UserId.of(new ObjectId().toString()),
                 command.getUsername(),
-                Token.of(4),
+                new Token(4),
                 new Deck()
         );
-        User newUser = User.of(userProps);
+        User newUser = new User(userProps);
         return this.createUserPort.save(newUser);
     }
 }

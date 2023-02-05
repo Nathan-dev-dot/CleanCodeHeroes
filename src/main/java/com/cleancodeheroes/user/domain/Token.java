@@ -6,12 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 public class Token {
     private final int numberOfToken;
 
-    private Token(int numberOfToken){
+    public Token(int numberOfToken){
         this.numberOfToken = numberOfToken;
-    }
-
-    public static Token of(int numberOfToken){
-        return new Token(numberOfToken);
     }
 
     public int value(){
@@ -22,7 +18,7 @@ public class Token {
     }
     public Token minusOne() throws ArithmeticException{
         if(this.numberOfToken > 0){
-            return Token.of(this.numberOfToken - 1);
+            return new Token(this.numberOfToken - 1);
         }else {
             throw new ArithmeticException();
         }
@@ -30,6 +26,6 @@ public class Token {
 
 
     public Token plusOneToken(){
-        return Token.of(this.numberOfToken + 1);
+        return new Token(this.numberOfToken + 1);
     }
 }

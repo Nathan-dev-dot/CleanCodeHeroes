@@ -25,7 +25,7 @@ public class HeroBuilder {
                 this.specialty,
                 this.rarity
         );
-        return Hero.create(heroProps);
+        return new Hero(heroProps);
     }
 
     public HeroBuilder id (String id) throws IllegalArgumentException {
