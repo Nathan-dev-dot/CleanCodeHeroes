@@ -3,7 +3,7 @@ package com.cleancodeheroes.card.adapter.out;
 import com.cleancodeheroes.card.application.port.out.CreateCardPort;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
-import com.cleancodeheroes.shared.NoSQLRepository;
+import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.MongoCollection;
@@ -13,7 +13,7 @@ import org.bson.Document;
 
 @RequiredArgsConstructor
 public class NoSQLCardPersistence implements CreateCardPort {
-    private final MongoCollection<Document> registry = NoSQLRepository.getInstance().getDatabase().getCollection("cards");
+    private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("cards");
 
     @Override
     public CardId save(Card card) throws IllegalArgumentException {

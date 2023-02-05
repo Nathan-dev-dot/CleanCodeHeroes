@@ -7,7 +7,7 @@ import com.cleancodeheroes.hero.application.port.out.FindHeroesPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.hero.mapper.BsonHeroMapper;
-import com.cleancodeheroes.shared.NoSQLRepository;
+import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.MongoCollection;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 @RequiredArgsConstructor
 public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, CreateHeroPort {
-    private final MongoCollection<Document> registry = NoSQLRepository.getInstance().getDatabase().getCollection("heroes");
+    private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("heroes");
 
     @Override
     public HeroId save(Hero hero) {

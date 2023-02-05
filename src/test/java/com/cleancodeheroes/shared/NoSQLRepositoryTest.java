@@ -1,6 +1,6 @@
 package com.cleancodeheroes.utils;
 
-import com.cleancodeheroes.shared.NoSQLRepository;
+import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.mongodb.client.MongoDatabase;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

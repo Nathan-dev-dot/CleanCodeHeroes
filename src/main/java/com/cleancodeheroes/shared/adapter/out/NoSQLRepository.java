@@ -1,4 +1,4 @@
-package com.cleancodeheroes.shared;
+package com.cleancodeheroes.shared.adapter.out;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -31,6 +31,10 @@ public final class NoSQLRepository {
 
     public MongoDatabase getDatabase () {
         return this.database ;
+    }
+
+    public static synchronized MongoDatabase getNoSQLDatabase () {
+        return NoSQLRepository.getInstance().getDatabase();
     }
 
 }
