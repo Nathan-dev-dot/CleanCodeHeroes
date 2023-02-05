@@ -3,6 +3,7 @@ package com.cleancodeheroes.user.adapter.in;
 import com.cleancodeheroes.hero.adapter.in.GetHeroResponse;
 import com.cleancodeheroes.user.domain.Deck;
 import com.cleancodeheroes.user.domain.Token;
+import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
@@ -13,11 +14,15 @@ public class GetUserResponse {
     private int token;
     private String username;
 
-    public GetUserResponse(Deck deck, UserId userId, Token token, String username) {
+    private GetUserResponse(Deck deck, UserId userId, Token token, String username) {
         this.id = userId.getId();
         this.token = token.value();
         this.username = username;
         this.deck = deck;
+    }
+
+    public static GetUserResponse of(User user) {
+        return new GetUserResponse(user.getDeck(), user.getUserId(), user.getToken(), user.getUsername());
     }
 
     public Deck getDeck() {

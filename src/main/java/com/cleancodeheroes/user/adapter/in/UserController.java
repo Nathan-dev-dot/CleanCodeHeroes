@@ -39,8 +39,8 @@ public class UserController {
     public String getHero (@PathVariable("id") String id) {
         try{
             User user = (User) queryBus.post(new FindUserQuery(id));
-            GetUserResponse reponse = new GetUserResponse(user.getDeck(), user.getUserId(), user.getToken(), user.getUsername());
-            return new JSONObject(reponse).toString();
+            GetUserResponse response = GetUserResponse.of(user);
+            return new JSONObject(response).toString();
         } catch (Exception e) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }
