@@ -11,7 +11,7 @@ public class HeroId {
         this.id = id;
     }
 
-    public static HeroId of (String stringId) {
+    public static HeroId of (String stringId) throws IllegalArgumentException {
         if (ObjectId.isValid(stringId))
             return new HeroId(stringId);
         throw new IllegalArgumentException(stringId);

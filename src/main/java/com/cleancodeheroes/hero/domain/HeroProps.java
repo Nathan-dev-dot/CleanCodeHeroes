@@ -29,6 +29,18 @@ public class HeroProps {
         this.rarity = rarity;
     }
 
+    public static HeroProps of(Hero hero) {
+        return new HeroProps(
+            hero.Id(),
+            hero.Name(),
+            hero.HealthPoints(),
+            hero.Power(),
+            hero.Armour(),
+            hero.Specialty(),
+            hero.Rarity()
+        );
+    }
+
     public HeroId getId() {
         return id;
     }

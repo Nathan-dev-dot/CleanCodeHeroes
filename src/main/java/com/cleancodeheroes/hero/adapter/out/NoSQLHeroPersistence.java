@@ -22,25 +22,10 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, CreateHeroPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getInstance().getDatabase().getCollection("heroes");
-    private static NoSQLHeroPersistence INSTANCE;
 
-    public static synchronized NoSQLHeroPersistence getInstance() {
-        if (INSTANCE == null) {
-            return new NoSQLHeroPersistence();
-        }
-        return INSTANCE;
-    }
     @Override
     public HeroId save(Hero hero) {
-        var heroProps = new HeroProps(
-                hero.Id(),
-                hero.Name(),
-                hero.HealthPoints(),
-                hero.Power(),
-                hero.Armour(),
-                hero.Specialty(),
-                hero.Rarity()
-        );
+        final HeroProps heroProps = HeroProps.of(hero);
         final NoSQLHeroPersistenceDTO noSQLHeroPersistenceDTO = new NoSQLHeroPersistenceDTO(heroProps);
         final Document heroDocument = DocumentUtils.documentFromObject(noSQLHeroPersistenceDTO);
         final BsonValue insertedId = registry.insertOne(heroDocument).getInsertedId();
