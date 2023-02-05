@@ -20,7 +20,7 @@ public class Token {
     public int getNumberOfToken(){
         return this.numberOfToken;
     }
-    public Token minusOne(){
+    public Token minusOne() throws ArithmeticException{
         if(this.numberOfToken > 0){
             return Token.of(this.numberOfToken - 1);
         }else {
