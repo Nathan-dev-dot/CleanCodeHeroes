@@ -70,4 +70,5 @@ public class Hero {
     public int hashCode() {
         return Objects.hash(id, name, healthPoints, power, armour, specialty, rarity);
     }
+
 }

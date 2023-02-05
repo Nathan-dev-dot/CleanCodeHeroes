@@ -7,5 +7,4 @@ public class CreateCardRequest {
     @NotNull
     @NotEmpty
     public String baseHeroId;
-
 }

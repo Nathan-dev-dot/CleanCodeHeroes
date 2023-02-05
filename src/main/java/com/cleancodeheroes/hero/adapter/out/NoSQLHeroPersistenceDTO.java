@@ -1,6 +1,6 @@
 package com.cleancodeheroes.hero.adapter.out;
 
-import com.cleancodeheroes.hero.domain.HeroProps;
+import com.cleancodeheroes.hero.domain.Hero;
 
 public class NoSQLHeroPersistenceDTO {
     private final String name ;
@@ -11,13 +11,13 @@ public class NoSQLHeroPersistenceDTO {
     private final String rarity ;
 
 
-    public NoSQLHeroPersistenceDTO(HeroProps heroProps) {
-        this.name = heroProps.getName();
-        this.healthPoints = heroProps.getHealthPoints();
-        this.power = heroProps.getPower();
-        this.armour = heroProps.getArmour();
-        this.specialty = heroProps.getSpecialty().toString();
-        this.rarity = heroProps.getRarity().toString();
+    public NoSQLHeroPersistenceDTO(Hero heroProps) {
+        this.name = heroProps.Name();
+        this.healthPoints = heroProps.HealthPoints();
+        this.power = heroProps.Power();
+        this.armour = heroProps.Armour();
+        this.specialty = heroProps.Specialty().toString();
+        this.rarity = heroProps.Rarity().toString();
     }
 
     public String getName() {
