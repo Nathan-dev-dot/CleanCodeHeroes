@@ -1,4 +1,5 @@
 [X] Gestion d'erreurs @Création de héros
-[] of to public constructor
-[] DTO(classProps)->DTO(class)
-[] Get Hero by Rarity
+[X] of to public constructor
+[X] DTO(classProps)->DTO(class)
+[X] Get Hero by Rarity
+[] Filters refactor

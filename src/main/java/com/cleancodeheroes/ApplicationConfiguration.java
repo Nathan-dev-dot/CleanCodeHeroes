@@ -5,6 +5,7 @@ import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
+import com.cleancodeheroes.hero.application.services.FinderHeroesByRarityService;
 import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
@@ -55,6 +56,14 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    public FinderHeroesService finderHeroesUseCase() {
+        return new FinderHeroesService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public FinderHeroesByRarityService finderHeroesByRarityUseCase() { return new FinderHeroesByRarityService(heroPersistenceAdapter()); }
+
+    @Bean
     public CreateUserService createUserUseCase() {
         return new CreateUserService(userPersistenceAdapter());
     }
@@ -62,11 +71,6 @@ public class ApplicationConfiguration {
     @Bean
     public FindUserService findUserUseCase() {
         return new FindUserService(userPersistenceAdapter());
-    }
-
-    @Bean
-    public FinderHeroesService createHeroesUseCase() {
-        return new FinderHeroesService(heroPersistenceAdapter());
     }
 
     @Bean

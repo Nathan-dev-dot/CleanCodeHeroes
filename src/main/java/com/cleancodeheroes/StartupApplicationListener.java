@@ -6,9 +6,11 @@ import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
+import com.cleancodeheroes.hero.application.port.in.FindHeroesByRarityQuery;
 import com.cleancodeheroes.hero.application.port.in.FindHeroesQuery;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
+import com.cleancodeheroes.hero.application.services.FinderHeroesByRarityService;
 import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
@@ -30,6 +32,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final CreationHeroService creationHeroUseCase;
     private final FinderHeroService findHeroUseCase;
     private final FinderHeroesService findHeroesUseCase;
+    private final FinderHeroesByRarityService findHeroesByRarityUseCase;
     private final NoSQLCardPersistence noSQLCardPersistence;
     private final CreationCardService creationCardUseCase;
 
@@ -43,6 +46,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         CreationHeroService creationHeroService,
         FinderHeroService finderHeroService,
         FinderHeroesService finderHeroesService,
+        FinderHeroesByRarityService finderHeroesByRarityService,
         CreateUserService createUserUserCase,
         FindUserService findUserUseCase,
         NoSQLCardPersistence cardPersistenceAdapter,
@@ -55,6 +59,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.creationHeroUseCase = creationHeroService;
         this.findHeroUseCase = finderHeroService;
         this.findHeroesUseCase = finderHeroesService;
+        this.findHeroesByRarityUseCase = finderHeroesByRarityService;
         this.findUserUseCase = findUserUseCase;
         this.createUserUserCase = createUserUserCase;
         this.noSQLCardPersistence = cardPersistenceAdapter;
@@ -66,6 +71,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         commandBus.register(CreateHeroCommand.class, creationHeroUseCase);
         queryBus.register(FindHeroQuery.class, findHeroUseCase);
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
+        queryBus.register(FindHeroesByRarityQuery.class, findHeroesByRarityUseCase);
         commandBus.register(CreateUserCommand.class, createUserUserCase);
         queryBus.register(FindUserQuery.class, findUserUseCase);
         commandBus.register(CreateCardCommand.class, creationCardUseCase);
