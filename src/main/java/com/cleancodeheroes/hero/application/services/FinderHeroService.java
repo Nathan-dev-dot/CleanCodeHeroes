@@ -7,7 +7,7 @@ import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 
-public class FinderHeroService implements FindHeroUseCase {
+public final class FinderHeroService implements FindHeroUseCase {
     private final FindHeroPort findHeroPort;
 
     public FinderHeroService(FindHeroPort findHeroPort) {

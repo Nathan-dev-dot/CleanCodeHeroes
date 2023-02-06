@@ -18,7 +18,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
+public final class UserController {
     private final CommandBus commandBus;
     private final QueryBus queryBus;
 

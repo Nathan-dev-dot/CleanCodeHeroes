@@ -3,7 +3,7 @@ package com.cleancodeheroes.card.adapter.in;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class CreateCardRequest {
+public final class CreateCardRequest {
     @NotNull
     @NotEmpty
     public String baseHeroId;

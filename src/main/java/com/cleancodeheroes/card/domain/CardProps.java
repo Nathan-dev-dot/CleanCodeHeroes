@@ -3,16 +3,16 @@ package com.cleancodeheroes.card.domain;
 import com.cleancodeheroes.hero.domain.Specialty;
 import com.cleancodeheroes.shared.domain.Rarity;
 
-public class CardProps {
-    private final CardId id;
-    private final String name;
-    private final Integer healthPoints ;
-    private final Integer experiencePoints ;
-    private final Integer power ;
-    private final Integer armour ;
-    private final Specialty specialty;
-    private final Rarity rarity ;
-    private final Integer level ;
+public final class CardProps {
+    public final CardId id;
+    public final String name;
+    public final Integer healthPoints ;
+    public final Integer experiencePoints ;
+    public final Integer power ;
+    public final Integer armour ;
+    public final Specialty specialty;
+    public final Rarity rarity ;
+    public final Integer level ;
 
     public CardProps(
             CardId id,
@@ -47,41 +47,5 @@ public class CardProps {
                 card.Rarity(),
                 card.Level()
         );
-    }
-
-    public CardId Id() {
-        return id;
-    }
-
-    public String Name() {
-        return name;
-    }
-
-    public Integer HealthPoints() {
-        return healthPoints;
-    }
-
-    public Integer ExperiencePoints() {
-        return experiencePoints;
-    }
-
-    public Integer Power() {
-        return power;
-    }
-
-    public Integer Armour() {
-        return armour;
-    }
-
-    public Specialty Specialty() {
-        return specialty;
-    }
-
-    public Rarity getRarity() {
-        return rarity;
-    }
-
-    public Integer getLevel() {
-        return level;
     }
 }

@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.adapter.in;
 
 import com.cleancodeheroes.hero.domain.Hero;
 
-public class GetHeroResponse {
+public final class GetHeroResponse {
     public final String name;
     public final String id ;
     public final Integer healthPoints  ;

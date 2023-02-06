@@ -3,7 +3,7 @@ package com.cleancodeheroes.user.domain;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize
-public class Token {
+public final class Token {
     private final int numberOfToken;
 
     public Token(int numberOfToken){

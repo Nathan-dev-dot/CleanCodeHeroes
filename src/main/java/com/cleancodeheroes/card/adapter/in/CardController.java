@@ -21,7 +21,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/card")
-public class CardController {
+public final class CardController {
     private final CommandBus commandBus;
     private final QueryBus queryBus;
 

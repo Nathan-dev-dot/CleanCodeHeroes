@@ -6,7 +6,7 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 
-public class DocumentUtils {
+public final class DocumentUtils {
 
     public static Document documentFromObject (Object object) {
         final Gson gson = new Gson() ;

@@ -13,7 +13,7 @@ import com.mongodb.client.MongoCollection;
 import org.bson.BsonValue;
 import org.bson.Document;
 
-public class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
+public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("users");
     @Override
     public UserId save(User user) {

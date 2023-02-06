@@ -7,7 +7,7 @@ import com.cleancodeheroes.shared.domain.Rarity;
 
 import java.util.Objects;
 
-public class CreateCardCommand implements Command {
+public final class CreateCardCommand implements Command {
     private final String name;
     private final Integer healthPoints ;
     private final Integer experiencePoints ;

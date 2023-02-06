@@ -3,7 +3,7 @@ package com.cleancodeheroes.hero.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SpecialtyTest {
+public final class SpecialtyTest {
 
     @Test
     public void shouldCreateTank () {

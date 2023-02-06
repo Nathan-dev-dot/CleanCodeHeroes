@@ -17,7 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CreationHeroServiceTest {
+public final class CreationHeroServiceTest {
     @InjectMocks
     private CreationHeroService service;
     @Mock

@@ -1,4 +1,4 @@
 package com.cleancodeheroes.hero.application;
 
-public class HeroNotFoundException extends Exception {
+public final class HeroNotFoundException extends Exception {
 }

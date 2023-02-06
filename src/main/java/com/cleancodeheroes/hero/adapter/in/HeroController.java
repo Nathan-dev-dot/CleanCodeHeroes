@@ -23,7 +23,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/hero")
-public class HeroController {
+public final class HeroController {
     private final CommandBus commandBus;
     private final QueryBus queryBus;
 

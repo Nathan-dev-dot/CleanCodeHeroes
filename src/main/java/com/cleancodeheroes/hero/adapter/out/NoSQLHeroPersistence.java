@@ -22,7 +22,7 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 @RequiredArgsConstructor
-public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, FindHeroesByRarityPort, CreateHeroPort {
+public final class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, FindHeroesByRarityPort, CreateHeroPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("heroes");
 
     @Override

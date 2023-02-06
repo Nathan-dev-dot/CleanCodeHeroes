@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class FinderHeroesByRarityService implements FindHeroesByRarityUseCase {
+public final class FinderHeroesByRarityService implements FindHeroesByRarityUseCase {
     private final FindHeroesByRarityPort findHeroesByRarityPort;
 
     public FinderHeroesByRarityService(FindHeroesByRarityPort findHeroesByRarityPort) {
@@ -20,6 +20,7 @@ public class FinderHeroesByRarityService implements FindHeroesByRarityUseCase {
 
     @Override
     public ArrayList<Hero> handle(FindHeroesByRarityQuery query) throws HeroNotFoundException {
-        return this.findHeroesByRarityPort.loadAllByRarity(new Rarity(query.rarity));
+        Rarity rarity = new Rarity(query.rarity);
+        return this.findHeroesByRarityPort.loadAllByRarity(rarity);
     }
 }
