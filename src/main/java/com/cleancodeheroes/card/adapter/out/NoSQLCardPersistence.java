@@ -32,7 +32,7 @@ public class NoSQLCardPersistence implements CreateCardPort, FindCardPort {
     @Override
     public Card load (CardId cardId) throws CardNotFoundException {
         FindIterable<Document> res = registry.find(
-                BsonFilter.byId(cardId.value())
+                new BsonFilter(cardId.value()).filter
         );
         if (DocumentUtils.sizeof(res) == 0) throw new CardNotFoundException();
         return res.map(doc -> new BsonCardMapper(doc).toDomain()).first();

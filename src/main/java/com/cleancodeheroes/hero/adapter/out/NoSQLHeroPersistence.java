@@ -37,7 +37,7 @@ public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, FindH
     @Override
     public Hero load (HeroId heroId) throws HeroNotFoundException {
         var res = registry.find(
-                BsonFilter.byId(heroId.value())
+                new BsonFilter(heroId.value()).filter
         );
         if (DocumentUtils.sizeof(res) == 0) throw new HeroNotFoundException();
         return res.map(doc -> new BsonHeroMapper(doc).toDomain()).first();
