@@ -17,15 +17,15 @@ public final class Card {
     private final Integer level ;
 
     private Card (CardProps cardProps) {
-        this.id = cardProps.Id();
-        this.name = cardProps.Name();
-        this.healthPoints = cardProps.HealthPoints();
-        this.experiencePoints = cardProps.ExperiencePoints();
-        this.power = cardProps.Power();
-        this.armour = cardProps.Armour();
-        this.specialty = cardProps.Specialty();
-        this.rarity = cardProps.getRarity();
-        this.level = cardProps.getLevel();
+        this.id = cardProps.id;
+        this.name = cardProps.name;
+        this.healthPoints = cardProps.healthPoints;
+        this.experiencePoints = cardProps.experiencePoints;
+        this.power = cardProps.power;
+        this.armour = cardProps.armour;
+        this.specialty = cardProps.specialty;
+        this.rarity = cardProps.rarity;
+        this.level = cardProps.level;
     }
 
     public static Card create (CardProps cardProps) { return new Card(cardProps); }

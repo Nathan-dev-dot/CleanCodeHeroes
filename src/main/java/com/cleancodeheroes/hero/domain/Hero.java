@@ -15,13 +15,13 @@ public final class Hero {
 
     public Hero (HeroProps heroProps) {
 
-        this.id = heroProps.getId();
-        this.name = heroProps.getName();
-        this.healthPoints = heroProps.getHealthPoints();
-        this.power = heroProps.getPower();
-        this.armour = heroProps.getArmour();
-        this.specialty = heroProps.getSpecialty();
-        this.rarity = heroProps.getRarity();
+        this.id = heroProps.id;
+        this.name = heroProps.name;
+        this.healthPoints = heroProps.healthPoints;
+        this.power = heroProps.power;
+        this.armour = heroProps.armour;
+        this.specialty = heroProps.specialty;
+        this.rarity = heroProps.rarity;
     }
 
     public HeroId Id() {
