@@ -4,7 +4,7 @@ import com.cleancodeheroes.kernel.command.Command;
 
 import java.util.Objects;
 
-public class CreateHeroCommand implements Command {
+public final class CreateHeroCommand implements Command {
 
     private final String name ;
     private final Integer healthPoints  ;

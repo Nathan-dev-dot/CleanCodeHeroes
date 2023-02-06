@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class FinderHeroesService implements FindHeroesUseCase {
+public final class FinderHeroesService implements FindHeroesUseCase {
     private final FindHeroesPort findHeroesPort;
 
     public FinderHeroesService(FindHeroesPort findHeroesPort) {

@@ -10,7 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreationCardService implements CreateCardUseCase {
+public final class CreationCardService implements CreateCardUseCase {
     private final CreateCardPort createCardPort;
 
     public CreationCardService(CreateCardPort createCardPort) { this.createCardPort = createCardPort; }

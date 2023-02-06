@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class FinderHeroServiceTest {
+public final class FinderHeroServiceTest {
 
     @InjectMocks
     private FinderHeroService service;

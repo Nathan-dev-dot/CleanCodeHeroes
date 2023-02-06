@@ -6,7 +6,7 @@ import com.cleancodeheroes.user.application.port.out.CreateUserPort;
 import com.cleancodeheroes.user.domain.*;
 import org.bson.types.ObjectId;
 
-public class CreateUserService implements CreateUserUseCase {
+public final class CreateUserService implements CreateUserUseCase {
     private final CreateUserPort createUserPort;
 
     public CreateUserService(CreateUserPort createUserPort){

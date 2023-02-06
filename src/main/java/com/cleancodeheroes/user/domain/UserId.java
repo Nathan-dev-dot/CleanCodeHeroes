@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 @JsonSerialize
-public class UserId {
+public final class UserId {
     private final String id;
 
     private UserId(String userId){

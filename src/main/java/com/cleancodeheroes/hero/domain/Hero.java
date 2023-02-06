@@ -4,7 +4,7 @@ import com.cleancodeheroes.shared.domain.Rarity;
 
 import java.util.Objects;
 
-public class Hero {
+public final class Hero {
     private final HeroId id ;
     private final String name ;
     private final Integer healthPoints  ;

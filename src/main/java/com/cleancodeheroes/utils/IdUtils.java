@@ -3,7 +3,7 @@ package com.cleancodeheroes.utils;
 import org.bson.BsonValue;
 import org.bson.types.ObjectId;
 
-final public class IdUtils {
+public final class IdUtils {
 
     public static String fromBsonValueToString (BsonValue bson) {
         return bson.asObjectId().getValue().toString();

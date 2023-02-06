@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.domain;
 
 import java.util.HashMap;
 
-public class SpecialtyCharacteristics {
+public final class SpecialtyCharacteristics {
     private final CharacterType type ;
     private final Integer baseHealthPoints ;
     private final Integer basePower ;

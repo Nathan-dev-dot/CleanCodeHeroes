@@ -5,7 +5,7 @@ import com.cleancodeheroes.shared.domain.Rarity;
 
 import java.util.Objects;
 
-public class Card {
+public final class Card {
     private final CardId id;
     private final String name;
     private final Integer healthPoints ;

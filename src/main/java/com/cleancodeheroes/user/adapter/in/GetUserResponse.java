@@ -8,7 +8,7 @@ import com.cleancodeheroes.user.domain.UserId;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize
-public class GetUserResponse {
+public final class GetUserResponse {
     private Deck deck;
     private String id;
     private int token;

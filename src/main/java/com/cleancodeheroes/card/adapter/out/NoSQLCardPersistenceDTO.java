@@ -2,7 +2,7 @@ package com.cleancodeheroes.card.adapter.out;
 
 import com.cleancodeheroes.card.domain.Card;
 
-public class NoSQLCardPersistenceDTO {
+public final class NoSQLCardPersistenceDTO {
     private final String name;
     private final Integer healthPoints ;
     private final Integer experiencePoints ;

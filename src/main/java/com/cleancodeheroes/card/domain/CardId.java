@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
-public class CardId {
+public final class CardId {
     private final String id;
 
     private CardId (String id) { this.id = id; }

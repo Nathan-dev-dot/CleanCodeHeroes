@@ -3,7 +3,7 @@ package com.cleancodeheroes.card.domain;
 import com.cleancodeheroes.hero.domain.Specialty;
 import com.cleancodeheroes.shared.domain.Rarity;
 
-public class CardProps {
+public final class CardProps {
     private final CardId id;
     private final String name;
     private final Integer healthPoints ;

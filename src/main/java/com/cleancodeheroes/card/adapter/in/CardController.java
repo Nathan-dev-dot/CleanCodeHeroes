@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestController
 @RequestMapping("/api/card")
-public class CardController {
+public final class CardController {
     private final CommandBus commandBus;
     private final QueryBus queryBus;
 

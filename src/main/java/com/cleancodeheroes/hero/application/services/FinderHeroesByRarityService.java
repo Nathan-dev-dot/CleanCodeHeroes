@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class FinderHeroesByRarityService implements FindHeroesByRarityUseCase {
+public final class FinderHeroesByRarityService implements FindHeroesByRarityUseCase {
     private final FindHeroesByRarityPort findHeroesByRarityPort;
 
     public FinderHeroesByRarityService(FindHeroesByRarityPort findHeroesByRarityPort) {

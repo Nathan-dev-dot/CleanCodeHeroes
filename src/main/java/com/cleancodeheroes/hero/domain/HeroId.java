@@ -4,7 +4,7 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
-public class HeroId {
+public final class HeroId {
     private final String id;
 
     private HeroId(String id) {

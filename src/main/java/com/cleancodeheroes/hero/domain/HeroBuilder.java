@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 
 import java.util.MissingResourceException;
 
-public class HeroBuilder {
+public final class HeroBuilder {
     private HeroId id = null ;
     private String name ;
     private Integer healthPoints  ;

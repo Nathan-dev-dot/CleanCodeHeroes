@@ -5,7 +5,7 @@ import com.cleancodeheroes.shared.domain.Rarity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RarityTest {
+public final class RarityTest {
 
     @Test
     public void shouldCreateRarity () {

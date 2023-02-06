@@ -12,7 +12,7 @@ import org.bson.BsonValue;
 import org.bson.Document;
 
 @RequiredArgsConstructor
-public class NoSQLCardPersistence implements CreateCardPort {
+public final class NoSQLCardPersistence implements CreateCardPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("cards");
 
     @Override

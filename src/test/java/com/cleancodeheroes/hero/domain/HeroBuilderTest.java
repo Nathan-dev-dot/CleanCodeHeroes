@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.MissingResourceException;
 import java.util.UUID;
 
-public class HeroBuilderTest {
+public final class HeroBuilderTest {
     private HeroBuilder heroBuilder = new HeroBuilder();
     Hero hero;
 

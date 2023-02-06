@@ -5,7 +5,7 @@ import com.cleancodeheroes.user.domain.*;
 import org.bson.Document;
 import org.json.JSONObject;
 
-public class BsonUserMapper implements BsonMapper<User> {
+public final class BsonUserMapper implements BsonMapper<User> {
 
     private Document doc;
 

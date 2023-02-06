@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarity;
 
-public class HeroProps {
+public final class HeroProps {
     private final HeroId id ;
     private final String name ;
     private final Integer healthPoints  ;

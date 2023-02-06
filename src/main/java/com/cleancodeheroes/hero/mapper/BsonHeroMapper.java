@@ -6,7 +6,7 @@ import com.cleancodeheroes.shared.mapper.BsonMapper;
 import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
 
-public class BsonHeroMapper implements BsonMapper<Hero> {
+public final class BsonHeroMapper implements BsonMapper<Hero> {
     private Document doc;
 
     public BsonHeroMapper (Document doc) { this.doc = doc; }

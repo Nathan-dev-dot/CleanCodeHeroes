@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.adapter.out;
 
 import com.cleancodeheroes.hero.domain.Hero;
 
-public class NoSQLHeroPersistenceDTO {
+public final class NoSQLHeroPersistenceDTO {
     private final String name ;
     private final Integer healthPoints  ;
     private final Integer power ;
