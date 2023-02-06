@@ -20,6 +20,7 @@ public final class FinderHeroesByRarityService implements FindHeroesByRarityUseC
 
     @Override
     public ArrayList<Hero> handle(FindHeroesByRarityQuery query) throws HeroNotFoundException {
-        return this.findHeroesByRarityPort.loadAllByRarity(new Rarity(query.rarity));
+        Rarity rarity = new Rarity(query.rarity);
+        return this.findHeroesByRarityPort.loadAllByRarity(rarity);
     }
 }
