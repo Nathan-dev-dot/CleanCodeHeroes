@@ -31,4 +31,8 @@ final public class BsonAdapter {
                         getValue()
         );
     }
+
+    public BsonDocument getDocument() {
+        return document;
+    }
 }

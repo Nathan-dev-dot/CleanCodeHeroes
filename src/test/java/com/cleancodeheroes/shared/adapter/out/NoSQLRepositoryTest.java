@@ -1,6 +1,5 @@
-package com.cleancodeheroes.utils;
+package com.cleancodeheroes.shared.adapter.out;
 
-import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.mongodb.client.MongoDatabase;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -24,9 +23,15 @@ public class NoSQLRepositoryTest {
     }
 
     @Test
-    public void shouldGetDatabase () {
+    public void shouldGetDatabaseFromInstance () {
         final NoSQLRepository repository = NoSQLRepository.getInstance() ;
         final MongoDatabase database = repository.getDatabase() ;
+        Assertions.assertEquals("CleanCodeHeroes", database.getName());
+    }
+
+    @Test
+    public void shouldGetDatabase () {
+        final MongoDatabase database = NoSQLRepository.getNoSQLDatabase();
         Assertions.assertEquals("CleanCodeHeroes", database.getName());
     }
 }
