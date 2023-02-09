@@ -1,34 +1,27 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.shared.domain.Rarity;
+
 import java.util.Objects;
 
-public class Hero {
+public final class Hero {
     private final HeroId id ;
     private final String name ;
     private final Integer healthPoints  ;
-    private final Integer experiencePoints ;
     private final Integer power ;
-
     private final Integer armour ;
     private final Specialty specialty;
     private final Rarity rarity ;
-    private final Integer level ;
 
-    private Hero (HeroProps heroProps) {
+    public Hero (HeroProps heroProps) {
 
-        this.id = heroProps.getId();
-        this.name = heroProps.getName();
-        this.healthPoints = heroProps.getHealthPoints();
-        this.experiencePoints = heroProps.getExperiencePoints();
-        this.power = heroProps.getPower();
-        this.armour = heroProps.getArmour();
-        this.specialty = heroProps.getSpecialty();
-        this.rarity = heroProps.getRarity();
-        this.level = heroProps.getLevel();
-    }
-
-    public static Hero create (HeroProps heroProps) {
-        return new Hero(heroProps);
+        this.id = heroProps.id;
+        this.name = heroProps.name;
+        this.healthPoints = heroProps.healthPoints;
+        this.power = heroProps.power;
+        this.armour = heroProps.armour;
+        this.specialty = heroProps.specialty;
+        this.rarity = heroProps.rarity;
     }
 
     public HeroId Id() {
@@ -41,10 +34,6 @@ public class Hero {
 
     public Integer HealthPoints() {
         return healthPoints;
-    }
-
-    public Integer ExperiencePoints() {
-        return experiencePoints;
     }
 
     public Integer Power() {
@@ -63,9 +52,6 @@ public class Hero {
         return rarity;
     }
 
-    public Integer Level() {
-        return level;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,10 +60,11 @@ public class Hero {
             return false;
         };
         return id.equals(hero.id);
-        //&& name.equals(hero.name) && healthPoints.equals(hero.healthPoints) && experiencePoints.equals(hero.experiencePoints) && power.equals(hero.power) && armour.equals(hero.armour) && specialty.equals(hero.specialty) && rarity.equals(hero.rarity) && level.equals(hero.level);
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
+        return Objects.hash(id, name, healthPoints, power, armour, specialty, rarity);
     }
+
 }

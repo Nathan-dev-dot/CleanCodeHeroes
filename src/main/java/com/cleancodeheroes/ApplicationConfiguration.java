@@ -1,8 +1,13 @@
 package com.cleancodeheroes;
 
+import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
+import com.cleancodeheroes.card.application.service.CreationCardService;
+import com.cleancodeheroes.card.application.service.FinderCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
+import com.cleancodeheroes.hero.application.services.FinderHeroesByRarityService;
+import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
@@ -17,6 +22,16 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfiguration {
 
     @Bean
+    public CommandBus commandBus() {
+        return BusFactory.defaultCommandBus();
+    }
+
+    @Bean
+    public QueryBus queryBus() {
+        return BusFactory.defaultQueryBus();
+    }
+
+    @Bean
     public NoSQLHeroPersistence heroPersistenceAdapter() {
         return new NoSQLHeroPersistence();
     }
@@ -27,13 +42,8 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public CommandBus commandBus() {
-        return BusFactory.defaultCommandBus();
-    }
-
-    @Bean
-    public QueryBus queryBus() {
-        return BusFactory.defaultQueryBus();
+    public NoSQLCardPersistence cardPersistenceAdapter() {
+        return new NoSQLCardPersistence();
     }
 
     @Bean
@@ -47,6 +57,14 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    public FinderHeroesService finderHeroesUseCase() {
+        return new FinderHeroesService(heroPersistenceAdapter());
+    }
+
+    @Bean
+    public FinderHeroesByRarityService finderHeroesByRarityUseCase() { return new FinderHeroesByRarityService(heroPersistenceAdapter()); }
+
+    @Bean
     public CreateUserService createUserUseCase() {
         return new CreateUserService(userPersistenceAdapter());
     }
@@ -55,4 +73,10 @@ public class ApplicationConfiguration {
     public FindUserService findUserUseCase() {
         return new FindUserService(userPersistenceAdapter());
     }
+
+    @Bean
+    public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
+
+    @Bean
+    public FinderCardService finderCardService () { return new FinderCardService(cardPersistenceAdapter()); }
 }

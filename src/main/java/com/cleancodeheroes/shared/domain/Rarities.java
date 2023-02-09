@@ -1,4 +1,4 @@
-package com.cleancodeheroes.hero.domain;
+package com.cleancodeheroes.shared.domain;
 
 public enum Rarities {
     Common,

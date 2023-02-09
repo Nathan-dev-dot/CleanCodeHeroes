@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class HeroControllerTest {
+public final class HeroControllerTest {
 
     @InjectMocks
     private HeroController heroController;
@@ -40,12 +40,10 @@ public class HeroControllerTest {
         CreateHeroCommand createHeroCommand = new CreateHeroCommand(
                 createHeroRequest.name,
                 createHeroRequest.healthPoints,
-                createHeroRequest.experiencePoints,
                 createHeroRequest.power,
                 createHeroRequest.armour,
                 createHeroRequest.specialty,
-                createHeroRequest.rarity,
-                createHeroRequest.level
+                createHeroRequest.rarity
         );
         
         when((HeroId) commandBus.post(createHeroCommand)).thenReturn(HeroId.of(new ObjectId()));

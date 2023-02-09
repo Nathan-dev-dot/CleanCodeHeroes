@@ -4,14 +4,14 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
-public class HeroId {
+public final class HeroId {
     private final String id;
 
     private HeroId(String id) {
         this.id = id;
     }
 
-    public static HeroId of (String stringId) {
+    public static HeroId of (String stringId) throws IllegalArgumentException {
         if (ObjectId.isValid(stringId))
             return new HeroId(stringId);
         throw new IllegalArgumentException(stringId);

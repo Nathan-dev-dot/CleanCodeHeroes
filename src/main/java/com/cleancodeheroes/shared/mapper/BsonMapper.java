@@ -1,4 +1,4 @@
-package com.cleancodeheroes.shared;
+package com.cleancodeheroes.shared.mapper;
 
 import org.bson.Document;
 

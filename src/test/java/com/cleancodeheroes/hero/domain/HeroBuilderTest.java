@@ -1,5 +1,6 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.shared.domain.Rarities;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.MissingResourceException;
 import java.util.UUID;
 
-public class HeroBuilderTest {
+public final class HeroBuilderTest {
     private HeroBuilder heroBuilder = new HeroBuilder();
     Hero hero;
 
@@ -27,7 +28,7 @@ public class HeroBuilderTest {
     public void shouldCreateHeroWithGivenId () {
         ObjectId id = new ObjectId();
         hero = heroBuilder.id(id.toString()).build();
-        Assertions.assertEquals(id.toString(), hero.Id().value().toString());
+        Assertions.assertEquals(id.toString(), hero.Id().value());
     }
 
     @Test
@@ -150,53 +151,6 @@ public class HeroBuilderTest {
     public void shouldThrowForNegativePower () {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             heroBuilder.power(-1).build();
-        });
-    }
-
-    @Test
-    public void shouldCreateHeroWithExperiencePoints () {
-        Integer experiencePoints = 30;
-        hero = heroBuilder.experiencePoints(experiencePoints).build();
-        Assertions.assertEquals(experiencePoints, hero.ExperiencePoints());
-    }
-
-    @Test
-    public void shouldCreateHeroWithBaseExperiencePoints () {
-        hero = heroBuilder.build();
-        Assertions.assertEquals(0, hero.ExperiencePoints());
-    }
-
-    @Test
-    public void shouldThrowForNegativeExperiencePoints () {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.experiencePoints(-1).build();
-        });
-    }
-
-    @Test
-    public void shouldCreateHeroWithLevel () {
-        Integer level = 10;
-        hero = heroBuilder.level(level).build();
-        Assertions.assertEquals(level, hero.Level());
-    }
-
-    @Test
-    public void shouldCreateHeroWithBaseLevel () {
-        hero = heroBuilder.build();
-        Assertions.assertEquals(1, hero.Level());
-    }
-
-    @Test
-    public void shouldThrowForZeroLevel () {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.level(0).build();
-        });
-    }
-
-    @Test
-    public void shouldThrowForNegativeLevel () {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.level(-1).build();
         });
     }
 

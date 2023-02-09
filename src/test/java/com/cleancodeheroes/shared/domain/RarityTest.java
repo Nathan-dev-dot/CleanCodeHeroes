@@ -1,9 +1,9 @@
-package com.cleancodeheroes.hero.domain;
+package com.cleancodeheroes.shared.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class RarityTest {
+public final class RarityTest {
 
     @Test
     public void shouldCreateRarity () {

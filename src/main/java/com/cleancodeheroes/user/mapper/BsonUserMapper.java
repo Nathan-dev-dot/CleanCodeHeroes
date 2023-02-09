@@ -1,11 +1,11 @@
 package com.cleancodeheroes.user.mapper;
-import com.cleancodeheroes.shared.BsonMapper;
+
+import com.cleancodeheroes.shared.mapper.BsonMapper;
 import com.cleancodeheroes.user.domain.*;
-import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
 import org.json.JSONObject;
 
-public class BsonUserMapper implements BsonMapper<User> {
+public final class BsonUserMapper implements BsonMapper<User> {
 
     private final Document doc;
 
@@ -19,6 +19,6 @@ public class BsonUserMapper implements BsonMapper<User> {
                 Token.of(4),//todo
                 new Deck()
         );
-        return User.of(userProps);
+        return new User(userProps);
     }
 }

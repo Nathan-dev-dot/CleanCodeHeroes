@@ -3,7 +3,7 @@ package com.cleancodeheroes.hero.adapter.in;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class CreateHeroRequest {
+public final class CreateHeroRequest {
     @NotNull
     @NotEmpty
     public String name ;
@@ -12,9 +12,6 @@ public class CreateHeroRequest {
     @NotEmpty
     public Integer healthPoints  ;
 
-    @NotNull
-    @NotEmpty
-    public Integer experiencePoints ;
 
     @NotNull
     @NotEmpty
@@ -31,8 +28,4 @@ public class CreateHeroRequest {
     @NotNull
     @NotEmpty
     public String rarity ;
-    
-    @NotNull
-    @NotEmpty
-    public Integer level ;
 }

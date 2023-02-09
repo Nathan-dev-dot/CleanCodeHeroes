@@ -8,7 +8,7 @@ import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
 import org.bson.types.ObjectId;
 
-public class CreationHeroService implements CreateHeroUseCase {
+public final class CreationHeroService implements CreateHeroUseCase {
 
     private final CreateHeroPort createHeroPort;
 

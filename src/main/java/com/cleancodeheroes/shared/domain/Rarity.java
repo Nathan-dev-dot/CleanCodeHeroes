@@ -1,8 +1,8 @@
-package com.cleancodeheroes.hero.domain;
+package com.cleancodeheroes.shared.domain;
 
 import java.util.Objects;
 
-public class Rarity {
+public final class Rarity {
     private final Rarities rarity ;
 
     public Rarity(String rarity) throws IllegalArgumentException {

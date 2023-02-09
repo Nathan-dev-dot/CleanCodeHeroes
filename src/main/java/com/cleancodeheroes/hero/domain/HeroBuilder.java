@@ -1,19 +1,18 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.shared.domain.Rarity;
 import org.bson.types.ObjectId;
 
 import java.util.MissingResourceException;
 
-public class HeroBuilder {
+public final class HeroBuilder {
     private HeroId id = null ;
     private String name ;
     private Integer healthPoints  ;
-    private Integer experiencePoints = 0 ;
     private Integer power ;
     private Specialty specialty;
     private Integer armour ;
     private Rarity rarity ;
-    private Integer level = 1 ;
     private SpecialtyCharacteristics baseCharacteristics;
 
     public Hero build () {
@@ -21,14 +20,12 @@ public class HeroBuilder {
                 this.id,
                 this.name,
                 this.healthPoints,
-                this.experiencePoints,
                 this.power,
                 this.armour,
                 this.specialty,
-                this.rarity,
-                this.level
+                this.rarity
         );
-        return Hero.create(heroProps);
+        return new Hero(heroProps);
     }
 
     public HeroBuilder id (String id) throws IllegalArgumentException {
@@ -94,17 +91,5 @@ public class HeroBuilder {
     public HeroBuilder rarity (String rarity) throws IllegalArgumentException {
         this.rarity = new Rarity(rarity);
         return this;
-    }
-
-    public HeroBuilder experiencePoints (Integer points) throws IllegalArgumentException {
-        if (points < 0) throw new IllegalArgumentException();
-        this.experiencePoints = points ;
-        return this ;
-    }
-
-    public HeroBuilder level (Integer level) throws IllegalArgumentException {
-        if (level <= 0) throw new IllegalArgumentException();
-        this.level = level ;
-        return this ;
     }
 }

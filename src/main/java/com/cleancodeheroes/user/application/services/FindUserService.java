@@ -8,7 +8,7 @@ import com.cleancodeheroes.user.application.port.out.FindUserPort;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 
-public class FindUserService implements FindUserUseCase {
+public final class FindUserService implements FindUserUseCase {
 
     private final FindUserPort findHeroPort;
 

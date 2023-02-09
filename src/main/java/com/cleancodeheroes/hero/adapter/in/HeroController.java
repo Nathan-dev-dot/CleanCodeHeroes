@@ -2,12 +2,12 @@ package com.cleancodeheroes.hero.adapter.in;
 
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
+import com.cleancodeheroes.hero.application.port.in.FindHeroesByRarityQuery;
 import com.cleancodeheroes.hero.application.port.in.FindHeroesQuery;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
-import com.cleancodeheroes.user.adapter.out.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/api/hero")
-public class HeroController {
+public final class HeroController {
     private final CommandBus commandBus;
     private final QueryBus queryBus;
 
@@ -34,17 +34,15 @@ public class HeroController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@RequestBody @Valid CreateHeroRequest createAccountRequest) throws ResponseStatusException {
+    public String create(@RequestBody @Valid CreateHeroRequest createHeroRequest) throws ResponseStatusException {
         try {
             CreateHeroCommand createHeroCommand = new CreateHeroCommand(
-                    createAccountRequest.name,
-                    createAccountRequest.healthPoints,
-                    createAccountRequest.experiencePoints,
-                    createAccountRequest.power,
-                    createAccountRequest.armour,
-                    createAccountRequest.specialty,
-                    createAccountRequest.rarity,
-                    createAccountRequest.level
+                    createHeroRequest.name,
+                    createHeroRequest.healthPoints,
+                    createHeroRequest.power,
+                    createHeroRequest.armour,
+                    createHeroRequest.specialty,
+                    createHeroRequest.rarity
             );
             var heroId = (HeroId) commandBus.post(createHeroCommand);
 
@@ -72,6 +70,19 @@ public class HeroController {
     public List<GetHeroResponse> getHeroes() throws ResponseStatusException {
         try{
             ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesQuery());
+            return ResponseEntity
+                    .ok()
+                    .body(heroes.stream().map(GetHeroResponse::new).toList())
+                    .getBody();
+        } catch (Exception e) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        }
+    }
+
+    @GetMapping("/rarity/{rarity}")
+    public List<GetHeroResponse> getHeroesByRarity(@PathVariable("rarity") String rarity) throws ResponseStatusException {
+        try{
+            ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesByRarityQuery(rarity));
             return ResponseEntity
                     .ok()
                     .body(heroes.stream().map(GetHeroResponse::new).toList())

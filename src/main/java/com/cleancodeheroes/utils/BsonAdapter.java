@@ -3,7 +3,7 @@ package com.cleancodeheroes.utils;
 import org.bson.BsonDocument;
 import org.bson.Document;
 
-final public class BsonAdapter {
+public final class BsonAdapter {
     private final BsonDocument document;
 
     private BsonAdapter(BsonDocument document) {
@@ -30,5 +30,9 @@ final public class BsonAdapter {
                         asObjectId().
                         getValue()
         );
+    }
+
+    public BsonDocument getDocument() {
+        return document;
     }
 }

@@ -2,7 +2,7 @@ package com.cleancodeheroes.hero.domain;
 
 import java.util.Objects;
 
-public class Specialty {
+public final class Specialty {
     private final CharacterType specialty ;
 
     private Specialty(CharacterType specialty) {
