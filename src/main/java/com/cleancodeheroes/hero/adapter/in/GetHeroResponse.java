@@ -14,7 +14,7 @@ public final class GetHeroResponse {
 
     public GetHeroResponse(Hero hero) {
         this.name = hero.Name();
-        this.id = hero.Id().value().toString();
+        this.id = hero.Id().value();
         this.healthPoints = hero.HealthPoints();
         this.power = hero.Power();
         this.armour = hero.Armour();

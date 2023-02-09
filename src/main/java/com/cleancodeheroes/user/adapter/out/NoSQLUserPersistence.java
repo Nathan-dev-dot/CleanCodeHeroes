@@ -6,10 +6,10 @@ import com.cleancodeheroes.user.application.port.out.FindUserPort;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.user.mapper.BsonUserMapper;
+import com.cleancodeheroes.utils.BsonFilter;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
 import org.bson.BsonValue;
 import org.bson.Document;
 
@@ -25,10 +25,10 @@ public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort 
 
     @Override
     public User load(UserId userId) throws UserNotFoundException{
-        var res = registry.find(Filters.eq(
-                "_id",
-                IdUtils.fromStringToObjectId(userId.getId())
-        ));
+        var res = registry.find(
+                new BsonFilter(userId.value()).filter
+        );
+
         if (DocumentUtils.sizeof(res) == 0) throw new UserNotFoundException();
         User user = res.map(doc -> new BsonUserMapper(doc).toDomain()).first();
         return user;
