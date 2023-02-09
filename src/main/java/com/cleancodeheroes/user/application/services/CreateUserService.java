@@ -21,6 +21,7 @@ public class CreateUserService implements CreateUserUseCase {
                 new Deck()
         );
         User newUser = User.of(userProps);
+        System.out.println("newUser = " + newUser);
         return this.createUserPort.save(newUser);
     }
 }

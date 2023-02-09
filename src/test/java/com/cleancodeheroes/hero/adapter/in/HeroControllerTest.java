@@ -48,7 +48,7 @@ public class HeroControllerTest {
                 createHeroRequest.level
         );
         
-        when(commandBus.post(createHeroCommand)).thenReturn(HeroId.of(new ObjectId()));
+        when((HeroId) commandBus.post(createHeroCommand)).thenReturn(HeroId.of(new ObjectId()));
         heroController.create(createHeroRequest);
 
     }

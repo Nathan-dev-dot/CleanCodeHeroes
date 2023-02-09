@@ -47,6 +47,8 @@ public class HeroController {
                     createAccountRequest.level
             );
             var heroId = (HeroId) commandBus.post(createHeroCommand);
+
+            System.out.println(createHeroCommand);
             return heroId.value();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");

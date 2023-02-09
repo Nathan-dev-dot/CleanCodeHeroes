@@ -6,9 +6,9 @@ import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,15 +32,17 @@ public class UserController {
     public String create(@RequestBody @Valid CreateUserRequest createUserRequest) {
         CreateUserCommand createUserCommand = new CreateUserCommand(createUserRequest.username);
         var userId = (UserId) commandBus.post(createUserCommand);
-        return userId.getId();
+        return userId.value();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getHero (@PathVariable("id") String id) {
+    public GetUserResponse getHero (@PathVariable("id") String id) {
         try{
             User user = (User) queryBus.post(new FindUserQuery(id));
-            GetUserResponse response = GetUserResponse.of(user);
-            return new JSONObject(response).toString();
+            return ResponseEntity
+                    .ok()
+                    .body(new GetUserResponse(user))
+                    .getBody();
         } catch (Exception e) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }

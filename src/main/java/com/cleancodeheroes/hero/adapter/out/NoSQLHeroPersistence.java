@@ -52,7 +52,8 @@ public class NoSQLHeroPersistence implements FindHeroPort, FindHeroesPort, Creat
 
     @Override
     public Hero load (HeroId heroId) throws HeroNotFoundException {
-        var res = registry.find(Filters.eq(
+        var res
+                = registry.find(Filters.eq(
                 "_id",
                 IdUtils.fromStringToObjectId(heroId.value())
         ));

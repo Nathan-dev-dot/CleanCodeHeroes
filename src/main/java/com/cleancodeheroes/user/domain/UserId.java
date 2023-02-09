@@ -17,7 +17,7 @@ public class UserId {
         throw new IllegalArgumentException(userId);
     }
 
-    public String getId(){
+    public String value(){
         return this.id;
     }
 

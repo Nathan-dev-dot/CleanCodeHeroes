@@ -7,16 +7,16 @@ import org.json.JSONObject;
 
 public class BsonUserMapper implements BsonMapper<User> {
 
-    private Document doc;
+    private final Document doc;
 
     public BsonUserMapper (Document doc) { this.doc = doc; }
-    @Override
+
     public User toDomain() {
-        JSONObject jsonUser = new JSONObject(this.doc);
+        BsonAdapter heroAdapter = BsonAdapter.of(this.doc);
         UserProps userProps = new UserProps(
-                UserId.of(jsonUser.getJSONObject("userId").getString("userId")),
-                jsonUser.getString("username"),
-                Token.of(jsonUser.getJSONObject("token").getInt("numberOfToken")),
+                UserId.of(heroAdapter.getObjectId("_id")),
+                heroAdapter.getString("username"),
+                Token.of(4),//todo
                 new Deck()
         );
         return User.of(userProps);

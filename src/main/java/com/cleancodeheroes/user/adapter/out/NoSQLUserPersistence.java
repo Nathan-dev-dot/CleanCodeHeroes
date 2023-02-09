@@ -17,6 +17,7 @@ public class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getInstance().getDatabase().getCollection("users");
     @Override
     public UserId save(User user) {
+        System.out.println("user = " + user);
         final Document heroDocument = DocumentUtils.documentFromObject(user);
         final BsonValue insertedId = registry.insertOne(heroDocument).getInsertedId();
         final String insertedIdStr = IdUtils.fromBsonValueToString(insertedId);
@@ -25,12 +26,15 @@ public class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
 
     @Override
     public User load(UserId userId) throws UserNotFoundException{
+        System.out.println("userId.value() = " + userId.value());
         var res = registry.find(Filters.eq(
                 "_id",
-                IdUtils.fromStringToObjectId(userId.getId())
+                IdUtils.fromStringToObjectId(userId.value())
         ));
+        
         if (DocumentUtils.sizeof(res) == 0) throw new UserNotFoundException();
         User user = res.map(doc -> new BsonUserMapper(doc).toDomain()).first();
+        System.out.println("user = " + user);
         return user;
     }
 }

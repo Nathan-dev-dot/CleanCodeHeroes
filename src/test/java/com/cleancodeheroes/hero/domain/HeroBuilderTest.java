@@ -1,5 +1,6 @@
 package com.cleancodeheroes.hero.domain;
 
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class HeroBuilderTest {
 
     @Test
     public void shouldCreateHeroWithGivenId () {
-        UUID id = UUID.randomUUID();
+        ObjectId id = new ObjectId();
         hero = heroBuilder.id(id.toString()).build();
         Assertions.assertEquals(id.toString(), hero.Id().value().toString());
     }
