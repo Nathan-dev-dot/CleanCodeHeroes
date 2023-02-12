@@ -46,7 +46,6 @@ public final class HeroController {
             );
             var heroId = (HeroId) commandBus.post(createHeroCommand);
 
-            System.out.println(createHeroCommand);
             return heroId.value();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
