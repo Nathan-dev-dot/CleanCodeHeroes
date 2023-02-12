@@ -19,8 +19,10 @@ import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
 import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.application.port.in.FindUserTokenQuery;
 import com.cleancodeheroes.user.application.services.CreateUserService;
 import com.cleancodeheroes.user.application.services.FindUserService;
+import com.cleancodeheroes.user.application.services.FinderUserTokenService;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -46,6 +48,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final CreateUserService createUserUserCase;
     private final FindUserService findUserUseCase;
 
+    private final FinderUserTokenService finderUserTokenService;
+
     public StartupApplicationListener(
         CommandBus commandBus,
         QueryBus queryBus,
@@ -59,6 +63,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         NoSQLUserPersistence userPersistenceAdapter,
         CreateUserService createUserUserCase,
         FindUserService findUserUseCase,
+        FinderUserTokenService finderUserTokenService,
 
         NoSQLCardPersistence cardPersistenceAdapter,
         CreationCardService creationCardService,
@@ -72,6 +77,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.findHeroUseCase = finderHeroService;
         this.findHeroesUseCase = finderHeroesService;
         this.findHeroesByRarityUseCase = finderHeroesByRarityService;
+        this.finderUserTokenService = finderUserTokenService;
 
         this.noSQLUserPersistence = userPersistenceAdapter;
         this.findUserUseCase = findUserUseCase;
@@ -88,6 +94,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         queryBus.register(FindHeroQuery.class, findHeroUseCase);
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
         queryBus.register(FindHeroesByRarityQuery.class, findHeroesByRarityUseCase);
+        queryBus.register(FindUserTokenQuery.class, finderUserTokenService);
 
         commandBus.register(CreateUserCommand.class, createUserUserCase);
         queryBus.register(FindUserQuery.class, findUserUseCase);

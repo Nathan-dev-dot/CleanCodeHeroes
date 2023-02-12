@@ -4,6 +4,7 @@ import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.application.port.in.FindUserTokenQuery;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,16 @@ public final class UserController {
                     .ok()
                     .body(new GetUserResponse(user))
                     .getBody();
+        } catch (Exception e) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        }
+    }
+
+    @PutMapping(value = "pack/{id}")
+    public void openUserPack(@PathVariable("id") String id){
+        try{
+            Integer tokenNumber = (Integer) queryBus.post(new FindUserTokenQuery(id));
+            System.out.println("tokenNumber = " + tokenNumber);
         } catch (Exception e) {
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }

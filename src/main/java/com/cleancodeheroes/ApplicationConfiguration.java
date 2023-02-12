@@ -14,6 +14,7 @@ import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
 import com.cleancodeheroes.user.application.services.CreateUserService;
 import com.cleancodeheroes.user.application.services.FindUserService;
+import com.cleancodeheroes.user.application.services.FinderUserTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -72,6 +73,11 @@ public class ApplicationConfiguration {
     @Bean
     public FindUserService findUserUseCase() {
         return new FindUserService(userPersistenceAdapter());
+    }
+
+    @Bean
+    public FinderUserTokenService findUserTokenUseCase() {
+        return new FinderUserTokenService(userPersistenceAdapter());
     }
 
     @Bean
