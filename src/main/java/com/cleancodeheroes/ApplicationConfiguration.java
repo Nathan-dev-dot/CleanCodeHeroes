@@ -6,7 +6,6 @@ import com.cleancodeheroes.card.application.service.FinderCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
-import com.cleancodeheroes.hero.application.services.FinderHeroesByRarityService;
 import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
@@ -14,7 +13,8 @@ import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
 import com.cleancodeheroes.user.application.services.CreateUserService;
 import com.cleancodeheroes.user.application.services.FindUserService;
-import com.cleancodeheroes.user.application.services.FinderUserTokenService;
+import com.cleancodeheroes.user.application.services.OpenerUserPackService;
+import com.cleancodeheroes.user.application.services.UpdaterUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -63,9 +63,6 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public FinderHeroesByRarityService finderHeroesByRarityUseCase() { return new FinderHeroesByRarityService(heroPersistenceAdapter()); }
-
-    @Bean
     public CreateUserService createUserUseCase() {
         return new CreateUserService(userPersistenceAdapter());
     }
@@ -76,10 +73,9 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public FinderUserTokenService findUserTokenUseCase() {
-        return new FinderUserTokenService(userPersistenceAdapter());
-    }
-
+    public OpenerUserPackService openerUserPackService() {return new OpenerUserPackService(); };
+    @Bean
+    public UpdaterUserService updaterUserService() {return new UpdaterUserService(userPersistenceAdapter()); };
     @Bean
     public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
 

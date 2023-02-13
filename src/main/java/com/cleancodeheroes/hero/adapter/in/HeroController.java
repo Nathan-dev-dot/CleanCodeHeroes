@@ -2,7 +2,6 @@ package com.cleancodeheroes.hero.adapter.in;
 
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
-import com.cleancodeheroes.hero.application.port.in.FindHeroesByRarityQuery;
 import com.cleancodeheroes.hero.application.port.in.FindHeroesQuery;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroId;
@@ -70,19 +69,6 @@ public final class HeroController {
     public List<GetHeroResponse> getHeroes() throws ResponseStatusException {
         try{
             ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesQuery());
-            return ResponseEntity
-                    .ok()
-                    .body(heroes.stream().map(GetHeroResponse::new).toList())
-                    .getBody();
-        } catch (Exception e) {
-            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
-        }
-    }
-
-    @GetMapping("/rarity/{rarity}")
-    public List<GetHeroResponse> getHeroesByRarity(@PathVariable("rarity") String rarity) throws ResponseStatusException {
-        try{
-            ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesByRarityQuery(rarity));
             return ResponseEntity
                     .ok()
                     .body(heroes.stream().map(GetHeroResponse::new).toList())

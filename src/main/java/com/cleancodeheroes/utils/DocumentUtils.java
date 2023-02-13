@@ -3,6 +3,7 @@ package com.cleancodeheroes.utils;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 
