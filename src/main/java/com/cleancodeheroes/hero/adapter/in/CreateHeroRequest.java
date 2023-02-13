@@ -10,19 +10,6 @@ public final class CreateHeroRequest {
 
     @NotNull
     @NotEmpty
-    public Integer healthPoints  ;
-
-
-    @NotNull
-    @NotEmpty
-    public Integer power ;
-
-    @NotNull
-    @NotEmpty
-    public Integer armour ;
-
-    @NotNull
-    @NotEmpty
     public String specialty;
 
     @NotNull
