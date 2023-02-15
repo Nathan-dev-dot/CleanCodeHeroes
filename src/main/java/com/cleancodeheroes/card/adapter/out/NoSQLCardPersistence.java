@@ -8,8 +8,6 @@ import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 import com.cleancodeheroes.card.mapper.BsonCardMapper;
 import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
-import com.cleancodeheroes.user.adapter.out.NoSQLUserUpdateDTO;
-import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.utils.BsonFilter;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;

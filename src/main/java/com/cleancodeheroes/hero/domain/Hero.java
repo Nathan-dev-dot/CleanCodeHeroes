@@ -2,7 +2,6 @@ package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarity;
 
-import javax.management.ConstructorParameters;
 import java.util.Objects;
 
 public final class Hero {

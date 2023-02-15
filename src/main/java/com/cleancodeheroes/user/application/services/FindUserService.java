@@ -1,6 +1,5 @@
 package com.cleancodeheroes.user.application.services;
 
-import com.cleancodeheroes.hero.application.port.out.FindHeroPort;
 import com.cleancodeheroes.user.adapter.out.UserNotFoundException;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
 import com.cleancodeheroes.user.application.port.in.FindUserUseCase;
