@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-
 import java.util.ArrayList;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -57,24 +56,26 @@ public final class UserController {
         }
     }
 
-    @PutMapping(value = "pack/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/pack/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void openUserPack(
             @PathVariable("id") String id,
             @RequestBody @Valid OpenUserPackRequest openUserPackRequest){
         try{
             User user = (User) queryBus.post(new FindUserQuery(id));
-            user.hasMinimalNumberOfToken(PackType.valueOf(openUserPackRequest.packType));
+            PackType packType = PackType.valueOf(openUserPackRequest.packType);
+            user.hasMinimalNumberOfToken(packType);
             ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesQuery());
-            ArrayList<Hero> heroPull = (ArrayList<Hero>) commandBus.post(new OpenUserPackCommand(heroes));
+            ArrayList<Hero> heroPull = (ArrayList<Hero>) commandBus.post(new OpenUserPackCommand(packType, heroes));
             ArrayList<CardId> cards = new ArrayList<>();
             heroPull.forEach(hero -> {
                 CreateCardCommand createCardCommand = new CreateCardCommand(hero);
                 cards.add((CardId) commandBus.post(createCardCommand));
             });
-            user.retrieveTokenByPackType(PackType.valueOf(openUserPackRequest.packType));
+            user.retrieveTokenByPackType(packType);
             user.updateDeck(cards);
             commandBus.post(new UpdateUserCommand(user));
         } catch (Exception e) {
+            //todo change response code depending on exception
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }
     }
