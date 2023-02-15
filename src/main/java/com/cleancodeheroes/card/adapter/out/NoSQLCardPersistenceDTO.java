@@ -13,13 +13,13 @@ public final class NoSQLCardPersistenceDTO {
     public final Integer level ;
 
     public NoSQLCardPersistenceDTO (Card cardProps) {
-        this.name = cardProps.Name();
-        this.healthPoints = cardProps.HealthPoints();
-        this.experiencePoints = cardProps.ExperiencePoints();
-        this.power = cardProps.Power();
-        this.armour = cardProps.Armour();
-        this.specialty = cardProps.Specialty().toString();
-        this.rarity = cardProps.Rarity().toString();
-        this.level = cardProps.Level();
+        this.name = cardProps.getName();
+        this.healthPoints = cardProps.getHealthPoints();
+        this.experiencePoints = cardProps.getExperiencePoints();
+        this.power = cardProps.getPower();
+        this.armour = cardProps.getArmour();
+        this.specialty = cardProps.getSpecialty().toString();
+        this.rarity = cardProps.getRarity().toString();
+        this.level = cardProps.getLevel();
     }
 }
