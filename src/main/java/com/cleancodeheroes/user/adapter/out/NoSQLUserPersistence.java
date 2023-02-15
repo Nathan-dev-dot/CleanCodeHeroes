@@ -14,13 +14,11 @@ import com.mongodb.client.MongoCollection;
 import org.bson.BsonValue;
 import org.bson.Document;
 
-import java.util.Objects;
-
 public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort, UpdateUserPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("users");
     @Override
     public UserId save(User user) {
-        final NoSQLUserPersistenceDTO newUser = new NoSQLUserPersistenceDTO(user);
+        final NoSQLUserCreationDTO newUser = new NoSQLUserCreationDTO(user);
         final Document userDocument = DocumentUtils.documentFromObject(newUser);
         final BsonValue insertedId = registry.insertOne(userDocument).getInsertedId();
         final String insertedIdStr = IdUtils.fromBsonValueToString(insertedId);
@@ -38,8 +36,13 @@ public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort,
     }
 
     @Override
-    public UserId update(User user) {
-        registry.findOneAndDelete(new BsonFilter(user.getUserId().value()).filter);
-        return this.save(user);
+    public UserId update(User user) throws NullPointerException {
+        NoSQLUserUpdateDTO userUpdateDTO = new NoSQLUserUpdateDTO(user);
+        final Document updatedDocument = registry.findOneAndUpdate(
+                userUpdateDTO.query,
+                userUpdateDTO.updates
+        );
+        final String insertedIdStr = DocumentUtils.getIdFromDocument(updatedDocument);
+        return UserId.of(insertedIdStr);
     }
 }

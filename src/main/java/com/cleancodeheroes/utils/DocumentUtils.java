@@ -3,7 +3,6 @@ package com.cleancodeheroes.utils;
 import com.google.gson.Gson;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 
@@ -17,5 +16,9 @@ public final class DocumentUtils {
 
     public static Integer sizeof (FindIterable<Document> res) {
         return res.into(new ArrayList<>()).size();
+    }
+
+    public static String getIdFromDocument (Document d) {
+        return d.getObjectId("_id").toString();
     }
 }

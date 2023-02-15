@@ -17,11 +17,4 @@ public final class IdUtils {
         return id.toString();
     }
 
-//    public static UUID UUIDFromString (String id) throws IllegalArgumentException {
-//        return UUID.fromString(id);
-//    }
-
-//    public static UUID newUUID () {
-//        return UUID.randomUUID();
-//    }
 }
