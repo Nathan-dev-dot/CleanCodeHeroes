@@ -7,12 +7,12 @@ public class PackTest {
     @Test
     public void shouldReturnDiamondPackTypeEnum () {
         var diamondPackType = Pack.of("Diamond");
-        Assertions.assertEquals(PackType.Diamond, diamondPackType.getPackType());
+        Assertions.assertEquals(PackType.Diamond, diamondPackType.value());
     }
     @Test
     public void shouldReturnSilverPackTypeEnum () {
         var silverPackType = Pack.of("Silver");
-        Assertions.assertEquals(PackType.Silver, silverPackType.getPackType());
+        Assertions.assertEquals(PackType.Silver, silverPackType.value());
     }
 
     @Test

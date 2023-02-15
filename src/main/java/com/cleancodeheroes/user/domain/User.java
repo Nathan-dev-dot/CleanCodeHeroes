@@ -45,7 +45,6 @@ public final class User {
         cards.forEach(cardId -> {
             this.deck = this.deck.addCard(cardId);
         });
-        System.out.println(this.deck.getCards());
     }
 
 

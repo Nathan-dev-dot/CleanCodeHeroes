@@ -17,13 +17,10 @@ public final class Token {
         return this.numberOfToken;
     }
     public Token minus(PackType packType) throws ArithmeticException{
-        if(packType == PackType.Silver && this.numberOfToken - 1 >= 0){
-            return new Token(this.numberOfToken - 1);
-        }else if (packType == PackType.Diamond && this.numberOfToken - 2 >= 0){
-            return new Token(this.numberOfToken - 2);
-        }else{
-            throw new ArithmeticException();
-        }
+        PackCharacteristics packCharacteristics = PackCharacteristics.of(packType);
+        int newNumberOfToken = this.numberOfToken - packCharacteristics.getRequiredTokens();
+        if (newNumberOfToken < 0) throw new ArithmeticException();
+        return new Token(newNumberOfToken);
     }
 
 

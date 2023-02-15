@@ -19,7 +19,7 @@ public final class BsonUserMapper implements BsonMapper<User> {
         UserProps userProps = new UserProps(
                 UserId.of(heroAdapter.getObjectId("_id")),
                 heroAdapter.getString("username"),
-                new Token(heroAdapter.getInt("token")), //todo
+                new Token(heroAdapter.getInt("token")),
                 new Deck(cards)
         );
         return new User(userProps);

@@ -8,7 +8,7 @@ public class Pack {
         return new Pack(PackType.valueOf(packType));
     }
 
-    public PackType getPackType() {
+    public PackType value() {
         return packType;
     }
 }
