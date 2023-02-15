@@ -1,7 +1,10 @@
 package com.cleancodeheroes.utils;
 
+import org.bson.BsonArray;
 import org.bson.BsonDocument;
 import org.bson.Document;
+
+import java.util.ArrayList;
 
 public final class BsonAdapter {
     private final BsonDocument document;
@@ -30,6 +33,15 @@ public final class BsonAdapter {
                         asObjectId().
                         getValue()
         );
+    }
+
+    public ArrayList<String> getStringObjectIdsArray (String key) {
+        ArrayList<String> objectIdsAsStr = new ArrayList<String>();
+        BsonArray array = this.document.getArray(key);
+        array.getValues().forEach((element) -> {
+            objectIdsAsStr.add(element.asObjectId().getValue().toString());
+        });
+        return objectIdsAsStr;
     }
 
     public BsonDocument getDocument() {
