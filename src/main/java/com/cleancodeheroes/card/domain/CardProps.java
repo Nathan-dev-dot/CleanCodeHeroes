@@ -37,15 +37,15 @@ public final class CardProps {
 
     public static CardProps of(Card card) {
         return new CardProps (
-                card.Id(),
-                card.Name(),
-                card.HealthPoints(),
-                card.ExperiencePoints(),
-                card.Power(),
-                card.Armour(),
-                card.Specialty(),
-                card.Rarity(),
-                card.Level()
+                card.getId(),
+                card.getName(),
+                card.getHealthPoints(),
+                card.getExperiencePoints(),
+                card.getPower(),
+                card.getArmour(),
+                card.getSpecialty(),
+                card.getRarity(),
+                card.getLevel()
         );
     }
 }

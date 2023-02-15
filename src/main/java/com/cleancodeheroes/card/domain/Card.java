@@ -31,39 +31,39 @@ public final class Card {
 
     public static Card create (CardProps cardProps) { return new Card(cardProps); }
 
-    public CardId Id() {
+    public CardId getId() {
         return id;
     }
 
-    public String Name() {
+    public String getName() {
         return name;
     }
 
-    public Integer HealthPoints() {
+    public Integer getHealthPoints() {
         return healthPoints;
     }
 
-    public Integer ExperiencePoints() {
+    public Integer getExperiencePoints() {
         return experiencePoints;
     }
 
-    public Integer Power() {
+    public Integer getPower() {
         return power;
     }
 
-    public Integer Armour() {
+    public Integer getArmour() {
         return armour;
     }
 
-    public Specialty Specialty() {
+    public Specialty getSpecialty() {
         return specialty;
     }
 
-    public Rarity Rarity() {
+    public Rarity getRarity() {
         return rarity;
     }
 
-    public Integer Level() {
+    public Integer getLevel() {
         return level;
     }
 

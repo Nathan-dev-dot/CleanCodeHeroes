@@ -17,14 +17,14 @@ public class NoSQLUpdateCardDTO {
         this.query = new Document()
                 .append(
                         "_id",
-                        IdUtils.fromStringToObjectId(card.Id().value())
+                        IdUtils.fromStringToObjectId(card.getId().value())
                 );
         this.updates = Updates.combine(
-                Updates.set("level", card.Level()),
-                Updates.set("healthPoints", card.HealthPoints()),
-                Updates.set("experiencePoints", card.ExperiencePoints()),
-                Updates.set("power", card.Power()),
-                Updates.set("armour", card.Armour())
+                Updates.set("level", card.getLevel()),
+                Updates.set("healthPoints", card.getHealthPoints()),
+                Updates.set("experiencePoints", card.getExperiencePoints()),
+                Updates.set("power", card.getPower()),
+                Updates.set("armour", card.getArmour())
         );
     }
 }

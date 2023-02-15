@@ -14,15 +14,15 @@ public class GetCardResponse {
     public final Integer level ;
 
     public GetCardResponse(Card card) {
-        this.id = card.Id().value();
-        this.name = card.Name();
-        this.healthPoints = card.HealthPoints();
-        this.experiencePoints = card.ExperiencePoints();
-        this.power = card.Power();
-        this.armour = card.Armour();
-        this.specialty = card.Specialty().toString();
-        this.rarity = card.Rarity().toString();
-        this.level = card.Level();
+        this.id = card.getId().value();
+        this.name = card.getName();
+        this.healthPoints = card.getHealthPoints();
+        this.experiencePoints = card.getExperiencePoints();
+        this.power = card.getPower();
+        this.armour = card.getArmour();
+        this.specialty = card.getSpecialty().toString();
+        this.rarity = card.getRarity().toString();
+        this.level = card.getLevel();
     }
 
 }
