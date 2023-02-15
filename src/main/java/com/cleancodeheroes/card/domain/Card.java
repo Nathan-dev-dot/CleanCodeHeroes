@@ -14,7 +14,8 @@ public final class Card {
     private final Integer armour ;
     private final Specialty specialty;
     private final Rarity rarity ;
-    private final Integer level ;
+
+    private Integer level ;
 
     private Card (CardProps cardProps) {
         this.id = cardProps.id;
@@ -64,6 +65,10 @@ public final class Card {
 
     public Integer Level() {
         return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     @Override

@@ -3,10 +3,13 @@ package com.cleancodeheroes.card.adapter.out;
 import com.cleancodeheroes.card.application.CardNotFoundException;
 import com.cleancodeheroes.card.application.port.out.CreateCardPort;
 import com.cleancodeheroes.card.application.port.out.FindCardPort;
+import com.cleancodeheroes.card.application.port.out.UpdateCardPort;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 import com.cleancodeheroes.card.mapper.BsonCardMapper;
 import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
+import com.cleancodeheroes.user.adapter.out.NoSQLUserUpdateDTO;
+import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.utils.BsonFilter;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
@@ -17,7 +20,7 @@ import org.bson.BsonValue;
 import org.bson.Document;
 
 @RequiredArgsConstructor
-public final class NoSQLCardPersistence implements CreateCardPort, FindCardPort {
+public final class NoSQLCardPersistence implements CreateCardPort, FindCardPort, UpdateCardPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("cards");
 
     @Override
@@ -36,5 +39,16 @@ public final class NoSQLCardPersistence implements CreateCardPort, FindCardPort 
         );
         if (DocumentUtils.sizeof(res) == 0) throw new CardNotFoundException();
         return res.map(doc -> new BsonCardMapper(doc).toDomain()).first();
+    }
+
+    @Override
+    public CardId update(Card card) {
+        NoSQLUpdateCardDTO noSQLUpdateCardDTO = new NoSQLUpdateCardDTO(card);
+        final Document updatedDocument = registry.findOneAndUpdate(
+                noSQLUpdateCardDTO.query,
+                noSQLUpdateCardDTO.updates
+        );
+        final String insertedIdStr = DocumentUtils.getIdFromDocument(updatedDocument);
+        return CardId.of(insertedIdStr);
     }
 }
