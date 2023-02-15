@@ -2,6 +2,7 @@ package com.cleancodeheroes.card.adapter.in;
 
 import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
 import com.cleancodeheroes.card.application.port.in.FindCardQuery;
+import com.cleancodeheroes.card.application.port.in.UpdateCardCommand;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
@@ -55,5 +56,4 @@ public final class CardController {
             throw new ResponseStatusException(NOT_FOUND, "Hero " + id + " not found");
         }
     }
-
 }

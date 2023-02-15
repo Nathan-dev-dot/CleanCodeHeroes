@@ -3,6 +3,7 @@ package com.cleancodeheroes;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.card.application.service.FinderCardService;
+import com.cleancodeheroes.card.application.service.UpdaterCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
@@ -81,4 +82,7 @@ public class ApplicationConfiguration {
 
     @Bean
     public FinderCardService finderCardService () { return new FinderCardService(cardPersistenceAdapter()); }
+
+    @Bean
+    public UpdaterCardService updaterCardService () { return new UpdaterCardService(cardPersistenceAdapter()); }
 }

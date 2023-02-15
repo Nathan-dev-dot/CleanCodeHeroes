@@ -3,8 +3,10 @@ package com.cleancodeheroes;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
 import com.cleancodeheroes.card.application.port.in.FindCardQuery;
+import com.cleancodeheroes.card.application.port.in.UpdateCardCommand;
 import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.card.application.service.FinderCardService;
+import com.cleancodeheroes.card.application.service.UpdaterCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
@@ -41,6 +43,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final OpenerUserPackService openerUserPackService;
     private final NoSQLCardPersistence noSQLCardPersistence;
     private final CreationCardService creationCardUseCase;
+    private final UpdaterCardService updaterCardService;
     private final FinderCardService findCardUseCase;
     private final UpdaterUserService updaterUserService;
 
@@ -65,7 +68,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
         NoSQLCardPersistence cardPersistenceAdapter,
         CreationCardService creationCardService,
-        FinderCardService finderCardService
+        FinderCardService finderCardService,
+        UpdaterCardService updaterCardService
     ) {
         this.commandBus = commandBus;
         this.queryBus = queryBus;
@@ -84,6 +88,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.noSQLCardPersistence = cardPersistenceAdapter;
         this.creationCardUseCase = creationCardService;
         this.findCardUseCase = finderCardService;
+        this.updaterCardService = updaterCardService;
     }
 
     @Override
@@ -99,6 +104,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
         commandBus.register(CreateCardCommand.class, creationCardUseCase);
         queryBus.register(FindCardQuery.class, findCardUseCase);
+        commandBus.register(UpdateCardCommand.class, updaterCardService);
     }
 
 }
