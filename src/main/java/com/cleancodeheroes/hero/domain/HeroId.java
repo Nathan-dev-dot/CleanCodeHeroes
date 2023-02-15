@@ -2,7 +2,6 @@ package com.cleancodeheroes.hero.domain;
 
 import org.bson.types.ObjectId;
 
-import javax.management.ConstructorParameters;
 import java.util.Objects;
 
 public final class HeroId {

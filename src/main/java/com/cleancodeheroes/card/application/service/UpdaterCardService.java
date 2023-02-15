@@ -2,7 +2,6 @@ package com.cleancodeheroes.card.application.service;
 
 import com.cleancodeheroes.card.application.port.in.UpdateCardCommand;
 import com.cleancodeheroes.card.application.port.in.UpdateCardUseCase;
-import com.cleancodeheroes.card.application.port.out.FindCardPort;
 import com.cleancodeheroes.card.application.port.out.UpdateCardPort;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;

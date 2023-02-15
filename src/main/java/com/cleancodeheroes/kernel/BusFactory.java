@@ -2,7 +2,6 @@ package com.cleancodeheroes.kernel;
 
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
-import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 
