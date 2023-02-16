@@ -8,14 +8,14 @@ import java.util.Objects;
 public final class Card {
     private final CardId id;
     private final String name;
-    private final Integer healthPoints ;
-    private final Integer experiencePoints ;
-    private final Integer power ;
-    private final Integer armour ;
+    private final Integer healthPoints;
+    private final ExperiencePoint experiencePoints ;
+    private final Power power;
+    private final Armour armour;
     private final Specialty specialty;
-    private final Rarity rarity ;
+    private final Rarity rarity;
 
-    private Integer level ;
+    private final Level level;
 
     private Card (CardProps cardProps) {
         this.id = cardProps.id;
@@ -43,15 +43,15 @@ public final class Card {
         return healthPoints;
     }
 
-    public Integer getExperiencePoints() {
+    public ExperiencePoint getExperiencePoints() {
         return experiencePoints;
     }
 
-    public Integer getPower() {
+    public Power getPower() {
         return power;
     }
 
-    public Integer getArmour() {
+    public Armour getArmour() {
         return armour;
     }
 
@@ -63,12 +63,8 @@ public final class Card {
         return rarity;
     }
 
-    public Integer getLevel() {
+    public Level getLevel() {
         return level;
-    }
-
-    public void setLevel(Integer level) {
-        this.level = level;
     }
 
     @Override
