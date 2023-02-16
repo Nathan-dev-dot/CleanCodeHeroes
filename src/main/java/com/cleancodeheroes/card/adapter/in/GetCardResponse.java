@@ -17,12 +17,11 @@ public class GetCardResponse {
         this.id = card.getId().value();
         this.name = card.getName();
         this.healthPoints = card.getHealthPoints();
-        this.experiencePoints = card.getExperiencePoints();
-        this.power = card.getPower();
-        this.armour = card.getArmour();
+        this.experiencePoints = card.getExperiencePoints().getExperiencePoint();
+        this.power = card.getPower().getPower();
+        this.armour = card.getArmour().getArmour();
         this.specialty = card.getSpecialty().toString();
         this.rarity = card.getRarity().toString();
-        this.level = card.getLevel();
+        this.level = card.getLevel().getLevel();
     }
-
 }

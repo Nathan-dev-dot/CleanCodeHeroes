@@ -7,12 +7,12 @@ public final class CardProps {
     public final CardId id;
     public final String name;
     public final Integer healthPoints ;
-    public final Integer experiencePoints ;
-    public final Integer power ;
-    public final Integer armour ;
+    public final ExperiencePoint experiencePoints ;
+    public final Power power ;
+    public final Armour armour ;
     public final Specialty specialty;
     public final Rarity rarity ;
-    public final Integer level ;
+    public final Level level ;
 
     public CardProps(
             CardId id,
@@ -27,12 +27,12 @@ public final class CardProps {
         this.id = id;
         this.name = name;
         this.healthPoints = healthPoints;
-        this.experiencePoints = experiencePoints;
-        this.power = power;
-        this.armour = armour;
+        this.experiencePoints = new ExperiencePoint(experiencePoints);
+        this.power = new Power(power);
+        this.armour = new Armour(armour);
         this.specialty = specialty;
         this.rarity = rarity;
-        this.level = level;
+        this.level = new Level(level);
     }
 
     public static CardProps of(Card card) {
@@ -40,12 +40,12 @@ public final class CardProps {
                 card.getId(),
                 card.getName(),
                 card.getHealthPoints(),
-                card.getExperiencePoints(),
-                card.getPower(),
-                card.getArmour(),
+                card.getExperiencePoints().getExperiencePoint(),
+                card.getPower().getPower(),
+                card.getArmour().getArmour(),
                 card.getSpecialty(),
                 card.getRarity(),
-                card.getLevel()
+                card.getLevel().getLevel()
         );
     }
 }
