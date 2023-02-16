@@ -14,6 +14,9 @@ public class ExperiencePoint {
     }
 
     public ExperiencePoint addExperiencePoint(Integer experiencePoint){
+        if (experiencePoint < 1){
+            throw new ArithmeticException();
+        }
         return new ExperiencePoint(this.experiencePoint + experiencePoint);
     }
 

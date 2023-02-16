@@ -8,7 +8,10 @@ public class Armour {
         this.armour = armour;
     }
 
-    public Armour addArmour(Integer armour){
+    public Armour addArmour(Integer armour) throws ArithmeticException {
+        if (armour < 1){
+            throw new ArithmeticException();
+        }
         return new Armour(this.armour + armour);
     }
     public Integer getArmour() {

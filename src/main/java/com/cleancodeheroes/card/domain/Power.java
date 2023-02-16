@@ -12,6 +12,13 @@ public class Power {
         return power;
     }
 
+    public Power addPower(Integer power) {
+        if (power < 1){
+            throw new ArithmeticException();
+        }
+        return new Power(this.power + power);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
