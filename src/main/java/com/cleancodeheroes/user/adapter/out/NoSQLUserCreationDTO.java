@@ -11,7 +11,7 @@ public class NoSQLUserCreationDTO {
 
     public NoSQLUserCreationDTO(User user) {
         this.username = user.getUsername();
-        this.token = user.getToken().getNumberOfToken();
+        this.token = user.getToken().value();
         this.deck = user.getDeck().getCards();
     }
 }

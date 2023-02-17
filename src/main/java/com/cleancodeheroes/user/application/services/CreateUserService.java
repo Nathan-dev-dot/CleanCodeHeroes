@@ -20,7 +20,7 @@ public final class CreateUserService implements CreateUserUseCase {
         UserProps userProps =  new UserProps(
                 UserId.of(new ObjectId().toString()),
                 command.getUsername(),
-                new Token(4),
+                Token.of(4),
                 new Deck(cards)
         );
         User newUser = new User(userProps);

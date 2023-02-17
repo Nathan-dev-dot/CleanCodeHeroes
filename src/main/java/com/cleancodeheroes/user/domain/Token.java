@@ -1,21 +1,21 @@
 package com.cleancodeheroes.user.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-@JsonSerialize
 public final class Token {
     private final int numberOfToken;
 
-    public Token(int numberOfToken){
+    private Token(int numberOfToken){
         this.numberOfToken = numberOfToken;
+    }
+
+    public static Token of (int numberOfToken) throws IllegalArgumentException {
+        if (numberOfToken < 0) throw new IllegalArgumentException();
+        return new Token(numberOfToken);
     }
 
     public int value(){
         return this.numberOfToken;
     }
-    public int getNumberOfToken(){
-        return this.numberOfToken;
-    }
+
     public Token minus(PackType packType) throws ArithmeticException{
         PackCharacteristics packCharacteristics = PackCharacteristics.of(packType);
         int newNumberOfToken = this.numberOfToken - packCharacteristics.getRequiredTokens();
