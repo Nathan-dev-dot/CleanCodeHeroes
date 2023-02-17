@@ -26,7 +26,7 @@ public class ArmourTest {
     @Test
     public void shouldAddTenPercentOfArmourPointWithoutDecimalValue(){
         Armour armour = new Armour(101);
-        Integer newArmourPoint = armour.increaseByFactor().getArmour();
-        Assertions.assertEquals(111, newArmourPoint);
+        Armour newArmour = armour.increaseByFactor();
+        Assertions.assertEquals(111, newArmour.getArmour());
     }
 }

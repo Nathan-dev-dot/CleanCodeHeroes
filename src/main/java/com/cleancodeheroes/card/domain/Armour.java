@@ -9,7 +9,7 @@ public class Armour implements Characteristic{
     }
 
     @Override
-    public Armour increaseByFactor() throws ArithmeticException {
+    public Armour increaseByFactor() {
         int newArmourPoint = (int) Math.abs(this.armour * increaseFactor);
         return new Armour(newArmourPoint);
     }
