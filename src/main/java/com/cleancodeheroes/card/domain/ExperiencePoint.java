@@ -13,11 +13,13 @@ public class ExperiencePoint {
         return experiencePoint;
     }
 
-    public ExperiencePoint addExperiencePoint(Integer experiencePoint){
-        if (experiencePoint < 1){
-            throw new ArithmeticException();
-        }
-        return new ExperiencePoint(this.experiencePoint + experiencePoint);
+    public ExperiencePoint addTenPercentOfExperiencePoint(){
+        int newExperiencePointValue = (int) Math.abs(this.experiencePoint * 1.1);
+        return new ExperiencePoint(newExperiencePointValue);
+    }
+
+    public Boolean shouldLevelUp(){
+        return this.experiencePoint % 5 == 0;
     }
 
     @Override

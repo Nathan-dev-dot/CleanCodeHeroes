@@ -18,15 +18,14 @@ public class ArmourTest {
     }
 
     @Test
-    public void shouldAddOneArmourPoint(){
-        Armour armour = new Armour(1);
-        Assertions.assertEquals(2, armour.addArmour(1).getArmour());
+    public void shouldAddTenPercentOfArmourPoint(){
+        Armour armour = new Armour(100);
+        Assertions.assertEquals(110, armour.addTenPercentOfArmour().getArmour());
     }
+
     @Test
-    public void shouldThrowAnArithmeticException(){
-        Armour armour = new Armour(1);
-        Assertions.assertThrows(ArithmeticException.class, () -> {
-            armour.addArmour(0);
-        });
+    public void shouldAddTenPercentOfArmourPointWithoutDecimalValue(){
+        Armour armour = new Armour(101);
+        Assertions.assertEquals(111, armour.addTenPercentOfArmour().getArmour());
     }
 }

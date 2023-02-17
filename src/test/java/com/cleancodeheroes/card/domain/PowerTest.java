@@ -16,15 +16,13 @@ public class PowerTest {
     }
 
     @Test
-    public void shouldAdd200PowerPoint(){
+    public void shouldAddTenPercentOfPowerPoint(){
         Power power = new Power(500);
-        Assertions.assertEquals(700, power.addPower(200).getPower());
+        Assertions.assertEquals(550, power.addTenPercentOfPowerPower().getPower());
     }
     @Test
-    public void shouldThrowAnArithmeticException(){
-        Power power = new Power(500);
-        Assertions.assertThrows(ArithmeticException.class, () -> {
-            power.addPower(0);
-        });
+    public void shouldAddTenPercentOfPowerPointWithoutDecimalValue(){
+        Power power = new Power(501);
+        Assertions.assertEquals(551, power.addTenPercentOfPowerPower().getPower());
     }
 }
