@@ -3,8 +3,6 @@ package com.cleancodeheroes.card.domain;
 import java.util.Objects;
 
 public class Level {
-
-
     private final Integer level;
 
     public Level(Integer level) {
@@ -18,6 +16,7 @@ public class Level {
     public Integer getLevel() {
         return level;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

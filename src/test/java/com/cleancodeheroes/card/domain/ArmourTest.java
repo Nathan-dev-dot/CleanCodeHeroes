@@ -1,6 +1,5 @@
 package com.cleancodeheroes.card.domain;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,12 +19,14 @@ public class ArmourTest {
     @Test
     public void shouldAddTenPercentOfArmourPoint(){
         Armour armour = new Armour(100);
-        Assertions.assertEquals(110, armour.addTenPercentOfArmour().getArmour());
+        Integer newArmourPoint = armour.increaseByFactor().getArmour();
+        Assertions.assertEquals(110, newArmourPoint);
     }
 
     @Test
     public void shouldAddTenPercentOfArmourPointWithoutDecimalValue(){
         Armour armour = new Armour(101);
-        Assertions.assertEquals(111, armour.addTenPercentOfArmour().getArmour());
+        Integer newArmourPoint = armour.increaseByFactor().getArmour();
+        Assertions.assertEquals(111, newArmourPoint);
     }
 }

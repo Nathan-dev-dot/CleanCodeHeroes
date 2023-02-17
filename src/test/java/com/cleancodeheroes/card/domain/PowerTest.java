@@ -18,11 +18,13 @@ public class PowerTest {
     @Test
     public void shouldAddTenPercentOfPowerPoint(){
         Power power = new Power(500);
-        Assertions.assertEquals(550, power.addTenPercentOfPowerPower().getPower());
+        Integer newPowerPoint = power.increaseByFactor().getPower();
+        Assertions.assertEquals(550, newPowerPoint);
     }
     @Test
     public void shouldAddTenPercentOfPowerPointWithoutDecimalValue(){
         Power power = new Power(501);
-        Assertions.assertEquals(551, power.addTenPercentOfPowerPower().getPower());
+        Integer newPowerPoint = power.increaseByFactor().getPower();
+        Assertions.assertEquals(551, newPowerPoint);
     }
 }
