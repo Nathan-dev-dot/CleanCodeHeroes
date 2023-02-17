@@ -49,11 +49,8 @@ public final class User {
 
 
     public void hasMinimalNumberOfToken(PackType packType){
-        if(packType == PackType.Silver && this.token.value() < 1){
+        if (!this.token.hasMinimalNumberOfTokensForPackType(packType))
             throw new RuntimeException();
-        }else if (packType == PackType.Diamond && this.token.value() < 2){
-            throw new RuntimeException();
-        }
     }
 
     @Override

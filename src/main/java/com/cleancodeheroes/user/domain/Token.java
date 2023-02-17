@@ -16,11 +16,16 @@ public final class Token {
         return this.numberOfToken;
     }
 
-    public Token minus(PackType packType) throws ArithmeticException{
+    public boolean hasMinimalNumberOfTokensForPackType (PackType packType) {
         PackCharacteristics packCharacteristics = PackCharacteristics.of(packType);
         int newNumberOfToken = this.numberOfToken - packCharacteristics.getRequiredTokens();
-        if (newNumberOfToken < 0) throw new ArithmeticException();
-        return new Token(newNumberOfToken);
+        return newNumberOfToken >= 0;
+    }
+
+    public Token minus(PackType packType) throws ArithmeticException{
+        PackCharacteristics packCharacteristics = PackCharacteristics.of(packType);
+        if (!this.hasMinimalNumberOfTokensForPackType(packType)) throw new ArithmeticException();
+        return new Token(this.numberOfToken - packCharacteristics.getRequiredTokens());
     }
 
 

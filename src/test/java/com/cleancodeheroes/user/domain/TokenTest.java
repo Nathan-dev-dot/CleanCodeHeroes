@@ -18,6 +18,22 @@ public class TokenTest {
     }
 
     @Test
+    public void shouldHaveMinimalNumberOfTokenForPack () {
+        PackCharacteristics packCharacteristics = PackCharacteristics.of(PackType.Silver);
+        int startToken = packCharacteristics.getRequiredTokens();
+        Token token = Token.of(startToken);
+        Assertions.assertTrue(token.hasMinimalNumberOfTokensForPackType(PackType.Silver));
+    }
+
+    @Test
+    public void shouldNotHaveMinimalNumberOfTokenForPack () {
+        PackCharacteristics packCharacteristics = PackCharacteristics.of(PackType.Silver);
+        int startToken = packCharacteristics.getRequiredTokens() - 1;
+        Token token = Token.of(startToken);
+        Assertions.assertFalse(token.hasMinimalNumberOfTokensForPackType(PackType.Silver));
+    }
+
+    @Test
     public void shouldRemoveTokensFromSilverPack () {
         PackCharacteristics packCharacteristics = PackCharacteristics.of(PackType.Silver);
         int startToken = packCharacteristics.getRequiredTokens();
