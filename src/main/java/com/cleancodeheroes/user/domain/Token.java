@@ -16,12 +16,11 @@ public final class Token {
     public int getNumberOfToken(){
         return this.numberOfToken;
     }
-    public Token minusOne() throws ArithmeticException{
-        if(this.numberOfToken > 0){
-            return new Token(this.numberOfToken - 1);
-        }else {
-            throw new ArithmeticException();
-        }
+    public Token minus(PackType packType) throws ArithmeticException{
+        PackCharacteristics packCharacteristics = PackCharacteristics.of(packType);
+        int newNumberOfToken = this.numberOfToken - packCharacteristics.getRequiredTokens();
+        if (newNumberOfToken < 0) throw new ArithmeticException();
+        return new Token(newNumberOfToken);
     }
 
 

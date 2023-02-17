@@ -26,7 +26,7 @@ public final class Rarity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Rarity rarity1)) return false;
-        return rarity == rarity1.rarity;
+        return rarity == rarity1.value();
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarity;
 
+import javax.management.ConstructorParameters;
 import java.util.Objects;
 
 public final class Hero {
@@ -52,19 +53,15 @@ public final class Hero {
         return rarity;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Hero hero)) {
-            return false;
-        };
-        return id.equals(hero.id);
+        if (!(o instanceof Hero hero)) return false;
+        return Objects.equals(id, hero.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, healthPoints, power, armour, specialty, rarity);
+        return Objects.hash(id);
     }
-
 }

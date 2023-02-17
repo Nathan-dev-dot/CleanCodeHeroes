@@ -3,6 +3,7 @@ package com.cleancodeheroes.user.adapter.out;
 import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.cleancodeheroes.user.application.port.out.CreateUserPort;
 import com.cleancodeheroes.user.application.port.out.FindUserPort;
+import com.cleancodeheroes.user.application.port.out.UpdateUserPort;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.user.mapper.BsonUserMapper;
@@ -13,12 +14,13 @@ import com.mongodb.client.MongoCollection;
 import org.bson.BsonValue;
 import org.bson.Document;
 
-public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort {
+public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort, UpdateUserPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("users");
     @Override
     public UserId save(User user) {
-        final Document heroDocument = DocumentUtils.documentFromObject(user);
-        final BsonValue insertedId = registry.insertOne(heroDocument).getInsertedId();
+        final NoSQLUserCreationDTO newUser = new NoSQLUserCreationDTO(user);
+        final Document userDocument = DocumentUtils.documentFromObject(newUser);
+        final BsonValue insertedId = registry.insertOne(userDocument).getInsertedId();
         final String insertedIdStr = IdUtils.fromBsonValueToString(insertedId);
         return UserId.of(insertedIdStr);
     }
@@ -30,7 +32,17 @@ public final class NoSQLUserPersistence implements FindUserPort, CreateUserPort 
         );
 
         if (DocumentUtils.sizeof(res) == 0) throw new UserNotFoundException();
-        User user = res.map(doc -> new BsonUserMapper(doc).toDomain()).first();
-        return user;
+        return res.map(doc -> new BsonUserMapper(doc).toDomain()).first();
+    }
+
+    @Override
+    public UserId update(User user) throws NullPointerException {
+        NoSQLUserUpdateDTO userUpdateDTO = new NoSQLUserUpdateDTO(user);
+        final Document updatedDocument = registry.findOneAndUpdate(
+                userUpdateDTO.query,
+                userUpdateDTO.updates
+        );
+        final String insertedIdStr = DocumentUtils.getIdFromDocument(updatedDocument);
+        return UserId.of(insertedIdStr);
     }
 }

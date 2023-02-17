@@ -17,4 +17,8 @@ public final class DocumentUtils {
     public static Integer sizeof (FindIterable<Document> res) {
         return res.into(new ArrayList<>()).size();
     }
+
+    public static String getIdFromDocument (Document d) {
+        return d.getObjectId("_id").toString();
+    }
 }

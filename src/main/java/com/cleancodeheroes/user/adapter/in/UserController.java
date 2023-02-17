@@ -1,9 +1,16 @@
 package com.cleancodeheroes.user.adapter.in;
 
+import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
+import com.cleancodeheroes.card.domain.CardId;
+import com.cleancodeheroes.hero.application.port.in.FindHeroesQuery;
+import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.application.port.in.OpenUserPackCommand;
+import com.cleancodeheroes.user.application.port.in.UpdateUserCommand;
+import com.cleancodeheroes.user.domain.PackType;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -44,6 +52,30 @@ public final class UserController {
                     .body(new GetUserResponse(user))
                     .getBody();
         } catch (Exception e) {
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        }
+    }
+
+    @PutMapping(value = "/pack/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public void openUserPack(
+            @PathVariable("id") String id,
+            @RequestBody @Valid OpenUserPackRequest openUserPackRequest){
+        try{
+            User user = (User) queryBus.post(new FindUserQuery(id));
+            PackType packType = PackType.valueOf(openUserPackRequest.packType);
+            user.hasMinimalNumberOfToken(packType);
+            ArrayList<Hero> heroes = (ArrayList<Hero>) queryBus.post(new FindHeroesQuery());
+            ArrayList<Hero> heroPull = (ArrayList<Hero>) commandBus.post(new OpenUserPackCommand(packType, heroes));
+            ArrayList<CardId> cards = new ArrayList<>();
+            heroPull.forEach(hero -> {
+                CreateCardCommand createCardCommand = new CreateCardCommand(hero);
+                cards.add((CardId) commandBus.post(createCardCommand));
+            });
+            user.retrieveTokenByPackType(packType);
+            user.updateDeck(cards);
+            commandBus.post(new UpdateUserCommand(user));
+        } catch (Exception e) {
+            //todo change response code depending on exception
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
         }
     }

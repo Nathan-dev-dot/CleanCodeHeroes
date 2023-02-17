@@ -4,7 +4,8 @@ import com.cleancodeheroes.shared.mapper.BsonMapper;
 import com.cleancodeheroes.user.domain.*;
 import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
-import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public final class BsonUserMapper implements BsonMapper<User> {
 
@@ -14,11 +15,12 @@ public final class BsonUserMapper implements BsonMapper<User> {
 
     public User toDomain() {
         BsonAdapter heroAdapter = BsonAdapter.of(this.doc);
+        final ArrayList<String> cards = heroAdapter.getStringObjectIdsArray("deck");
         UserProps userProps = new UserProps(
                 UserId.of(heroAdapter.getObjectId("_id")),
                 heroAdapter.getString("username"),
-                new Token(4),//todo
-                new Deck()
+                new Token(heroAdapter.getInt("token")),
+                new Deck(cards)
         );
         return new User(userProps);
     }

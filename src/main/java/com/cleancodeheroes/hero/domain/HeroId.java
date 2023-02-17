@@ -2,6 +2,7 @@ package com.cleancodeheroes.hero.domain;
 
 import org.bson.types.ObjectId;
 
+import javax.management.ConstructorParameters;
 import java.util.Objects;
 
 public final class HeroId {
@@ -30,7 +31,7 @@ public final class HeroId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof HeroId heroId)) return false;
-        return id.equals(heroId.id);
+        return Objects.equals(id, heroId.id);
     }
 
     @Override
