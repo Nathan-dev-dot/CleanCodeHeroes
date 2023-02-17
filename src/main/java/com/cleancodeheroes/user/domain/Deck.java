@@ -1,16 +1,18 @@
 package com.cleancodeheroes.user.domain;
 
 import com.cleancodeheroes.card.domain.CardId;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 
-@JsonSerialize
 public final class Deck {
     private final ArrayList<String> cards;
 
     public Deck(ArrayList<String> cards) {
         this.cards = cards;
+    }
+
+    public static Deck newEmptyDeck () {
+        return new Deck(new ArrayList<>());
     }
 
     public ArrayList<String> getCards() {
