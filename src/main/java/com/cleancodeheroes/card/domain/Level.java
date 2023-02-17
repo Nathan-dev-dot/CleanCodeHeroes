@@ -14,6 +14,7 @@ public class Level {
     public Level addOneLevel(){
         return new Level(this.level + 1);
     }
+
     public Integer getLevel() {
         return level;
     }

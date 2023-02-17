@@ -12,11 +12,9 @@ public class Power {
         return power;
     }
 
-    public Power addPower(Integer power) {
-        if (power < 1){
-            throw new ArithmeticException();
-        }
-        return new Power(this.power + power);
+    public Power addTenPercentOfPowerPower() {
+        int newPowerPoint = (int) Math.abs(this.power * 1.1);
+        return new Power(newPowerPoint);
     }
 
     @Override

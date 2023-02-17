@@ -8,11 +8,9 @@ public class Armour {
         this.armour = armour;
     }
 
-    public Armour addArmour(Integer armour) throws ArithmeticException {
-        if (armour < 1){
-            throw new ArithmeticException();
-        }
-        return new Armour(this.armour + armour);
+    public Armour addTenPercentOfArmour() throws ArithmeticException {
+        int newArmourPoint = (int) Math.abs(this.armour * 1.1);
+        return new Armour(newArmourPoint);
     }
     public Integer getArmour() {
         return armour;
