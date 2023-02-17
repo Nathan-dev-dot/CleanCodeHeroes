@@ -12,12 +12,14 @@ public class LevelTest {
     @Test
     public void shouldReturnLevelObjectWithValue1(){
         Level level = new Level(1);
-        Assertions.assertEquals(1, level.getLevel());
+        Integer newLevelInteger = level.getLevel();
+        Assertions.assertEquals(1, newLevelInteger);
     }
 
     @Test
     public void shouldAddOneLevel(){
         Level level = new Level(1);
-        Assertions.assertEquals(2, level.addOneLevel().getLevel());
+        Integer newLevelInteger = level.addOneLevel().getLevel();
+        Assertions.assertEquals(2, newLevelInteger);
     }
 }

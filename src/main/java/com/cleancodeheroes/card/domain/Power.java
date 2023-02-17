@@ -2,7 +2,7 @@ package com.cleancodeheroes.card.domain;
 
 import java.util.Objects;
 
-public class Power {
+public class Power implements Characteristic {
     private final Integer power;
 
     public Power(Integer power) {
@@ -12,8 +12,9 @@ public class Power {
         return power;
     }
 
-    public Power addTenPercentOfPowerPower() {
-        int newPowerPoint = (int) Math.abs(this.power * 1.1);
+    @Override
+    public Power increaseByFactor() {
+        int newPowerPoint = (int) Math.abs(this.power * increaseFactor);
         return new Power(newPowerPoint);
     }
 

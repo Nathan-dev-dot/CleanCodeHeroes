@@ -2,14 +2,15 @@ package com.cleancodeheroes.card.domain;
 
 import java.util.Objects;
 
-public class Armour {
+public class Armour implements Characteristic{
     private final Integer armour;
     public Armour(Integer armour) {
         this.armour = armour;
     }
 
-    public Armour addTenPercentOfArmour() throws ArithmeticException {
-        int newArmourPoint = (int) Math.abs(this.armour * 1.1);
+    @Override
+    public Armour increaseByFactor() throws ArithmeticException {
+        int newArmourPoint = (int) Math.abs(this.armour * increaseFactor);
         return new Armour(newArmourPoint);
     }
     public Integer getArmour() {
