@@ -71,7 +71,7 @@ public final class UserController {
                 CreateCardCommand createCardCommand = new CreateCardCommand(hero);
                 cards.add((CardId) commandBus.post(createCardCommand));
             });
-            user.retrieveTokenByPackType(packType);
+            user.removeTokenByPackType(packType);
             user.updateDeck(cards);
             commandBus.post(new UpdateUserCommand(user));
         } catch (Exception e) {

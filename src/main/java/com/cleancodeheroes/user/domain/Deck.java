@@ -11,13 +11,15 @@ public final class Deck {
         this.cards = cards;
     }
 
-    public static Deck newEmptyDeck () {
-        return new Deck(new ArrayList<>());
+    public Deck () {
+        this.cards = new ArrayList<>();
     }
 
     public ArrayList<String> getCards() {
         return cards;
     }
+
+    public int size () { return this.cards.size(); }
 
     public Deck addCard(CardId cardId) {
         ArrayList<String> newDeck = this.cards;

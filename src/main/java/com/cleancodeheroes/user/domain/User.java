@@ -1,12 +1,10 @@
 package com.cleancodeheroes.user.domain;
 
 import com.cleancodeheroes.card.domain.CardId;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-@JsonSerialize
 public final class User {
 
     private final UserId userId;
@@ -37,7 +35,7 @@ public final class User {
         return userId;
     }
 
-    public void retrieveTokenByPackType(PackType packType){
+    public void removeTokenByPackType(PackType packType) throws ArithmeticException {
         this.token = token.minus(packType);
     }
 

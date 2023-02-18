@@ -7,6 +7,10 @@ public final class Token {
         this.numberOfToken = numberOfToken;
     }
 
+    public Token () {
+        this.numberOfToken = 4;
+    }
+
     public static Token of (int numberOfToken) throws IllegalArgumentException {
         if (numberOfToken < 0) throw new IllegalArgumentException();
         return new Token(numberOfToken);

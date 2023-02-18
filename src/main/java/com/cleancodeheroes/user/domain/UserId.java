@@ -1,14 +1,18 @@
 package com.cleancodeheroes.user.domain;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import org.bson.types.ObjectId;
 
 import java.util.Objects;
-@JsonSerialize
+
 public final class UserId {
     private final String id;
 
     private UserId(String userId){
         this.id = userId;
+    }
+
+    public UserId () {
+        this.id = new ObjectId().toString();
     }
 
     public static UserId of(String userId){

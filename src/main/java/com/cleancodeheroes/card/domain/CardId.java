@@ -9,6 +9,8 @@ public final class CardId {
 
     private CardId (String id) { this.id = id; }
 
+    public CardId () { this.id = new ObjectId().toString(); }
+
     public static CardId of (String stringId) throws IllegalArgumentException {
         if (ObjectId.isValid(stringId))
             return new CardId(stringId);

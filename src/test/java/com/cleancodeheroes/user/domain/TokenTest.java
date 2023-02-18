@@ -6,6 +6,12 @@ import org.junit.jupiter.api.Test;
 public class TokenTest {
 
     @Test
+    public void shouldCreateDefaultToken () {
+        Token token = new Token();
+        Assertions.assertEquals(4, token.value());
+    }
+
+    @Test
     public void shouldCreateTokenWithGivenNumber () {
         var token = Token.of(1);
         Assertions.assertInstanceOf(Token.class, token);

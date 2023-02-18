@@ -12,4 +12,11 @@ public final class UserProps {
         this.token = token;
         this.deck = deck;
     }
+
+    public UserProps (String username) {
+        this.userId = new UserId();
+        this.username = username;
+        this.token = new Token();
+        this.deck = new Deck();
+    }
 }
