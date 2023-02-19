@@ -31,17 +31,7 @@ public final class CardController {
         this.queryBus = queryBus;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String create (@RequestBody @Valid CreateCardRequest createCardRequest) {
-        try {
-            Hero hero = (Hero) queryBus.post(new FindHeroQuery(createCardRequest.parentHeroId));
-            CreateCardCommand createCardCommand = new CreateCardCommand(hero);
-            CardId cardId = (CardId) commandBus.post(createCardCommand);
-            return cardId.value();
-        } catch (Exception e) {
-            throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
-        }
-    }
+
 
     @GetMapping("/{id}")
     public GetCardResponse findOne (@PathVariable("id") String id) {

@@ -3,6 +3,7 @@ package com.cleancodeheroes.card.domain;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.Specialty;
+import com.cleancodeheroes.user.domain.UserId;
 
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public final class Card {
     private final Specialty specialty;
     private final Rarity rarity;
     private final Level level;
-
+    private final UserId userId;
     public Card (CardProps cardProps) {
         this.id = cardProps.id;
         this.parentHeroId = cardProps.parentHeroId;
@@ -29,6 +30,7 @@ public final class Card {
         this.specialty = cardProps.specialty;
         this.rarity = cardProps.rarity;
         this.level = cardProps.level;
+        this.userId = cardProps.userId;
     }
 
     public CardId getId() {
@@ -71,6 +73,10 @@ public final class Card {
         return level;
     }
 
+    public UserId getUserId() {
+        return userId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,6 +88,6 @@ public final class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, parentHeroId, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
+        return Objects.hash(id, parentHeroId, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level, userId);
     }
 }

@@ -3,6 +3,7 @@ package com.cleancodeheroes.card.domain;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.Specialty;
+import com.cleancodeheroes.user.domain.UserId;
 
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public final class CardProps {
     public final Specialty specialty;
     public final Rarity rarity ;
     public final Level level ;
-
+    public final UserId userId;
     public CardProps(
             String cardId,
             String parentHeroId,
@@ -28,7 +29,8 @@ public final class CardProps {
             Integer armour,
             String specialty,
             String rarity,
-            Integer level) throws IllegalArgumentException {
+            Integer level,
+            String userId) throws IllegalArgumentException {
         this.id = CardId.of(cardId);
         this.parentHeroId = HeroId.of(parentHeroId);
         this.name = name;
@@ -39,6 +41,7 @@ public final class CardProps {
         this.specialty = Specialty.of(specialty);
         this.rarity = new Rarity(rarity);
         this.level = Level.of(level);
+        this.userId = UserId.of(userId);
     }
 
     public static CardProps of(Card card) throws IllegalArgumentException {
@@ -52,7 +55,8 @@ public final class CardProps {
                 card.getArmour().getArmour(),
                 card.getSpecialty().toString(),
                 card.getRarity().toString(),
-                card.getLevel().getLevel()
+                card.getLevel().getLevel(),
+                card.getUserId().value()
         );
     }
 

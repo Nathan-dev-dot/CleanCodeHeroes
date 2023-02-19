@@ -12,6 +12,7 @@ public final class NoSQLCreateCardDTO {
     public final String specialty;
     public final String rarity ;
     public final Integer level ;
+    public final String userId;
 
     public NoSQLCreateCardDTO(Card cardProps) {
         this.parentHeroId = cardProps.getParentHeroId().value();
@@ -23,5 +24,6 @@ public final class NoSQLCreateCardDTO {
         this.specialty = cardProps.getSpecialty().toString();
         this.rarity = cardProps.getRarity().toString();
         this.level = cardProps.getLevel().getLevel();
+        this.userId = cardProps.getUserId().value();
     }
 }

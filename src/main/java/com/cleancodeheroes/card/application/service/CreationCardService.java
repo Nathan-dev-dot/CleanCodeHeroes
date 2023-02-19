@@ -28,7 +28,8 @@ public final class CreationCardService implements CreateCardUseCase {
                         command.getArmour(),
                         command.getSpecialty().toString(),
                         command.getRarity().toString(),
-                        command.getLevel()
+                        command.getLevel(),
+                        command.getUserId().value()
                 )
         );
         return this.createCardPort.save(card);

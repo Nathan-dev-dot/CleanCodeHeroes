@@ -24,7 +24,8 @@ public class BsonCardMapper implements BsonMapper<Card> {
                         cardAdapter.getInt("armour"),
                         cardAdapter.getString("specialty"),
                         cardAdapter.getString("rarity"),
-                        cardAdapter.getInt("level")
+                        cardAdapter.getInt("level"),
+                        cardAdapter.getString("userId")
                 )
         );
     }

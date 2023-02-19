@@ -68,7 +68,7 @@ public final class UserController {
             ArrayList<Hero> heroPull = (ArrayList<Hero>) commandBus.post(new OpenUserPackCommand(packType, heroes));
             ArrayList<CardId> cards = new ArrayList<>();
             heroPull.forEach(hero -> {
-                CreateCardCommand createCardCommand = new CreateCardCommand(hero);
+                CreateCardCommand createCardCommand = new CreateCardCommand(hero, user.getUserId());
                 cards.add((CardId) commandBus.post(createCardCommand));
             });
             user.removeTokenByPackType(packType);

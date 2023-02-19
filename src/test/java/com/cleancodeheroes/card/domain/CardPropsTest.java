@@ -17,7 +17,8 @@ public class CardPropsTest {
                 0,
                 "Tank",
                 "Rare",
-                1
+                1,
+                new ObjectId().toString()
         );
         Assertions.assertTrue(ObjectId.isValid(cardProps.id.value()));
         Assertions.assertTrue(ObjectId.isValid(cardProps.parentHeroId.value()));
@@ -44,7 +45,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
 
@@ -61,7 +63,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -77,7 +80,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -93,7 +97,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -109,7 +114,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -125,7 +131,8 @@ public class CardPropsTest {
                         -1,
                         "Tank",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -141,7 +148,8 @@ public class CardPropsTest {
                         0,
                         "Invalid",
                         "Rare",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -157,7 +165,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Invalid",
-                        1
+                        1,
+                        new ObjectId().toString()
                 ));
     }
     @Test
@@ -173,7 +182,8 @@ public class CardPropsTest {
                         0,
                         "Tank",
                         "Rare",
-                        0
+                        0,
+                        new ObjectId().toString()
                 ));
     }
 
@@ -189,7 +199,8 @@ public class CardPropsTest {
                 0,
                 "Tank",
                 "Rare",
-                1
+                1,
+                new ObjectId().toString()
         );
         Card card = new Card(cardProps);
         CardProps newCardProps = CardProps.of(card);
