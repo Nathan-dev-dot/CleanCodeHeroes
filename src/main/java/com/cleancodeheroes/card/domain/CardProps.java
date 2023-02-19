@@ -49,13 +49,13 @@ public final class CardProps {
                 card.getId().value(),
                 card.getParentHeroId().value(),
                 card.getName(),
-                card.getHealthPoints().getHealthPoint(),
+                card.getHealthPoints().value(),
                 card.getExperiencePoints().getExperiencePoint(),
-                card.getPower().getPower(),
-                card.getArmour().getArmour(),
+                card.getPower().value(),
+                card.getArmour().value(),
                 card.getSpecialty().toString(),
                 card.getRarity().toString(),
-                card.getLevel().getLevel(),
+                card.getLevel().value(),
                 card.getUserId().value()
         );
     }

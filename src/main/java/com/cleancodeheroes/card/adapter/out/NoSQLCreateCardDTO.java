@@ -17,13 +17,13 @@ public final class NoSQLCreateCardDTO {
     public NoSQLCreateCardDTO(Card cardProps) {
         this.parentHeroId = cardProps.getParentHeroId().value();
         this.name = cardProps.getName();
-        this.healthPoints = cardProps.getHealthPoints().getHealthPoint();
+        this.healthPoints = cardProps.getHealthPoints().value();
         this.experiencePoints = cardProps.getExperiencePoints().getExperiencePoint();
-        this.power = cardProps.getPower().getPower();
-        this.armour = cardProps.getArmour().getArmour();
+        this.power = cardProps.getPower().value();
+        this.armour = cardProps.getArmour().value();
         this.specialty = cardProps.getSpecialty().toString();
         this.rarity = cardProps.getRarity().toString();
-        this.level = cardProps.getLevel().getLevel();
+        this.level = cardProps.getLevel().value();
         this.userId = cardProps.getUserId().value();
     }
 }

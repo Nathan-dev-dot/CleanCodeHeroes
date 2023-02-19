@@ -19,13 +19,13 @@ public class GetCardResponse {
         this.id = card.getId().value();
         this.parentHeroId = card.getParentHeroId().value();
         this.name = card.getName();
-        this.healthPoints = card.getHealthPoints().getHealthPoint();
+        this.healthPoints = card.getHealthPoints().value();
         this.experiencePoints = card.getExperiencePoints().getExperiencePoint();
-        this.power = card.getPower().getPower();
-        this.armour = card.getArmour().getArmour();
+        this.power = card.getPower().value();
+        this.armour = card.getArmour().value();
         this.specialty = card.getSpecialty().toString();
         this.rarity = card.getRarity().toString();
-        this.level = card.getLevel().getLevel();
+        this.level = card.getLevel().value();
         this.userId = card.getUserId().value();
     }
 }

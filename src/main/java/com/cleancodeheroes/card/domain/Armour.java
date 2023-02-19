@@ -19,19 +19,19 @@ public class Armour implements Characteristic{
         int newArmourPoint = (int) Math.abs(this.armour * increaseFactor);
         return Armour.of(newArmourPoint);
     }
-    public Integer getArmour() {
+    public Integer value() {
         return armour;
     }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Armour armour1)) return false;
-        return Objects.equals(getArmour(), armour1.getArmour());
+        return Objects.equals(value(), armour1.value());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getArmour());
+        return Objects.hash(value());
     }
 
 }

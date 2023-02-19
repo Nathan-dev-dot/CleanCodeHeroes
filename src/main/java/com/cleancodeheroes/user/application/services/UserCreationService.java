@@ -7,10 +7,10 @@ import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.user.domain.UserProps;
 
-public final class CreateUserService implements CreateUserUseCase {
+public final class UserCreationService implements CreateUserUseCase {
     private final CreateUserPort createUserPort;
 
-    public CreateUserService(CreateUserPort createUserPort){
+    public UserCreationService(CreateUserPort createUserPort){
         this.createUserPort = createUserPort;
     }
     @Override

@@ -3,6 +3,7 @@ package com.cleancodeheroes.shared.domain;
 import com.cleancodeheroes.hero.domain.CharacterType;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public final class SpecialtyCharacteristics {
     private final CharacterType type ;
@@ -95,5 +96,10 @@ public final class SpecialtyCharacteristics {
 
     public HashMap<CharacterType, Integer> getAdditionalDamage() {
         return additionalDamage;
+    }
+
+    public Integer getAdditionalDammageAgainstCharacterType (CharacterType characterType) {
+        Integer additionalDammage = this.getAdditionalDamage().get(characterType);
+        return Objects.requireNonNullElse(additionalDammage, 0);
     }
 }

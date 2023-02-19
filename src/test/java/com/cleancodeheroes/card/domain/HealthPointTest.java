@@ -17,14 +17,14 @@ public class HealthPointTest {
     @Test
     public void shouldReturnHealthPointObjectWithValue1(){
         HealthPoint healthPoint = HealthPoint.of(1);
-        Integer newHealthPoint = healthPoint.getHealthPoint();
+        Integer newHealthPoint = healthPoint.value();
         Assertions.assertEquals(1, newHealthPoint);
     }
 
     @Test
     public void shouldAddTenPercentOdHealthPoint(){
         HealthPoint healthPoint = HealthPoint.of(100);
-        Integer newHealthPoint = healthPoint.increaseByFactor().getHealthPoint();
+        Integer newHealthPoint = healthPoint.increaseByFactor().value();
         Assertions.assertEquals(110, newHealthPoint);
     }
 
@@ -32,7 +32,7 @@ public class HealthPointTest {
     @Test
     public void shouldAddTenPercentOdHealthPointWithoutDecimalValue(){
         HealthPoint healthPoint = HealthPoint.of(99);
-        Integer newHealthPoint = healthPoint.increaseByFactor().getHealthPoint();
+        Integer newHealthPoint = healthPoint.increaseByFactor().value();
         Assertions.assertEquals(108, newHealthPoint);
     }
 }

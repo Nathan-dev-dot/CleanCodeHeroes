@@ -15,7 +15,7 @@ public class HealthPoint implements Characteristic{
         return new HealthPoint(healthPoint);
     }
 
-    public Integer getHealthPoint() {
+    public Integer value() {
         return healthPoint;
     }
 

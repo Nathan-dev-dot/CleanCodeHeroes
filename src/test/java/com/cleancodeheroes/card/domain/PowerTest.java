@@ -17,19 +17,19 @@ public class PowerTest {
     @Test
     public void shouldReturnPowerObjectWithValue500(){
         Power power = Power.of(500);
-        Assertions.assertEquals(500, power.getPower());
+        Assertions.assertEquals(500, power.value());
     }
 
     @Test
     public void shouldAddTenPercentOfPowerPoint(){
         Power power = Power.of(500);
-        Integer newPowerPoint = power.increaseByFactor().getPower();
+        Integer newPowerPoint = power.increaseByFactor().value();
         Assertions.assertEquals(550, newPowerPoint);
     }
     @Test
     public void shouldAddTenPercentOfPowerPointWithoutDecimalValue(){
         Power power = Power.of(501);
-        Integer newPowerPoint = power.increaseByFactor().getPower();
+        Integer newPowerPoint = power.increaseByFactor().value();
         Assertions.assertEquals(551, newPowerPoint);
     }
 }

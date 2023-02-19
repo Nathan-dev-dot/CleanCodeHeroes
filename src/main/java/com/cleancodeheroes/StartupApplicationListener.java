@@ -21,7 +21,7 @@ import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
 import com.cleancodeheroes.user.application.port.in.OpenUserPackCommand;
 import com.cleancodeheroes.user.application.port.in.UpdateUserCommand;
-import com.cleancodeheroes.user.application.services.CreateUserService;
+import com.cleancodeheroes.user.application.services.UserCreationService;
 import com.cleancodeheroes.user.application.services.FindUserService;
 import com.cleancodeheroes.user.application.services.OpenerUserPackService;
 import com.cleancodeheroes.user.application.services.UpdaterUserService;
@@ -48,7 +48,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final UpdaterUserService updaterUserService;
 
     private final NoSQLUserPersistence noSQLUserPersistence;
-    private final CreateUserService createUserUserCase;
+    private final UserCreationService createUserUserCase;
     private final FindUserService findUserUseCase;
 
     public StartupApplicationListener(
@@ -63,7 +63,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         UpdaterUserService updaterUserService,
 
         NoSQLUserPersistence userPersistenceAdapter,
-        CreateUserService createUserUserCase,
+        UserCreationService createUserUserCase,
         FindUserService findUserUseCase,
 
         NoSQLCardPersistence cardPersistenceAdapter,

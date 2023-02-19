@@ -14,7 +14,7 @@ public class Power implements Characteristic {
             throw new IllegalArgumentException();
         return new Power(power);
     }
-    public Integer getPower() {
+    public Integer value() {
         return power;
     }
 
@@ -28,11 +28,11 @@ public class Power implements Characteristic {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Power power1)) return false;
-        return Objects.equals(getPower(), power1.getPower());
+        return Objects.equals(value(), power1.value());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPower());
+        return Objects.hash(value());
     }
 }

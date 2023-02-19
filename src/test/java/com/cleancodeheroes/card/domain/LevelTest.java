@@ -18,14 +18,14 @@ public class LevelTest {
     @Test
     public void shouldReturnLevelObjectWithValue1(){
         Level level = Level.of(1);
-        Integer newLevelInteger = level.getLevel();
+        Integer newLevelInteger = level.value();
         Assertions.assertEquals(1, newLevelInteger);
     }
 
     @Test
     public void shouldAddOneLevel(){
         Level level = Level.of(1);
-        Integer newLevelInteger = level.addOneLevel().getLevel();
+        Integer newLevelInteger = level.addOneLevel().value();
         Assertions.assertEquals(2, newLevelInteger);
     }
 }

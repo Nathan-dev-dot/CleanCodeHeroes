@@ -1,5 +1,6 @@
 package com.cleancodeheroes.battle.domain;
 
+import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.user.domain.UserId;
@@ -26,6 +27,15 @@ public class BattleResult {
         this.winnerUserId = winnerUserId;
         this.loserHeroId = loserHeroId;
         this.loserUserId = loserUserId;
+    }
+
+    public BattleResult (Card winner, Card loser) {
+        this.winnerCardId = winner.getId();
+        this.winnerHeroId = winner.getParentHeroId();
+        this.winnerUserId = winner.getUserId();
+        this.loserCardId = loser.getId();
+        this.loserHeroId = loser.getParentHeroId();
+        this.loserUserId = loser.getUserId();
     }
 
     public static BattleResult of( String winnerCardId,

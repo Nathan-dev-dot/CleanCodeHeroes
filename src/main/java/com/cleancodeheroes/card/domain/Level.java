@@ -19,7 +19,7 @@ public class Level {
         return Level.of(this.level + 1);
     }
 
-    public Integer getLevel() {
+    public Integer value() {
         return level;
     }
 

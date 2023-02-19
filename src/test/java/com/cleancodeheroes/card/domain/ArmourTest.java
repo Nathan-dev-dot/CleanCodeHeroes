@@ -18,20 +18,20 @@ public class ArmourTest {
     @Test
     public void shouldReturnArmourObjectWithValue1(){
         Armour armour = Armour.of(1);
-        Assertions.assertEquals(1, armour.getArmour());
+        Assertions.assertEquals(1, armour.value());
     }
 
     @Test
     public void shouldAddTenPercentOfArmourPoint(){
         Armour armour = Armour.of(100);
-        Integer newArmourPoint = armour.increaseByFactor().getArmour();
+        Integer newArmourPoint = armour.increaseByFactor().value();
         Assertions.assertEquals(110, newArmourPoint);
     }
 
     @Test
     public void shouldAddTenPercentOfArmourPointWithoutDecimalValue(){
         Armour armour = Armour.of(101);
-        Integer newArmourPoint = armour.increaseByFactor().getArmour();
+        Integer newArmourPoint = armour.increaseByFactor().value();
         Assertions.assertEquals(111, newArmourPoint);
     }
 }
