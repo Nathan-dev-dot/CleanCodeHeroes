@@ -1,7 +1,6 @@
 package com.cleancodeheroes.shared.domain;
 
 import com.cleancodeheroes.hero.domain.CharacterType;
-import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

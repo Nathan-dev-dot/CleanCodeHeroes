@@ -1,8 +1,8 @@
 package com.cleancodeheroes.card.domain;
 
 import com.cleancodeheroes.hero.domain.HeroId;
-import com.cleancodeheroes.shared.domain.Specialty;
 import com.cleancodeheroes.shared.domain.Rarity;
+import com.cleancodeheroes.shared.domain.Specialty;
 
 import java.util.Objects;
 
