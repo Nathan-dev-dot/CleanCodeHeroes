@@ -6,5 +6,5 @@ import javax.validation.constraints.NotNull;
 public final class CreateCardRequest {
     @NotNull
     @NotEmpty
-    public String baseHeroId;
+    public String parentHeroId;
 }

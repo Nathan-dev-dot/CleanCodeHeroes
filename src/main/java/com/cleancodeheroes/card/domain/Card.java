@@ -8,9 +8,9 @@ import java.util.Objects;
 
 public final class Card {
     private final CardId id;
-    private final HeroId baseHeroId;
+    private final HeroId parentHeroId;
     private final String name;
-    private final Integer healthPoints;
+    private final HealthPoint healthPoints;
     private final ExperiencePoint experiencePoints ;
     private final Power power;
     private final Armour armour;
@@ -20,7 +20,7 @@ public final class Card {
 
     public Card (CardProps cardProps) {
         this.id = cardProps.id;
-        this.baseHeroId = cardProps.baseHeroId;
+        this.parentHeroId = cardProps.parentHeroId;
         this.name = cardProps.name;
         this.healthPoints = cardProps.healthPoints;
         this.experiencePoints = cardProps.experiencePoints;
@@ -35,15 +35,15 @@ public final class Card {
         return id;
     }
 
-    public HeroId getBaseHeroId() {
-        return baseHeroId;
+    public HeroId getParentHeroId() {
+        return parentHeroId;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getHealthPoints() {
+    public HealthPoint getHealthPoints() {
         return healthPoints;
     }
 
@@ -82,6 +82,6 @@ public final class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, baseHeroId, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
+        return Objects.hash(id, parentHeroId, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
     }
 }

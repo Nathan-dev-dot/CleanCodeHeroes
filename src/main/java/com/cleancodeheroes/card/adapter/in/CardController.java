@@ -34,7 +34,7 @@ public final class CardController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String create (@RequestBody @Valid CreateCardRequest createCardRequest) {
         try {
-            Hero hero = (Hero) queryBus.post(new FindHeroQuery(createCardRequest.baseHeroId));
+            Hero hero = (Hero) queryBus.post(new FindHeroQuery(createCardRequest.parentHeroId));
             CreateCardCommand createCardCommand = new CreateCardCommand(hero);
             CardId cardId = (CardId) commandBus.post(createCardCommand);
             return cardId.value();
