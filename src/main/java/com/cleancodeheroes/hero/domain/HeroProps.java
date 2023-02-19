@@ -1,6 +1,7 @@
 package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarity;
+import com.cleancodeheroes.shared.domain.Specialty;
 
 public final class HeroProps {
     public final HeroId id ;

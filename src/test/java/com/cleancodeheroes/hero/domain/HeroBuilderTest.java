@@ -1,13 +1,13 @@
 package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarities;
+import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.MissingResourceException;
-import java.util.UUID;
 
 public final class HeroBuilderTest {
     private HeroBuilder heroBuilder = new HeroBuilder();
@@ -97,7 +97,7 @@ public final class HeroBuilderTest {
     @Test
     public void shouldBuildAssassinBaseCharacteristics () {
         hero = heroBuilder.specialty("Assassin").basicStats().build();
-        SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assasin();
+        SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assassin();
         Assertions.assertEquals(assasin.getBaseArmour(), hero.Armour());
         Assertions.assertEquals(assasin.getBaseHealthPoints(), hero.HealthPoints());
         Assertions.assertEquals(assasin.getBasePower(), hero.Power());
