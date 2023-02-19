@@ -4,12 +4,12 @@ import com.cleancodeheroes.card.domain.Card;
 
 import java.util.Objects;
 
-public final class battle {
+public final class Battle {
+    //TODO battleId
     private final Card attackerCard;
     private final Card defenderCard;
-    private Card winner;
 
-    public battle(Card attackerCard, Card defenderCard) {
+    public Battle(Card attackerCard, Card defenderCard) {
         this.attackerCard = attackerCard;
         this.defenderCard = defenderCard;
     }
@@ -22,10 +22,15 @@ public final class battle {
         return defenderCard;
     }
 
+    public Card fight(){
+        //TODO
+        return this.attackerCard;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof battle battle)) return false;
+        if (!(o instanceof Battle battle)) return false;
         return Objects.equals(attackerCard, battle.attackerCard) && Objects.equals(defenderCard, battle.defenderCard);
     }
 
