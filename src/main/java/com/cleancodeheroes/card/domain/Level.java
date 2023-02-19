@@ -5,12 +5,18 @@ import java.util.Objects;
 public class Level {
     private final Integer level;
 
-    public Level(Integer level) {
+    private Level(Integer level) {
         this.level = level;
+    }
+    
+    public static Level of (Integer level) throws IllegalArgumentException {
+        if (level < 1)
+            throw new IllegalArgumentException();
+        return new Level(level);
     }
 
     public Level addOneLevel(){
-        return new Level(this.level + 1);
+        return Level.of(this.level + 1);
     }
 
     public Integer getLevel() {
