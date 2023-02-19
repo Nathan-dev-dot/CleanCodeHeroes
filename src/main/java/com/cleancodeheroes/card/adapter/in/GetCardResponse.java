@@ -13,6 +13,7 @@ public class GetCardResponse {
     public final String specialty;
     public final String rarity ;
     public final Integer level ;
+    public final String userId;
 
     public GetCardResponse(Card card) {
         this.id = card.getId().value();
@@ -25,5 +26,6 @@ public class GetCardResponse {
         this.specialty = card.getSpecialty().toString();
         this.rarity = card.getRarity().toString();
         this.level = card.getLevel().getLevel();
+        this.userId = card.getUserId().value();
     }
 }

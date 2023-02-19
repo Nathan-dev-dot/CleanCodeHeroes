@@ -16,7 +16,7 @@ public class BsonCardMapper implements BsonMapper<Card> {
         return new Card (
                 new CardProps(
                         cardAdapter.getObjectIdAsString("_id"),
-                        cardAdapter.getString("heroId"),
+                        cardAdapter.getString("parentHeroId"),
                         cardAdapter.getString("name"),
                         cardAdapter.getInt("healthPoints"),
                         cardAdapter.getInt("experiencePoints"),
