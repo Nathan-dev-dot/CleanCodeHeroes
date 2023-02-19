@@ -4,7 +4,7 @@ import com.cleancodeheroes.card.domain.Card;
 
 public class GetCardResponse {
     public final String id;
-    public final String heroId;
+    public final String parentHeroId;
     public final String name;
     public final Integer healthPoints ;
     public final Integer experiencePoints ;
@@ -16,9 +16,9 @@ public class GetCardResponse {
 
     public GetCardResponse(Card card) {
         this.id = card.getId().value();
-        this.heroId = card.getBaseHeroId().value();
+        this.parentHeroId = card.getParentHeroId().value();
         this.name = card.getName();
-        this.healthPoints = card.getHealthPoints();
+        this.healthPoints = card.getHealthPoints().getHealthPoint();
         this.experiencePoints = card.getExperiencePoints().getExperiencePoint();
         this.power = card.getPower().getPower();
         this.armour = card.getArmour().getArmour();

@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public final class CreateCardCommand implements Command {
     private final String name;
-    private final HeroId heroId;
+    private final HeroId parentHeroId;
     private final Integer healthPoints ;
     private final Integer experiencePoints ;
     private final Integer power ;
@@ -21,7 +21,7 @@ public final class CreateCardCommand implements Command {
 
     public CreateCardCommand (Hero hero) {
         this.name = hero.Name();
-        this.heroId = hero.Id();
+        this.parentHeroId = hero.Id();
         this.healthPoints = hero.HealthPoints();
         this.experiencePoints = 0;
         this.power = hero.Power();
@@ -36,7 +36,7 @@ public final class CreateCardCommand implements Command {
     }
 
     public HeroId getHeroId() {
-        return heroId;
+        return parentHeroId;
     }
 
     public Integer getHealthPoints() {
@@ -72,11 +72,11 @@ public final class CreateCardCommand implements Command {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CreateCardCommand that = (CreateCardCommand) o;
-        return Objects.equals(name, that.name) && Objects.equals(heroId, that.heroId) && Objects.equals(healthPoints, that.healthPoints) && Objects.equals(experiencePoints, that.experiencePoints) && Objects.equals(power, that.power) && Objects.equals(armour, that.armour) && Objects.equals(specialty, that.specialty) && Objects.equals(rarity, that.rarity) && Objects.equals(level, that.level);
+        return Objects.equals(name, that.name) && Objects.equals(parentHeroId, that.parentHeroId) && Objects.equals(healthPoints, that.healthPoints) && Objects.equals(experiencePoints, that.experiencePoints) && Objects.equals(power, that.power) && Objects.equals(armour, that.armour) && Objects.equals(specialty, that.specialty) && Objects.equals(rarity, that.rarity) && Objects.equals(level, that.level);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, heroId, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
+        return Objects.hash(name, parentHeroId, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
     }
 }
