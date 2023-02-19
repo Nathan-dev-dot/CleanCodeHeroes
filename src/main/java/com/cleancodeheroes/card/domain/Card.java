@@ -1,12 +1,14 @@
 package com.cleancodeheroes.card.domain;
 
-import com.cleancodeheroes.hero.domain.Specialty;
+import com.cleancodeheroes.hero.domain.HeroId;
+import com.cleancodeheroes.shared.domain.Specialty;
 import com.cleancodeheroes.shared.domain.Rarity;
 
 import java.util.Objects;
 
 public final class Card {
     private final CardId id;
+    private final HeroId baseHeroId;
     private final String name;
     private final Integer healthPoints;
     private final ExperiencePoint experiencePoints ;
@@ -14,11 +16,11 @@ public final class Card {
     private final Armour armour;
     private final Specialty specialty;
     private final Rarity rarity;
-
     private final Level level;
 
-    private Card (CardProps cardProps) {
+    public Card (CardProps cardProps) {
         this.id = cardProps.id;
+        this.baseHeroId = cardProps.baseHeroId;
         this.name = cardProps.name;
         this.healthPoints = cardProps.healthPoints;
         this.experiencePoints = cardProps.experiencePoints;
@@ -29,10 +31,12 @@ public final class Card {
         this.level = cardProps.level;
     }
 
-    public static Card create (CardProps cardProps) { return new Card(cardProps); }
-
     public CardId getId() {
         return id;
+    }
+
+    public HeroId getBaseHeroId() {
+        return baseHeroId;
     }
 
     public String getName() {
@@ -78,6 +82,6 @@ public final class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
+        return Objects.hash(id, baseHeroId, name, healthPoints, experiencePoints, power, armour, specialty, rarity, level);
     }
 }

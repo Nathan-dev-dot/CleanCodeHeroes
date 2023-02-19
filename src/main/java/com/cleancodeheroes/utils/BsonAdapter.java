@@ -26,7 +26,7 @@ public final class BsonAdapter {
         return this.document.get(key).asInt32().getValue();
     }
 
-    public String getObjectId(String key) {
+    public String getObjectIdAsString(String key) {
         return IdUtils.fromObjectIdToString(
                 this.document.
                         getObjectId(key).

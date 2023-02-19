@@ -57,7 +57,7 @@ public class BsonAdapterTest {
         doc.append("objectId", objectId);
         BsonAdapter bsonAdapter = BsonAdapter.of(doc);
 
-        Assertions.assertEquals(objectId.toString(), bsonAdapter.getObjectId("objectId"));
+        Assertions.assertEquals(objectId.toString(), bsonAdapter.getObjectIdAsString("objectId"));
     }
 
     @Test
@@ -65,6 +65,6 @@ public class BsonAdapterTest {
         Document doc = new Document() ;
         BsonAdapter bsonAdapter = BsonAdapter.of(doc);
 
-        Assertions.assertThrows(BsonInvalidOperationException.class, () -> bsonAdapter.getObjectId("doesNotExist"));
+        Assertions.assertThrows(BsonInvalidOperationException.class, () -> bsonAdapter.getObjectIdAsString("doesNotExist"));
     }
 }
