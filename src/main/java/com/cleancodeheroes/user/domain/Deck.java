@@ -1,11 +1,9 @@
 package com.cleancodeheroes.user.domain;
 
 import com.cleancodeheroes.card.domain.CardId;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.ArrayList;
 
-@JsonSerialize
 public final class Deck {
     private final ArrayList<String> cards;
 
@@ -13,9 +11,15 @@ public final class Deck {
         this.cards = cards;
     }
 
+    public Deck () {
+        this.cards = new ArrayList<>();
+    }
+
     public ArrayList<String> getCards() {
         return cards;
     }
+
+    public int size () { return this.cards.size(); }
 
     public Deck addCard(CardId cardId) {
         ArrayList<String> newDeck = this.cards;

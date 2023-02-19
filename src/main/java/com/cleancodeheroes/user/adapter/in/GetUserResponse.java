@@ -2,9 +2,7 @@ package com.cleancodeheroes.user.adapter.in;
 
 import com.cleancodeheroes.user.domain.Deck;
 import com.cleancodeheroes.user.domain.User;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-@JsonSerialize
 public class GetUserResponse {
     public final Deck deck;
     public final String id;
