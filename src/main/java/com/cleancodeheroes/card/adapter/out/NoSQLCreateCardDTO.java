@@ -2,7 +2,8 @@ package com.cleancodeheroes.card.adapter.out;
 
 import com.cleancodeheroes.card.domain.Card;
 
-public final class NoSQLCardPersistenceDTO {
+public final class NoSQLCreateCardDTO {
+    public final String heroId;
     public final String name;
     public final Integer healthPoints ;
     public final Integer experiencePoints ;
@@ -12,7 +13,8 @@ public final class NoSQLCardPersistenceDTO {
     public final String rarity ;
     public final Integer level ;
 
-    public NoSQLCardPersistenceDTO (Card cardProps) {
+    public NoSQLCreateCardDTO(Card cardProps) {
+        this.heroId = cardProps.getBaseHeroId().value();
         this.name = cardProps.getName();
         this.healthPoints = cardProps.getHealthPoints();
         this.experiencePoints = cardProps.getExperiencePoints().getExperiencePoint();

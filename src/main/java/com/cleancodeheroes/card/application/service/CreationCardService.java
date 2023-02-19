@@ -6,7 +6,6 @@ import com.cleancodeheroes.card.application.port.out.CreateCardPort;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 import com.cleancodeheroes.card.domain.CardProps;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,17 +16,18 @@ public final class CreationCardService implements CreateCardUseCase {
 
     @Override
     public CardId handle(CreateCardCommand command) throws IllegalArgumentException {
-        ObjectId cardId = new ObjectId();
-        Card card = Card.create(
+        CardId cardId = new CardId();
+        Card card = new Card(
                 new CardProps(
-                        CardId.of(cardId),
+                        cardId.value(),
+                        command.getHeroId().value(),
                         command.getName(),
                         command.getHealthPoints(),
                         command.getExperiencePoints(),
                         command.getPower(),
                         command.getArmour(),
-                        command.getSpecialty(),
-                        command.getRarity(),
+                        command.getSpecialty().toString(),
+                        command.getRarity().toString(),
                         command.getLevel()
                 )
         );

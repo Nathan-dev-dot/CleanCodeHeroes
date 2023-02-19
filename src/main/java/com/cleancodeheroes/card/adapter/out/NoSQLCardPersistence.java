@@ -23,8 +23,8 @@ public final class NoSQLCardPersistence implements CreateCardPort, FindCardPort,
 
     @Override
     public CardId save (Card card) throws IllegalArgumentException {
-        final NoSQLCardPersistenceDTO noSQLCardPersistenceDTO = new NoSQLCardPersistenceDTO(card);
-        final Document cardDocument = DocumentUtils.documentFromObject(noSQLCardPersistenceDTO);
+        final NoSQLCreateCardDTO noSQLCreateCardDTO = new NoSQLCreateCardDTO(card);
+        final Document cardDocument = DocumentUtils.documentFromObject(noSQLCreateCardDTO);
         final BsonValue insertedId = registry.insertOne(cardDocument).getInsertedId();
         final String insertedIdStr = IdUtils.fromBsonValueToString(insertedId);
         return CardId.of(insertedIdStr);
