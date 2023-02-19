@@ -5,8 +5,14 @@ import java.util.Objects;
 public class Power implements Characteristic {
     private final Integer power;
 
-    public Power(Integer power) {
+    private Power(Integer power) {
         this.power = power;
+    }
+
+    public static Power of (Integer power) throws IllegalArgumentException {
+        if (power < 0)
+            throw new IllegalArgumentException();
+        return new Power(power);
     }
     public Integer getPower() {
         return power;
@@ -15,7 +21,7 @@ public class Power implements Characteristic {
     @Override
     public Power increaseByFactor() {
         int newPowerPoint = (int) Math.abs(this.power * increaseFactor);
-        return new Power(newPowerPoint);
+        return Power.of(newPowerPoint);
     }
 
     @Override
