@@ -1,5 +1,9 @@
 package com.cleancodeheroes;
 
+import com.cleancodeheroes.battle.application.port.in.FindBattleByHeroIdQuery;
+import com.cleancodeheroes.battle.application.port.in.FindBattleByUserIdQuery;
+import com.cleancodeheroes.battle.application.service.FinderBattleByHeroIdService;
+import com.cleancodeheroes.battle.application.service.FinderBattleByUserIdService;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
 import com.cleancodeheroes.card.application.port.in.FindCardQuery;
@@ -51,25 +55,31 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final CreateUserService createUserUserCase;
     private final FindUserService findUserUseCase;
 
+    private final FinderBattleByUserIdService finderBattleByUserIdService;
+    private final FinderBattleByHeroIdService finderBattleByHeroIdService;
+
     public StartupApplicationListener(
-        CommandBus commandBus,
-        QueryBus queryBus,
+            CommandBus commandBus,
+            QueryBus queryBus,
 
-        NoSQLHeroPersistence heroPersistenceAdapter,
-        CreationHeroService creationHeroService,
-        FinderHeroService finderHeroService,
-        FinderHeroesService finderHeroesService,
-        OpenerUserPackService openerUserPackService,
-        UpdaterUserService updaterUserService,
+            NoSQLHeroPersistence heroPersistenceAdapter,
+            CreationHeroService creationHeroService,
+            FinderHeroService finderHeroService,
+            FinderHeroesService finderHeroesService,
+            OpenerUserPackService openerUserPackService,
+            UpdaterUserService updaterUserService,
 
-        NoSQLUserPersistence userPersistenceAdapter,
-        CreateUserService createUserUserCase,
-        FindUserService findUserUseCase,
+            NoSQLUserPersistence userPersistenceAdapter,
+            CreateUserService createUserUserCase,
+            FindUserService findUserUseCase,
 
-        NoSQLCardPersistence cardPersistenceAdapter,
-        CreationCardService creationCardService,
-        FinderCardService finderCardService,
-        UpdaterCardService updaterCardService
+            NoSQLCardPersistence cardPersistenceAdapter,
+            CreationCardService creationCardService,
+            FinderCardService finderCardService,
+            UpdaterCardService updaterCardService,
+
+            FinderBattleByUserIdService finderBattleByUserIdService,
+            FinderBattleByHeroIdService finderBattleByHeroIdService
     ) {
         this.commandBus = commandBus;
         this.queryBus = queryBus;
@@ -89,6 +99,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.creationCardUseCase = creationCardService;
         this.findCardUseCase = finderCardService;
         this.updaterCardService = updaterCardService;
+        this.finderBattleByUserIdService = finderBattleByUserIdService;
+        this.finderBattleByHeroIdService = finderBattleByHeroIdService;
     }
 
     @Override
@@ -105,6 +117,9 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         commandBus.register(CreateCardCommand.class, creationCardUseCase);
         queryBus.register(FindCardQuery.class, findCardUseCase);
         commandBus.register(UpdateCardCommand.class, updaterCardService);
+
+        queryBus.register(FindBattleByHeroIdQuery.class, finderBattleByHeroIdService);
+        queryBus.register(FindBattleByUserIdQuery.class, finderBattleByUserIdService);
     }
 
 }

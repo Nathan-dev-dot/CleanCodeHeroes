@@ -1,5 +1,8 @@
 package com.cleancodeheroes;
 
+import com.cleancodeheroes.battle.adapter.out.NoSQLBattlePersistence;
+import com.cleancodeheroes.battle.application.service.FinderBattleByHeroIdService;
+import com.cleancodeheroes.battle.application.service.FinderBattleByUserIdService;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.card.application.service.FinderCardService;
@@ -49,6 +52,11 @@ public class ApplicationConfiguration {
     }
 
     @Bean
+    public NoSQLBattlePersistence battlePersistenceAdapter() {
+        return new NoSQLBattlePersistence();
+    }
+
+    @Bean
     public CreationHeroService createHeroUseCase() {
         return new CreationHeroService(heroPersistenceAdapter());
     }
@@ -85,4 +93,13 @@ public class ApplicationConfiguration {
 
     @Bean
     public UpdaterCardService updaterCardService () { return new UpdaterCardService(cardPersistenceAdapter()); }
+
+
+    @Bean
+    public FinderBattleByHeroIdService finderBattleByHeroIdService () { return new FinderBattleByHeroIdService(battlePersistenceAdapter()); }
+
+    @Bean
+    public FinderBattleByUserIdService finderBattleByUserIdService () { return new FinderBattleByUserIdService(battlePersistenceAdapter()); }
+
+
 }
