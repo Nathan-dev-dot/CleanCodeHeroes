@@ -1,7 +1,8 @@
 package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarity;
-import org.bson.types.ObjectId;
+import com.cleancodeheroes.shared.domain.Specialty;
+import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 
 import java.util.MissingResourceException;
 
@@ -34,7 +35,7 @@ public final class HeroBuilder {
     }
 
     public HeroBuilder id () {
-        this.id = HeroId.of(new ObjectId());
+        this.id = new HeroId();
         return this;
     }
 
@@ -46,17 +47,7 @@ public final class HeroBuilder {
 
     public HeroBuilder specialty (String specialty) throws IllegalArgumentException {
         this.specialty = Specialty.of(specialty) ;
-        switch (this.specialty.value()) {
-            case Tank -> {
-                this.baseCharacteristics = SpecialtyCharacteristics.Tank();
-            }
-            case Assassin -> {
-                this.baseCharacteristics = SpecialtyCharacteristics.Assasin();
-            }
-            case Sorcerer -> {
-                this.baseCharacteristics = SpecialtyCharacteristics.Sorcerer();
-            }
-        }
+        this.baseCharacteristics = SpecialtyCharacteristics.of(this.specialty.value());
         return this;
     }
 

@@ -11,6 +11,8 @@ public final class HeroId {
         this.id = id;
     }
 
+    public HeroId () { this.id = new ObjectId().toString(); }
+
     public static HeroId of (String stringId) throws IllegalArgumentException {
         if (ObjectId.isValid(stringId))
             return new HeroId(stringId);

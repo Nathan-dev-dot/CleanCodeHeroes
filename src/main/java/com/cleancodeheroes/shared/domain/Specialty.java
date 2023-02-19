@@ -1,4 +1,6 @@
-package com.cleancodeheroes.hero.domain;
+package com.cleancodeheroes.shared.domain;
+
+import com.cleancodeheroes.hero.domain.CharacterType;
 
 import java.util.Objects;
 

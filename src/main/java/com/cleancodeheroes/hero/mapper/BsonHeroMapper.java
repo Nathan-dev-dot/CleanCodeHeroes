@@ -15,7 +15,7 @@ public final class BsonHeroMapper implements BsonMapper<Hero> {
     public Hero toDomain(){
         BsonAdapter heroAdapter = BsonAdapter.of(this.doc);
         return new HeroBuilder()
-                .id(heroAdapter.getObjectId("_id"))
+                .id(heroAdapter.getObjectIdAsString("_id"))
                 .name(heroAdapter.getString("name"))
                 .rarity(heroAdapter.getString("rarity"))
                 .specialty(heroAdapter.getString("specialty"))

@@ -1,5 +1,7 @@
-package com.cleancodeheroes.hero.domain;
+package com.cleancodeheroes.shared.domain;
 
+import com.cleancodeheroes.hero.domain.CharacterType;
+import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,31 +22,31 @@ public final class SpecialtyTest {
     }
 
     @Test
-    public void shouldValidateTankDammageMap () {
+    public void shouldValidateTankDamageMap () {
         var tank = SpecialtyCharacteristics.Tank() ;
-        Assertions.assertTrue(tank.getAdditionalDammage().containsKey(CharacterType.Sorcerer));
-        Assertions.assertEquals(20, tank.getAdditionalDammage().get(CharacterType.Sorcerer));
+        Assertions.assertTrue(tank.getAdditionalDamage().containsKey(CharacterType.Sorcerer));
+        Assertions.assertEquals(20, tank.getAdditionalDamage().get(CharacterType.Sorcerer));
     }
 
     @Test
     public void shouldCreateAssassin () {
-        var specialty = SpecialtyCharacteristics.Assasin() ;
+        var specialty = SpecialtyCharacteristics.Assassin() ;
         Assertions.assertEquals(CharacterType.Assassin, specialty.getType());
     }
 
     @Test
     public void shouldValidateAssassinBaseStats () {
-        var assasin = SpecialtyCharacteristics.Assasin() ;
+        var assasin = SpecialtyCharacteristics.Assassin() ;
         Assertions.assertEquals(800, assasin.getBaseHealthPoints());
         Assertions.assertEquals(200, assasin.getBasePower());
         Assertions.assertEquals(5, assasin.getBaseArmour());
     }
 
     @Test
-    public void shouldValidateAssassinDammageMap () {
-        var assassin = SpecialtyCharacteristics.Assasin() ;
-        Assertions.assertTrue(assassin.getAdditionalDammage().containsKey(CharacterType.Tank));
-        Assertions.assertEquals(30, assassin.getAdditionalDammage().get(CharacterType.Tank));
+    public void shouldValidateAssassinDamageMap () {
+        var assassin = SpecialtyCharacteristics.Assassin() ;
+        Assertions.assertTrue(assassin.getAdditionalDamage().containsKey(CharacterType.Tank));
+        Assertions.assertEquals(30, assassin.getAdditionalDamage().get(CharacterType.Tank));
     }
 
     @Test
@@ -62,9 +64,9 @@ public final class SpecialtyTest {
     }
 
     @Test
-    public void shouldValidateSorcererDammageMap () {
+    public void shouldValidateSorcererDamageMap () {
         var sorcerer = SpecialtyCharacteristics.Sorcerer() ;
-        Assertions.assertTrue(sorcerer.getAdditionalDammage().containsKey(CharacterType.Assassin));
-        Assertions.assertEquals(25, sorcerer.getAdditionalDammage().get(CharacterType.Assassin));
+        Assertions.assertTrue(sorcerer.getAdditionalDamage().containsKey(CharacterType.Assassin));
+        Assertions.assertEquals(25, sorcerer.getAdditionalDamage().get(CharacterType.Assassin));
     }
 }
