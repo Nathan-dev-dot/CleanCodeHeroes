@@ -4,14 +4,20 @@ import java.util.Objects;
 
 public class Armour implements Characteristic{
     private final Integer armour;
-    public Armour(Integer armour) {
+    private Armour(Integer armour) {
         this.armour = armour;
+    }
+    
+    public static Armour of(Integer armour) throws IllegalArgumentException{
+        if (armour < 0)
+            throw new IllegalArgumentException();
+        return new Armour(armour);
     }
 
     @Override
     public Armour increaseByFactor() throws ArithmeticException {
         int newArmourPoint = (int) Math.abs(this.armour * increaseFactor);
-        return new Armour(newArmourPoint);
+        return Armour.of(newArmourPoint);
     }
     public Integer getArmour() {
         return armour;
