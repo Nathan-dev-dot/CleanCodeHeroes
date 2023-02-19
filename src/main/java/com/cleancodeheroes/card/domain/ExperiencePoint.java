@@ -5,8 +5,14 @@ import java.util.Objects;
 public class ExperiencePoint implements Characteristic{
     private final Integer experiencePoint;
 
-    public ExperiencePoint(Integer experiencePoint) {
+    private ExperiencePoint(Integer experiencePoint) {
         this.experiencePoint = experiencePoint;
+    }
+
+    public static ExperiencePoint of (Integer experiencePoint) throws IllegalArgumentException {
+        if (experiencePoint < 0)
+            throw new IllegalArgumentException();
+        return new ExperiencePoint(experiencePoint);
     }
 
     public Integer getExperiencePoint() {
@@ -16,7 +22,7 @@ public class ExperiencePoint implements Characteristic{
     @Override
     public ExperiencePoint increaseByFactor(){
         int newExperiencePointValue = (int) Math.abs(this.experiencePoint * increaseFactor);
-        return new ExperiencePoint(newExperiencePointValue);
+        return ExperiencePoint.of(newExperiencePointValue);
     }
 
     public Boolean shouldLevelUp(){
