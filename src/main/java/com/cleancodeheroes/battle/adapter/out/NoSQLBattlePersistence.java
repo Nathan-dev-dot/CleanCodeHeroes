@@ -33,6 +33,7 @@ public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattl
 
     @Override
     public ArrayList<BattleResult> loadBattleByHeroId(HeroId heroId) throws NoBattleFoundException {
+        //TODO filter hero
         FindIterable<Document> res = registry.find(Filters.eq(
                 "parentHeroId",
                 heroId.value()
@@ -45,6 +46,7 @@ public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattl
 
     @Override
     public ArrayList<BattleResult> loadBattleByUserId(UserId userId) throws NoBattleFoundException {
+        //TODO filter user
         FindIterable<Document> res = registry.find(Filters.eq(
                 "userId",
                 userId.value()
