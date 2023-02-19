@@ -18,7 +18,7 @@ public final class DocumentUtils {
         return res.into(new ArrayList<>()).size();
     }
 
-    public static String getIdFromDocument (Document d) throws NullPointerException {
-        return d.getObjectId("_id").toString();
+    public static String getIdFromDocument (Document document) throws NullPointerException {
+        return document.getObjectId("_id").toString();
     }
 }
