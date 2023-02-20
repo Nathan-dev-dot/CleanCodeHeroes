@@ -2,13 +2,17 @@ package com.cleancodeheroes.battle.adapter.out;
 
 import com.cleancodeheroes.battle.application.port.out.CreateBattlePort;
 import com.cleancodeheroes.battle.application.port.out.FindBattleByHeroIdPort;
+import com.cleancodeheroes.battle.application.port.out.FindBattleByIdPort;
 import com.cleancodeheroes.battle.application.port.out.FindBattleByUserIdPort;
 import com.cleancodeheroes.battle.domain.BattleId;
 import com.cleancodeheroes.battle.domain.BattleResult;
 import com.cleancodeheroes.battle.mapper.BsonBattleResultMapper;
+import com.cleancodeheroes.hero.application.HeroNotFoundException;
 import com.cleancodeheroes.hero.domain.HeroId;
+import com.cleancodeheroes.hero.mapper.BsonHeroMapper;
 import com.cleancodeheroes.shared.adapter.out.NoSQLRepository;
 import com.cleancodeheroes.user.domain.UserId;
+import com.cleancodeheroes.utils.BsonFilter;
 import com.cleancodeheroes.utils.DocumentUtils;
 import com.cleancodeheroes.utils.IdUtils;
 import com.mongodb.client.FindIterable;
@@ -19,7 +23,7 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 
-public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattleByUserIdPort, CreateBattlePort {
+public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattleByUserIdPort, CreateBattlePort, FindBattleByIdPort {
     private final MongoCollection<Document> registry = NoSQLRepository.getNoSQLDatabase().getCollection("battles");
 
     @Override
@@ -55,5 +59,14 @@ public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattl
         return res
                 .map(doc -> new BsonBattleResultMapper(doc).toDomain())
                 .into(new ArrayList<>());
+    }
+
+    @Override
+    public BattleResult loadBattleById(BattleId battleId) throws BattleNotFoundException {
+        var res = registry.find(
+                new BsonFilter(battleId.value()).filter
+        );
+        if (DocumentUtils.sizeof(res) == 0) throw new BattleNotFoundException();
+        return res.map(doc -> new BsonBattleResultMapper(doc).toDomain()).first();
     }
 }

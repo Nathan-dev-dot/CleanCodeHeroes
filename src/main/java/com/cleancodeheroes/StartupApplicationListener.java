@@ -1,8 +1,12 @@
 package com.cleancodeheroes;
 
+import com.cleancodeheroes.battle.application.port.in.CreateBattleCommand;
 import com.cleancodeheroes.battle.application.port.in.FindBattleByHeroIdQuery;
+import com.cleancodeheroes.battle.application.port.in.FindBattleByIdQuery;
 import com.cleancodeheroes.battle.application.port.in.FindBattleByUserIdQuery;
+import com.cleancodeheroes.battle.application.service.BattleCreationService;
 import com.cleancodeheroes.battle.application.service.FinderBattleByHeroIdService;
+import com.cleancodeheroes.battle.application.service.FinderBattleByIdService;
 import com.cleancodeheroes.battle.application.service.FinderBattleByUserIdService;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
@@ -57,6 +61,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
     private final FinderBattleByUserIdService finderBattleByUserIdService;
     private final FinderBattleByHeroIdService finderBattleByHeroIdService;
+    private final FinderBattleByIdService finderBattleByIdService;
+    private final BattleCreationService battleCreationService;
 
     public StartupApplicationListener(
             CommandBus commandBus,
@@ -69,9 +75,9 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
             OpenerUserPackService openerUserPackService,
             UpdaterUserService updaterUserService,
 
-        NoSQLUserPersistence userPersistenceAdapter,
-        UserCreationService createUserUserCase,
-        FindUserService findUserUseCase,
+            NoSQLUserPersistence userPersistenceAdapter,
+            UserCreationService createUserUserCase,
+            FindUserService findUserUseCase,
 
             NoSQLCardPersistence cardPersistenceAdapter,
             CreationCardService creationCardService,
@@ -79,7 +85,9 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
             UpdaterCardService updaterCardService,
 
             FinderBattleByUserIdService finderBattleByUserIdService,
-            FinderBattleByHeroIdService finderBattleByHeroIdService
+            FinderBattleByHeroIdService finderBattleByHeroIdService,
+            FinderBattleByIdService finderBattleByIdService,
+            BattleCreationService battleCreationService
     ) {
         this.commandBus = commandBus;
         this.queryBus = queryBus;
@@ -101,6 +109,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.updaterCardService = updaterCardService;
         this.finderBattleByUserIdService = finderBattleByUserIdService;
         this.finderBattleByHeroIdService = finderBattleByHeroIdService;
+        this.finderBattleByIdService = finderBattleByIdService;
+        this.battleCreationService = battleCreationService;
     }
 
     @Override
@@ -118,8 +128,10 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         queryBus.register(FindCardQuery.class, findCardUseCase);
         commandBus.register(UpdateCardCommand.class, updaterCardService);
 
+        commandBus.register(CreateBattleCommand.class, battleCreationService);
         queryBus.register(FindBattleByHeroIdQuery.class, finderBattleByHeroIdService);
         queryBus.register(FindBattleByUserIdQuery.class, finderBattleByUserIdService);
+        queryBus.register(FindBattleByIdQuery.class, finderBattleByIdService);
     }
 
 }

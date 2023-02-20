@@ -1,7 +1,9 @@
 package com.cleancodeheroes;
 
 import com.cleancodeheroes.battle.adapter.out.NoSQLBattlePersistence;
+import com.cleancodeheroes.battle.application.service.BattleCreationService;
 import com.cleancodeheroes.battle.application.service.FinderBattleByHeroIdService;
+import com.cleancodeheroes.battle.application.service.FinderBattleByIdService;
 import com.cleancodeheroes.battle.application.service.FinderBattleByUserIdService;
 import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.service.CreationCardService;
@@ -100,6 +102,12 @@ public class ApplicationConfiguration {
 
     @Bean
     public FinderBattleByUserIdService finderBattleByUserIdService () { return new FinderBattleByUserIdService(battlePersistenceAdapter()); }
+
+    @Bean
+    public FinderBattleByIdService finderBattleByIdService () { return new FinderBattleByIdService(battlePersistenceAdapter()); }
+
+    @Bean
+    public BattleCreationService battleCreationService () { return new BattleCreationService(battlePersistenceAdapter()); }
 
 
 }

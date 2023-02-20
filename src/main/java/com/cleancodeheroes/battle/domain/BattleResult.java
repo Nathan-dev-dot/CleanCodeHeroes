@@ -6,12 +6,12 @@ import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.user.domain.UserId;
 
 public class BattleResult {
-    private final CardId winnerCardId;
-    private final CardId loserCardId;
-    private final HeroId winnerHeroId;
-    private final UserId winnerUserId;
-    private final HeroId loserHeroId;
-    private final UserId loserUserId;
+    public final CardId winnerCardId;
+    public final CardId loserCardId;
+    public final HeroId winnerHeroId;
+    public final UserId winnerUserId;
+    public final HeroId loserHeroId;
+    public final UserId loserUserId;
 
     private BattleResult(
             CardId winnerCardId,

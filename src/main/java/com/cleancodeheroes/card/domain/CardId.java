@@ -19,7 +19,7 @@ public final class CardId {
 
     public static CardId of (ObjectId object) { return new CardId(object.toString()); }
 
-    public String value () { return id; }
+    public String value() { return id; }
 
     @Override
     public boolean equals(Object o) {
