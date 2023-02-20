@@ -18,10 +18,7 @@ import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
-import com.cleancodeheroes.user.application.services.FindUserService;
-import com.cleancodeheroes.user.application.services.OpenerUserPackService;
-import com.cleancodeheroes.user.application.services.UpdaterUserService;
-import com.cleancodeheroes.user.application.services.UserCreationService;
+import com.cleancodeheroes.user.application.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -85,11 +82,14 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public OpenerUserPackService openerUserPackService() {return new OpenerUserPackService(); };
+    public OpenerUserPackService openerUserPackService() { return new OpenerUserPackService(); };
     @Bean
-    public UpdaterUserService updaterUserService() {return new UpdaterUserService(userPersistenceAdapter()); };
+    public UpdaterUserService updaterUserService() { return new UpdaterUserService(userPersistenceAdapter()); };
     @Bean
     public UpgraderCardService upgraderCardService() {return new UpgraderCardService(); };
+
+    @Bean
+    public UserUpdateVictoriesService userUpdateVictoriesService () { return new UserUpdateVictoriesService(); }
     @Bean
     public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
 

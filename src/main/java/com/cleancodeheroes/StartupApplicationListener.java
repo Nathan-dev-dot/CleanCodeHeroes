@@ -27,14 +27,8 @@ import com.cleancodeheroes.hero.application.services.FinderHeroesService;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
-import com.cleancodeheroes.user.application.port.in.CreateUserCommand;
-import com.cleancodeheroes.user.application.port.in.FindUserQuery;
-import com.cleancodeheroes.user.application.port.in.OpenUserPackCommand;
-import com.cleancodeheroes.user.application.port.in.UpdateUserCommand;
-import com.cleancodeheroes.user.application.services.FindUserService;
-import com.cleancodeheroes.user.application.services.OpenerUserPackService;
-import com.cleancodeheroes.user.application.services.UpdaterUserService;
-import com.cleancodeheroes.user.application.services.UserCreationService;
+import com.cleancodeheroes.user.application.port.in.*;
+import com.cleancodeheroes.user.application.services.*;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -57,6 +51,8 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final UpgraderCardService upgraderCardService;
     private final FinderCardService findCardUseCase;
     private final UpdaterUserService updaterUserService;
+    private final UserUpdateVictoriesService userUpdateVictoriesService;
+
 
     private final NoSQLUserPersistence noSQLUserPersistence;
     private final UserCreationService createUserUserCase;
@@ -78,7 +74,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
             OpenerUserPackService openerUserPackService,
             UpgraderCardService upgraderCardService, UpdaterUserService updaterUserService,
 
-            NoSQLUserPersistence userPersistenceAdapter,
+            UserUpdateVictoriesService userUpdateVictoriesService, NoSQLUserPersistence userPersistenceAdapter,
             UserCreationService createUserUserCase,
             FindUserService findUserUseCase,
 
@@ -102,6 +98,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.openerUserPackService = openerUserPackService;
         this.upgraderCardService = upgraderCardService;
         this.updaterUserService = updaterUserService;
+        this.userUpdateVictoriesService = userUpdateVictoriesService;
 
         this.noSQLUserPersistence = userPersistenceAdapter;
         this.findUserUseCase = findUserUseCase;
@@ -124,6 +121,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
         commandBus.register(OpenUserPackCommand.class, openerUserPackService);
         commandBus.register(UpdateUserCommand.class, updaterUserService);
+        queryBus.register(UpdateUserVictoriesQuery.class, userUpdateVictoriesService);
 
         commandBus.register(CreateUserCommand.class, createUserUserCase);
         queryBus.register(FindUserQuery.class, findUserUseCase);

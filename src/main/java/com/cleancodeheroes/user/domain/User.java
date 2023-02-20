@@ -45,6 +45,10 @@ public final class User {
         this.token = token.minus(packType);
     }
 
+    public void addToken () {
+        this.token = this.token.plusOneToken();
+    }
+
     public void updateDeck(ArrayList<CardId> cards) {
         cards.forEach(cardId -> {
             this.deck = this.deck.addCard(cardId);
