@@ -2,7 +2,7 @@ package com.cleancodeheroes.card.domain;
 
 import java.util.Objects;
 
-public class ExperiencePoint implements Characteristic{
+public class ExperiencePoint{
     private final Integer experiencePoint;
 
     private ExperiencePoint(Integer experiencePoint) {
@@ -19,9 +19,9 @@ public class ExperiencePoint implements Characteristic{
         return experiencePoint;
     }
 
-    @Override
-    public ExperiencePoint increaseByFactor(){
-        int newExperiencePointValue = (int) Math.abs(this.experiencePoint * increaseFactor);
+
+    public ExperiencePoint addOnePoint(){
+        int newExperiencePointValue = this.experiencePoint + 1;
         return ExperiencePoint.of(newExperiencePointValue);
     }
 

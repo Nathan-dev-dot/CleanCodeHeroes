@@ -8,6 +8,8 @@ import com.cleancodeheroes.battle.domain.Battle;
 import com.cleancodeheroes.battle.domain.BattleId;
 import com.cleancodeheroes.battle.domain.BattleResult;
 import com.cleancodeheroes.card.application.port.in.FindCardQuery;
+import com.cleancodeheroes.card.application.port.in.UpdateCardCommand;
+import com.cleancodeheroes.card.application.port.in.UpgradeCardQuery;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
@@ -40,8 +42,12 @@ public class BattleController {
         try {
             Card attackerCard = getCardByCardId(createBattleRequest.attackerId);
             Card defenderCard = getCardByCardId(createBattleRequest.defenderId);
-            Battle battle = createBattle(attackerCard, defenderCard);
-            BattleId battleId = (BattleId) commandBus.post(new CreateBattleCommand(battle));
+            Battle newBattle = createBattle(attackerCard, defenderCard);
+            BattleId battleId = (BattleId) commandBus.post(new CreateBattleCommand(newBattle));
+            BattleResult battle = (BattleResult) queryBus.post(new FindBattleByIdQuery(battleId.value()));
+            Card winnerCard = getCardByCardId(battle.winnerCardId.value());
+            Card winnerCardUpdated = (Card) queryBus.post(new UpgradeCardQuery(winnerCard));
+            commandBus.post(new UpdateCardCommand(winnerCardUpdated));
             return battleId.value();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");

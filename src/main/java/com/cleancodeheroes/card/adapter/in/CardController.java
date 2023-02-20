@@ -26,8 +26,6 @@ public final class CardController {
         this.queryBus = queryBus;
     }
 
-
-
     @GetMapping("/{id}")
     public GetCardResponse findOne (@PathVariable("id") String id) {
         try {

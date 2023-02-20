@@ -11,13 +11,13 @@ public final class Card {
     private final CardId id;
     private final HeroId parentHeroId;
     private final String name;
-    private final HealthPoint healthPoints;
-    private final ExperiencePoint experiencePoints ;
-    private final Power power;
-    private final Armour armour;
+    private HealthPoint healthPoints;
+    private ExperiencePoint experiencePoints ;
+    private Power power;
+    private Armour armour;
     private final Specialty specialty;
     private final Rarity rarity;
-    private final Level level;
+    private Level level;
     private final UserId userId;
     public Card (CardProps cardProps) {
         this.id = cardProps.id;
@@ -75,6 +75,27 @@ public final class Card {
 
     public UserId getUserId() {
         return userId;
+    }
+
+
+    public void setHealthPoints(HealthPoint healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    public void setExperiencePoints(ExperiencePoint experiencePoints) {
+        this.experiencePoints = experiencePoints;
+    }
+
+    public void setPower(Power power) {
+        this.power = power;
+    }
+
+    public void setArmour(Armour armour) {
+        this.armour = armour;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     @Override

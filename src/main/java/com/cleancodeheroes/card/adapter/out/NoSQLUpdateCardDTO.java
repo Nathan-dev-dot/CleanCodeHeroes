@@ -20,11 +20,11 @@ public class NoSQLUpdateCardDTO {
                         IdUtils.fromStringToObjectId(card.getId().value())
                 );
         this.updates = Updates.combine(
-                Updates.set("level", card.getLevel()),
-                Updates.set("healthPoints", card.getHealthPoints()),
-                Updates.set("experiencePoints", card.getExperiencePoints()),
-                Updates.set("power", card.getPower()),
-                Updates.set("armour", card.getArmour())
+                Updates.set("level", card.getLevel().value()),
+                Updates.set("healthPoints", card.getHealthPoints().value()),
+                Updates.set("experiencePoints", card.getExperiencePoints().getExperiencePoint()),
+                Updates.set("power", card.getPower().value()),
+                Updates.set("armour", card.getArmour().value())
         );
     }
 }

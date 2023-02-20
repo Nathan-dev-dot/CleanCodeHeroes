@@ -9,6 +9,7 @@ import com.cleancodeheroes.card.adapter.out.NoSQLCardPersistence;
 import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.card.application.service.FinderCardService;
 import com.cleancodeheroes.card.application.service.UpdaterCardService;
+import com.cleancodeheroes.card.application.service.UpgraderCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.application.services.FinderHeroService;
@@ -87,6 +88,8 @@ public class ApplicationConfiguration {
     public OpenerUserPackService openerUserPackService() {return new OpenerUserPackService(); };
     @Bean
     public UpdaterUserService updaterUserService() {return new UpdaterUserService(userPersistenceAdapter()); };
+    @Bean
+    public UpgraderCardService upgraderCardService() {return new UpgraderCardService(); };
     @Bean
     public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
 
