@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
@@ -76,18 +77,26 @@ public class BattleController {
     }
 
     @GetMapping(value = {"/user/{userId}"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<BattleResult> getBattleByUserId (@PathVariable("userId") String userId) {
+    public List<BattleResponse> getBattleByUserId (@PathVariable("userId") String userId) {
         try {
-            return (ArrayList<BattleResult>) queryBus.post(new FindBattleByUserIdQuery(userId));
+            ArrayList<BattleResult> battleResults = (ArrayList<BattleResult>) queryBus.post(new FindBattleByUserIdQuery(userId));
+            return ResponseEntity
+                    .ok()
+                    .body(battleResults.stream().map((battleResult -> BattleResponse.of(battleResult))).toList())
+                    .getBody();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
         }
     }
 
     @GetMapping(value = {"/hero/{heroId}"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<BattleResult> getBattleByHeroId (@PathVariable("heroId") String heroId) {
+    public List<BattleResponse> getBattleByHeroId (@PathVariable("heroId") String heroId) {
         try {
-            return (ArrayList<BattleResult>) queryBus.post(new FindBattleByHeroIdQuery(heroId));
+            ArrayList<BattleResult> battleResults =  (ArrayList<BattleResult>) queryBus.post(new FindBattleByHeroIdQuery(heroId));
+            return ResponseEntity
+                    .ok()
+                    .body(battleResults.stream().map((battleResult -> BattleResponse.of(battleResult))).toList())
+                    .getBody();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
         }

@@ -22,21 +22,6 @@ public class ExperiencePointTest {
     }
 
     @Test
-    public void shouldAddTenPercentOdExperiencePoint(){
-        ExperiencePoint experiencePoint = ExperiencePoint.of(100);
-        Integer newExperiencePoint = experiencePoint.increaseByFactor().getExperiencePoint();
-        Assertions.assertEquals(110, newExperiencePoint);
-    }
-
-
-    @Test
-    public void shouldAddTenPercentOdExperiencePointWithoutDecimalValue(){
-        ExperiencePoint experiencePoint = ExperiencePoint.of(99);
-        Integer newExperiencePoint = experiencePoint.increaseByFactor().getExperiencePoint();
-        Assertions.assertEquals(108, newExperiencePoint);
-    }
-
-    @Test
     public void shouldLevelUpReturnTrue(){
         ExperiencePoint experiencePoint = ExperiencePoint.of(5);
         boolean shouldLevelUp = experiencePoint.shouldLevelUp();

@@ -35,11 +35,12 @@ public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattl
 
     @Override
     public ArrayList<BattleResult> loadBattleByHeroId(HeroId heroId) throws NoBattleFoundException {
-        //TODO filter hero
-        FindIterable<Document> res = registry.find(Filters.eq(
-                "parentHeroId",
-                heroId.value()
-        ));
+        FindIterable<Document> res = registry.find(
+                Filters.or(
+                        new BsonFilter("winnerHeroId", heroId.value()).filter,
+                        new BsonFilter("loserHeroId", heroId.value()).filter
+                )
+        );
         if (DocumentUtils.sizeof(res) == 0) throw new NoBattleFoundException();
         return res
                 .map(doc -> new BsonBattleResultMapper(doc).toDomain())
@@ -48,11 +49,12 @@ public class NoSQLBattlePersistence implements FindBattleByHeroIdPort, FindBattl
 
     @Override
     public ArrayList<BattleResult> loadBattleByUserId(UserId userId) throws NoBattleFoundException {
-        //TODO filter user
-        FindIterable<Document> res = registry.find(Filters.eq(
-                "userId",
-                userId.value()
-        ));
+        FindIterable<Document> res = registry.find(
+                Filters.or(
+                        new BsonFilter("winnerUserId", userId.value()).filter,
+                        new BsonFilter("loserUserId", userId.value()).filter
+                )
+        );
         if (DocumentUtils.sizeof(res) == 0) throw new NoBattleFoundException();
         return res
                 .map(doc -> new BsonBattleResultMapper(doc).toDomain())

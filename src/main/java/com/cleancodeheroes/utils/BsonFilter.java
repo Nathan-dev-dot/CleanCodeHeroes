@@ -13,4 +13,8 @@ public class BsonFilter {
                 new ObjectId(id)
         );
     }
+
+    public BsonFilter (String paramName, Object paramValue) {
+        this.filter = Filters.eq(paramName, paramValue);
+    }
 }
