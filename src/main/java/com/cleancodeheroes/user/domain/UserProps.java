@@ -1,16 +1,20 @@
 package com.cleancodeheroes.user.domain;
 
-public final class UserProps {
-    UserId userId;
-    String username;
-    Token token;
-    Deck deck;
+import java.util.ArrayList;
 
-    public UserProps(UserId userId, String username, Token token, Deck deck) {
-        this.userId = userId;
+public final class UserProps {
+    public final UserId userId;
+    public final String username;
+    public final Token token;
+    public final Deck deck;
+    public final Victories victories;
+
+    public UserProps(String userId, String username, int token, ArrayList<String> deck, int victories) {
+        this.userId = UserId.of(userId);
         this.username = username;
-        this.token = token;
-        this.deck = deck;
+        this.token = Token.of(token);
+        this.deck = new Deck(deck);
+        this.victories = Victories.of(victories);
     }
 
     public UserProps (String username) {
@@ -18,5 +22,6 @@ public final class UserProps {
         this.username = username;
         this.token = new Token();
         this.deck = new Deck();
+        this.victories = new Victories();
     }
 }

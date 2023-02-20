@@ -12,6 +12,8 @@ public final class User {
     private Token token;
     private Deck deck;
 
+    private Victories victories;
+
     public User(UserProps userProps){
         this.userId = userProps.userId;
         this.username = userProps.username;
@@ -35,6 +37,10 @@ public final class User {
         return userId;
     }
 
+    public Victories getVictories() {
+        return victories;
+    }
+
     public void removeTokenByPackType(PackType packType) throws ArithmeticException {
         this.token = token.minus(packType);
     }
@@ -45,21 +51,32 @@ public final class User {
         });
     }
 
-
-    public void hasMinimalNumberOfToken(PackType packType){
+    public void hasMinimalNumberOfToken(PackType packType) throws RuntimeException {
         if (!this.token.hasMinimalNumberOfTokensForPackType(packType))
             throw new RuntimeException();
+    }
+
+    public void addVictory () {
+        this.victories = this.victories.addOne();
+    }
+
+    public boolean shouldReceiveNewToken () {
+        return this.victories.value() % 5 == 0 ;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(getUserId(), user.getUserId()) && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getToken(), user.getToken()) && Objects.equals(getDeck(), user.getDeck());
+        return Objects.equals(getUserId(), user.getUserId())
+                && Objects.equals(getUsername(), user.getUsername())
+                && Objects.equals(getToken(), user.getToken())
+                && Objects.equals(getDeck(), user.getDeck())
+                && Objects.equals(getVictories(), user.getVictories());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getUsername(), getToken(), getDeck());
+        return Objects.hash(getUserId(), getUsername(), getToken(), getDeck(), getVictories());
     }
 }

@@ -17,10 +17,11 @@ public final class BsonUserMapper implements BsonMapper<User> {
         BsonAdapter heroAdapter = BsonAdapter.of(this.doc);
         final ArrayList<String> cards = heroAdapter.getStringObjectIdsArray("deck");
         UserProps userProps = new UserProps(
-                UserId.of(heroAdapter.getObjectIdAsString("_id")),
+                heroAdapter.getObjectIdAsString("_id"),
                 heroAdapter.getString("username"),
-                Token.of(heroAdapter.getInt("token")),
-                new Deck(cards)
+                heroAdapter.getInt("token"),
+                cards,
+                heroAdapter.getInt("victories")
         );
         return new User(userProps);
     }

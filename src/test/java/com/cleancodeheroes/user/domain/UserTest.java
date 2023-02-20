@@ -50,10 +50,11 @@ public class UserTest {
     public void shouldThrowIfNotEnoughTokenForSilverPack () {
         PackCharacteristics packCharacteristics = PackCharacteristics.Silver();
         User user = new User(new UserProps(
-                new UserId(),
+                new UserId().value(),
                 "Test",
-                Token.of(packCharacteristics.getRequiredTokens() - 1),
-                new Deck()
+                Token.of(packCharacteristics.getRequiredTokens() - 1).value(),
+                new Deck().getCards(),
+                new Victories().value()
         ));
         Assertions.assertThrows(ArithmeticException.class, () -> user.removeTokenByPackType(PackType.Silver));
     }
@@ -62,10 +63,11 @@ public class UserTest {
     public void shouldThrowIfNotEnoughTokenForDiamondPack () {
         PackCharacteristics packCharacteristics = PackCharacteristics.Diamond();
         User user = new User(new UserProps(
-                new UserId(),
+                new UserId().value(),
                 "Test",
-                Token.of(packCharacteristics.getRequiredTokens() - 1),
-                new Deck()
+                Token.of(packCharacteristics.getRequiredTokens() - 1).value(),
+                new Deck().getCards(),
+                new Victories().value()
         ));
         Assertions.assertThrows(ArithmeticException.class, () -> user.removeTokenByPackType(PackType.Diamond));
     }
@@ -81,10 +83,11 @@ public class UserTest {
     public void shouldNotHaveMinimalNumberOfTokenForSilver () {
         PackCharacteristics packCharacteristics = PackCharacteristics.Silver();
         User user = new User(new UserProps(
-                new UserId(),
+                new UserId().value(),
                 "Test",
-                Token.of(packCharacteristics.getRequiredTokens() - 1),
-                new Deck()
+                Token.of(packCharacteristics.getRequiredTokens() - 1).value(),
+                new Deck().getCards(),
+                new Victories().value()
         ));
         Assertions.assertThrows(RuntimeException.class, () -> user.hasMinimalNumberOfToken(PackType.Silver));
     }
@@ -93,10 +96,11 @@ public class UserTest {
     public void shouldNotHaveMinimalNumberOfTokenForDiamond () {
         PackCharacteristics packCharacteristics = PackCharacteristics.Diamond();
         User user = new User(new UserProps(
-                new UserId(),
+                new UserId().value(),
                 "Test",
-                Token.of(packCharacteristics.getRequiredTokens() - 1),
-                new Deck()
+                Token.of(packCharacteristics.getRequiredTokens() - 1).value(),
+                new Deck().getCards(),
+                new Victories().value()
         ));
         Assertions.assertThrows(RuntimeException.class, () -> user.hasMinimalNumberOfToken(PackType.Diamond));
     }

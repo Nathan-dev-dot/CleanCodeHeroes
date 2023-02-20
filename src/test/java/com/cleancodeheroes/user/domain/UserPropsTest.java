@@ -11,16 +11,18 @@ public class UserPropsTest {
     public void shouldCreateFullUserProps () {
         String id = new ObjectId().toString();
         UserProps userProps = new UserProps(
-                UserId.of(id),
+                id,
                 "Test",
-                new Token(),
-                new Deck()
+                new Token().value(),
+                new Deck().getCards(),
+                new Victories().value()
         );
 
         Assertions.assertEquals(id, userProps.userId.value());
         Assertions.assertEquals("Test", userProps.username);
         Assertions.assertEquals(4, userProps.token.value());
         Assertions.assertEquals(new ArrayList<String>(), userProps.deck.getCards());
+        Assertions.assertEquals(0, userProps.victories.value());
     }
 
     @Test
@@ -30,5 +32,6 @@ public class UserPropsTest {
         Assertions.assertEquals("Test", userProps.username);
         Assertions.assertEquals(4, userProps.token.value());
         Assertions.assertEquals(new ArrayList<String>(), userProps.deck.getCards());
+        Assertions.assertEquals(0, userProps.victories.value());
     }
 }
