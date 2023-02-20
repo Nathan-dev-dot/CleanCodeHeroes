@@ -1,6 +1,5 @@
 package com.cleancodeheroes.battle.application.service;
 
-import com.cleancodeheroes.battle.adapter.out.BattleNotFoundException;
 import com.cleancodeheroes.battle.application.port.in.FindBattleByIdQuery;
 import com.cleancodeheroes.battle.application.port.in.FindBattleByIdUseCase;
 import com.cleancodeheroes.battle.application.port.out.FindBattleByIdPort;

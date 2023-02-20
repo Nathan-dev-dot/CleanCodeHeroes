@@ -1,22 +1,17 @@
 package com.cleancodeheroes.card.adapter.in;
 
-import com.cleancodeheroes.card.application.port.in.CreateCardCommand;
 import com.cleancodeheroes.card.application.port.in.FindCardQuery;
 import com.cleancodeheroes.card.domain.Card;
-import com.cleancodeheroes.card.domain.CardId;
-import com.cleancodeheroes.hero.application.port.in.FindHeroQuery;
-import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController

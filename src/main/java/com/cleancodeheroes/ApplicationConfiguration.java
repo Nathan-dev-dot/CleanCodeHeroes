@@ -17,10 +17,10 @@ import com.cleancodeheroes.kernel.BusFactory;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
 import com.cleancodeheroes.user.adapter.out.NoSQLUserPersistence;
-import com.cleancodeheroes.user.application.services.UserCreationService;
 import com.cleancodeheroes.user.application.services.FindUserService;
 import com.cleancodeheroes.user.application.services.OpenerUserPackService;
 import com.cleancodeheroes.user.application.services.UpdaterUserService;
+import com.cleancodeheroes.user.application.services.UserCreationService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

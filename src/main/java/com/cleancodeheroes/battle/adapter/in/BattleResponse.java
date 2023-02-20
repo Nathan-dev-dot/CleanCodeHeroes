@@ -1,9 +1,6 @@
 package com.cleancodeheroes.battle.adapter.in;
 
 import com.cleancodeheroes.battle.domain.BattleResult;
-import com.cleancodeheroes.card.domain.CardId;
-import com.cleancodeheroes.hero.domain.HeroId;
-import com.cleancodeheroes.user.domain.UserId;
 
 public class BattleResponse {
     public final String winnerCardId;
