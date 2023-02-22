@@ -1,14 +1,17 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.card.domain.Armour;
+import com.cleancodeheroes.card.domain.HealthPoint;
+import com.cleancodeheroes.card.domain.Power;
 import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.Specialty;
 
 public final class HeroProps {
     public final HeroId id ;
     public final String name ;
-    public final Integer healthPoints  ;
-    public final Integer power ;
-    public final Integer armour ;
+    public final HealthPoint healthPoints  ;
+    public final Power power ;
+    public final Armour armour ;
     public final Specialty specialty;
     public final Rarity rarity ;
 
@@ -20,12 +23,12 @@ public final class HeroProps {
             Integer armour,
             Specialty specialty,
             Rarity rarity
-    ) {
+    ) throws IllegalArgumentException {
         this.id = id;
         this.name = name;
-        this.healthPoints = healthPoints;
-        this.power = power;
-        this.armour = armour;
+        this.healthPoints = HealthPoint.of(healthPoints);
+        this.power = Power.of(power);
+        this.armour = Armour.of(armour);
         this.specialty = specialty;
         this.rarity = rarity;
     }
@@ -34,9 +37,9 @@ public final class HeroProps {
         return new HeroProps(
             hero.Id(),
             hero.Name(),
-            hero.HealthPoints(),
-            hero.Power(),
-            hero.Armour(),
+            hero.HealthPoints().value(),
+            hero.Power().value(),
+            hero.Armour().value(),
             hero.Specialty(),
             hero.Rarity()
         );

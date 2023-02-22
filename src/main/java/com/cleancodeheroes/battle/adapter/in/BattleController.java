@@ -56,7 +56,6 @@ public class BattleController {
             User winnerUser = (User) queryBus.post(new FindUserQuery(battle.winnerUserId.value()));
             winnerUser = (User) queryBus.post(new UpdateUserVictoriesQuery(winnerUser));
             commandBus.post(new UpdateUserCommand(winnerUser));
-            System.out.println("Win user update");
             return battleId.value();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");

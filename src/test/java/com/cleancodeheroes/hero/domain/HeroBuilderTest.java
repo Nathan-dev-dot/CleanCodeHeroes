@@ -1,6 +1,7 @@
 package com.cleancodeheroes.hero.domain;
 
 import com.cleancodeheroes.shared.domain.Rarities;
+import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
@@ -20,162 +21,298 @@ public final class HeroBuilderTest {
 
     @Test
     public void shouldCreateHeroWithRandomId () {
-        hero = heroBuilder.id().build();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Tank")
+                .basicStats()
+                .build();
         Assertions.assertNotNull(hero.Id());
     }
 
     @Test
     public void shouldCreateHeroWithGivenId () {
         ObjectId id = new ObjectId();
-        hero = heroBuilder.id(id.toString()).build();
+        hero = heroBuilder
+                .id(id.toString())
+                .name("Test")
+                .rarity("Common")
+                .specialty("Tank")
+                .basicStats()
+                .build();
         Assertions.assertEquals(id.toString(), hero.Id().value());
     }
 
     @Test
     public void shouldThrowForInvalidGivenId () {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           heroBuilder.id("azerty").build();
+            heroBuilder.id("azerty");
         });
     }
-    
+
     @Test
     public void shouldBuildHeroWithName () {
         String name = "Hero";
-        hero = heroBuilder.name(name).build();
+        hero = heroBuilder
+                .id()
+                .name(name)
+                .rarity("Common")
+                .specialty("Tank")
+                .basicStats()
+                .build();
         Assertions.assertEquals(name, hero.Name());
     }
 
     @Test
     public void shouldThrowForHeroNameEmpty () {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.name("").build();
+            heroBuilder.name("");
         });
     }
 
     @Test
     public void shouldThrowForInvalidSpecialty () {
         Assertions.assertThrows(IllegalArgumentException.class, () ->{
-            hero = heroBuilder.specialty("Specialty").build() ;
+            heroBuilder.specialty("Specialty") ;
         });
     }
 
     @Test
     public void shouldBuildTank () {
-        hero = heroBuilder.specialty("Tank").build() ;
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Tank")
+                .basicStats()
+                .build() ;
         Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
     }
 
     @Test
     public void shouldBuildAssassin () {
-        hero = heroBuilder.specialty("Assassin").build() ;
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Assassin")
+                .basicStats()
+                .build() ;
         Assertions.assertEquals(CharacterType.Assassin, hero.Specialty().value());
     }
 
     @Test
     public void shouldBuildSorcerer () {
-        hero = heroBuilder.specialty("Sorcerer").build() ;
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Sorcerer")
+                .basicStats()
+                .build() ;
         Assertions.assertEquals(CharacterType.Sorcerer, hero.Specialty().value());
     }
 
     @Test
     public void shouldThrowForBasicStatsIfNoSpecialty () {
         HeroBuilder heroBuilder = new HeroBuilder();
+        Assertions.assertThrows(MissingResourceException.class, heroBuilder::basicStats);
+    }
+
+    @Test
+    public void shouldThrowForBasicStatsIfNoRarity () {
+        HeroBuilder heroBuilder = new HeroBuilder();
         Assertions.assertThrows(MissingResourceException.class, () ->{
-            hero = heroBuilder.basicStats().build() ;
+            heroBuilder.specialty("Tank").basicStats();
         });
     }
 
     @Test
-    public void shouldBuildTankBaseCharacteristics () {
-        hero = heroBuilder.specialty("Tank").basicStats().build();
+    public void shouldBuildCommonTankBaseCharacteristics () {
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Tank")
+                .basicStats()
+                .build();
         SpecialtyCharacteristics tank = SpecialtyCharacteristics.Tank();
         Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
-        Assertions.assertEquals(tank.getBaseArmour(), hero.Armour());
-        Assertions.assertEquals(tank.getBaseHealthPoints(), hero.HealthPoints());
+        Assertions.assertEquals(tank.getBaseArmour(), hero.Armour().value());
+        Assertions.assertEquals(tank.getBaseHealthPoints(), hero.HealthPoints().value());
+        Assertions.assertEquals(tank.getBasePower(), hero.Power().value());
     }
 
     @Test
-    public void shouldBuildAssassinBaseCharacteristics () {
-        hero = heroBuilder.specialty("Assassin").basicStats().build();
+    public void shouldBuildCommonAssassinBaseCharacteristics () {
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Assassin")
+                .basicStats()
+                .build();
         SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assassin();
-        Assertions.assertEquals(assasin.getBaseArmour(), hero.Armour());
-        Assertions.assertEquals(assasin.getBaseHealthPoints(), hero.HealthPoints());
-        Assertions.assertEquals(assasin.getBasePower(), hero.Power());
+        Assertions.assertEquals(assasin.getBaseArmour(), hero.Armour().value());
+        Assertions.assertEquals(assasin.getBaseHealthPoints(), hero.HealthPoints().value());
+        Assertions.assertEquals(assasin.getBasePower(), hero.Power().value());
     }
 
     @Test
-    public void shouldBuildSorcererBaseCharacteristics () {
-        hero = heroBuilder.specialty("Sorcerer").basicStats().build();
+    public void shouldBuildCommonSorcererBaseCharacteristics () {
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Common")
+                .specialty("Sorcerer")
+                .basicStats()
+                .build();
         SpecialtyCharacteristics sorcerer = SpecialtyCharacteristics.Sorcerer();
-        Assertions.assertEquals(sorcerer.getBaseArmour(), hero.Armour());
-        Assertions.assertEquals(sorcerer.getBaseHealthPoints(), hero.HealthPoints());
-        Assertions.assertEquals(sorcerer.getBasePower(), hero.Power());
+        Assertions.assertEquals(sorcerer.getBaseArmour(), hero.Armour().value());
+        Assertions.assertEquals(sorcerer.getBaseHealthPoints(), hero.HealthPoints().value());
+        Assertions.assertEquals(sorcerer.getBasePower(), hero.Power().value());
     }
 
     @Test
-    public void shouldCreateHeroWithHealthPoints () {
-        Integer healthPoints = 30;
-        hero = heroBuilder.healthPoints(healthPoints).build();
-        Assertions.assertEquals(healthPoints, hero.HealthPoints());
+    public void shouldBuildRareTankBaseCharacteristics () {
+        double rareIncreaseFactor = new Rarity("Rare").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Rare")
+                .specialty("Tank")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics tank = SpecialtyCharacteristics.Tank();
+        Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
+        Assertions.assertEquals((int) (tank.getBaseArmour() * rareIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (tank.getBaseHealthPoints() * rareIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (tank.getBasePower() * rareIncreaseFactor), hero.Power().value());
     }
 
     @Test
-    public void shouldThrowForNegativeHealthPoints () {
-       Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           heroBuilder.healthPoints(-1).build();
-       });
+    public void shouldBuildRareAssassinBaseCharacteristics () {
+        double rareIncreaseFactor = new Rarity("Rare").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Rare")
+                .specialty("Assassin")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assassin();
+        Assertions.assertEquals((int) (assasin.getBaseArmour() * rareIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (assasin.getBaseHealthPoints() * rareIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (assasin.getBasePower() * rareIncreaseFactor), hero.Power().value());
     }
 
     @Test
-    public void shouldCreateHeroWithArmour () {
-        Integer armour = 30;
-        hero = heroBuilder.armour(armour).build();
-        Assertions.assertEquals(armour, hero.Armour());
+    public void shouldBuildRareSorcererBaseCharacteristics () {
+        double rareIncreaseFactor = new Rarity("Rare").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Rare")
+                .specialty("Sorcerer")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics sorcerer = SpecialtyCharacteristics.Sorcerer();
+        Assertions.assertEquals((int) (sorcerer.getBaseArmour() * rareIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (sorcerer.getBaseHealthPoints() * rareIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (sorcerer.getBasePower() * rareIncreaseFactor), hero.Power().value());
     }
 
     @Test
-    public void shouldThrowForNegativeArmour () {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.armour(-1).build();
-        });
+    public void shouldBuildLegendaryTankBaseCharacteristics () {
+        double legendaryIncreaseFactor = new Rarity("Legendary").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Legendary")
+                .specialty("Tank")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics tank = SpecialtyCharacteristics.Tank();
+        Assertions.assertEquals(CharacterType.Tank, hero.Specialty().value());
+        Assertions.assertEquals((int) (tank.getBaseArmour() * legendaryIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (tank.getBaseHealthPoints() * legendaryIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (tank.getBasePower() * legendaryIncreaseFactor), hero.Power().value());
     }
 
     @Test
-    public void shouldCreateHeroWithPower () {
-        Integer power = 30;
-        hero = heroBuilder.power(power).build();
-        Assertions.assertEquals(power, hero.Power());
+    public void shouldBuildLegendaryAssassinBaseCharacteristics () {
+        double legendaryIncreaseFactor = new Rarity("Legendary").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Legendary")
+                .specialty("Assassin")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics assasin = SpecialtyCharacteristics.Assassin();
+        Assertions.assertEquals((int) (assasin.getBaseArmour() * legendaryIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (assasin.getBaseHealthPoints() * legendaryIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (assasin.getBasePower() * legendaryIncreaseFactor), hero.Power().value());
     }
 
     @Test
-    public void shouldThrowForNegativePower () {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.power(-1).build();
-        });
+    public void shouldBuildLegendarySorcererBaseCharacteristics () {
+        double legendaryIncreaseFactor = new Rarity("Legendary").baseIncreaseFactor();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .rarity("Legendary")
+                .specialty("Sorcerer")
+                .basicStats()
+                .build();
+        SpecialtyCharacteristics sorcerer = SpecialtyCharacteristics.Sorcerer();
+        Assertions.assertEquals((int) (sorcerer.getBaseArmour() * legendaryIncreaseFactor), hero.Armour().value());
+        Assertions.assertEquals((int) (sorcerer.getBaseHealthPoints() * legendaryIncreaseFactor), hero.HealthPoints().value());
+        Assertions.assertEquals((int) (sorcerer.getBasePower() * legendaryIncreaseFactor), hero.Power().value());
     }
+
 
     @Test
     public void shouldCreateHeroWithCommonRarity () {
-        hero = heroBuilder.rarity("Common").build();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .specialty("Tank")
+                .rarity("Common")
+                .basicStats()
+                .build();
         Assertions.assertEquals(Rarities.Common, hero.Rarity().value());
     }
 
     @Test
     public void shouldCreateHeroWithRareRarity () {
-        hero = heroBuilder.rarity("Rare").build();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .specialty("Tank")
+                .rarity("Rare")
+                .basicStats()
+                .build();
         Assertions.assertEquals(Rarities.Rare, hero.Rarity().value());
     }
 
     @Test
     public void shouldCreateHeroWithLegendaryRarity () {
-        hero = heroBuilder.rarity("Legendary").build();
+        hero = heroBuilder
+                .id()
+                .name("Test")
+                .specialty("Tank")
+                .rarity("Legendary")
+                .basicStats()
+                .build();
         Assertions.assertEquals(Rarities.Legendary, hero.Rarity().value());
     }
 
     @Test
     public void shouldThrowForInvalidRarity () {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            heroBuilder.rarity("Hello").build();
+            heroBuilder.rarity("Hello");
         });
     }
 }

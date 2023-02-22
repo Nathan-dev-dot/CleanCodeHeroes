@@ -21,6 +21,7 @@ public class OpenerUserPackService implements OpenUserPackUseCase {
             var rarityHeroes = command.heroes.stream().filter(
                     (hero) -> hero.Rarity().value() == cardRarity
             ).toList();
+            if (rarityHeroes.size() == 0) throw new IllegalArgumentException();
             randomlyPulledHeroes.add(0, this.selectRandomHeroFromList(rarityHeroes));
         }
         return randomlyPulledHeroes;

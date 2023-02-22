@@ -1,5 +1,7 @@
 package com.cleancodeheroes.card.domain;
 
+import com.cleancodeheroes.utils.CharacteristicUtils;
+
 import java.util.Objects;
 
 public class HealthPoint implements Characteristic{
@@ -21,7 +23,7 @@ public class HealthPoint implements Characteristic{
 
     @Override
     public HealthPoint increaseByFactor(){
-        int newHealthPointValue = (int) Math.abs(this.healthPoint * increaseFactor);
+        int newHealthPointValue = CharacteristicUtils.increaseByFactor(this.healthPoint, increaseFactor);
         return HealthPoint.of(newHealthPointValue);
     }
 
