@@ -24,7 +24,8 @@ public class NoSQLUserUpdateDTO {
                 .getDeck().getCards().stream().map(IdUtils::fromStringToObjectId).toList();
         this.updates = Updates.combine(
                 Updates.set("token", user.getToken().value()),
-                Updates.set("deck", deckAsObjectIds)
+                Updates.set("deck", deckAsObjectIds),
+                Updates.set("victories", user.getVictories().value())
         );
     }
 }

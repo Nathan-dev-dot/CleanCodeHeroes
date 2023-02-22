@@ -13,6 +13,10 @@ import com.cleancodeheroes.card.application.port.in.UpgradeCardQuery;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.kernel.command.CommandBus;
 import com.cleancodeheroes.kernel.query.QueryBus;
+import com.cleancodeheroes.user.application.port.in.FindUserQuery;
+import com.cleancodeheroes.user.application.port.in.UpdateUserCommand;
+import com.cleancodeheroes.user.application.port.in.UpdateUserVictoriesQuery;
+import com.cleancodeheroes.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +50,13 @@ public class BattleController {
             Battle newBattle = createBattle(attackerCard, defenderCard);
             BattleId battleId = (BattleId) commandBus.post(new CreateBattleCommand(newBattle));
             BattleResult battle = (BattleResult) queryBus.post(new FindBattleByIdQuery(battleId.value()));
-            Card winnerCard = getCardByCardId(battle.winnerCardId.value());
+            Card winnerCard = newBattle.getWinner();
             Card winnerCardUpdated = (Card) queryBus.post(new UpgradeCardQuery(winnerCard));
             commandBus.post(new UpdateCardCommand(winnerCardUpdated));
+            User winnerUser = (User) queryBus.post(new FindUserQuery(battle.winnerUserId.value()));
+            winnerUser = (User) queryBus.post(new UpdateUserVictoriesQuery(winnerUser));
+            commandBus.post(new UpdateUserCommand(winnerUser));
+            System.out.println("Win user update");
             return battleId.value();
         } catch (Exception e) {
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");

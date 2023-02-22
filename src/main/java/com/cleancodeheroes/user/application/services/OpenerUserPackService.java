@@ -36,7 +36,7 @@ public class OpenerUserPackService implements OpenUserPackUseCase {
         Rarities cardRarity;
         if (probability <= packCharacteristics.getLegendaryDropPercentage()) {
             cardRarity = Rarities.Legendary;
-        } else if (probability <= packCharacteristics.getRareDropPercentage()) {
+        } else if (probability <= packCharacteristics.getLegendaryDropPercentage() + packCharacteristics.getRareDropPercentage()) {
             cardRarity = Rarities.Rare;
         } else {
             cardRarity = Rarities.Common;

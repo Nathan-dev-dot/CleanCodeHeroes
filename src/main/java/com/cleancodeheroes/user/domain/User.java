@@ -11,7 +11,6 @@ public final class User {
     private final String username;
     private Token token;
     private Deck deck;
-
     private Victories victories;
 
     public User(UserProps userProps){
@@ -19,6 +18,7 @@ public final class User {
         this.username = userProps.username;
         this.token = userProps.token;
         this.deck = userProps.deck;
+        this.victories = userProps.victories;
     }
 
     public String getUsername() {
