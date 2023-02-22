@@ -6,13 +6,18 @@ import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
 import java.util.Objects;
 
 public final class Battle {
-    //TODO battleId
     private final Card attackerCard;
     private final Card defenderCard;
 
-    public Battle(Card attackerCard, Card defenderCard) {
+    private Battle(Card attackerCard, Card defenderCard) {
         this.attackerCard = attackerCard;
         this.defenderCard = defenderCard;
+    }
+
+    public static Battle of (Card attackerCard, Card defenderCard) throws IllegalArgumentException {
+        if (Objects.equals(attackerCard.getUserId(), defenderCard.getUserId()))
+            throw new IllegalArgumentException();
+        return new Battle(attackerCard, defenderCard);
     }
 
     public Card getAttackerCard() {
@@ -24,13 +29,13 @@ public final class Battle {
     }
 
     private Card fight(){
-        int nbRoundsToKillAttacker = this.roundToKillCard(defenderCard, attackerCard);
-        int nbRoundsToKillDefender = this.roundToKillCard(attackerCard, defenderCard);
+        int nbRoundsToKillAttacker = this.roundsToKillCard(defenderCard, attackerCard);
+        int nbRoundsToKillDefender = this.roundsToKillCard(attackerCard, defenderCard);
         if (nbRoundsToKillDefender <= nbRoundsToKillAttacker) return this.attackerCard;
         return this.defenderCard;
     }
 
-    private int roundToKillCard (Card attacker, Card defender) {
+    private int roundsToKillCard(Card attacker, Card defender) {
         return defender.getHealthPoints().value() / finalAttackerPower(attacker, defender);
     }
 

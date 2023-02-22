@@ -64,7 +64,7 @@ public class BattleController {
     }
 
     private Battle createBattle(Card attackerCard, Card defenderCard) {
-        return new Battle(attackerCard, defenderCard);
+        return Battle.of(attackerCard, defenderCard);
     }
 
     private Card getCardByCardId(String cardId) throws Exception {

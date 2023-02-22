@@ -29,7 +29,7 @@ public final class UserId {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof UserId userId1)) return false;
-        return id.equals(userId1.id);
+        return id.equals(userId1.value());
     }
 
     @Override
