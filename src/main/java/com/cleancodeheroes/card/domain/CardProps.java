@@ -30,7 +30,8 @@ public final class CardProps {
             String specialty,
             String rarity,
             Integer level,
-            String userId) throws IllegalArgumentException {
+            String userId
+    ) throws IllegalArgumentException {
         this.id = CardId.of(cardId);
         this.parentHeroId = HeroId.of(parentHeroId);
         this.name = name;

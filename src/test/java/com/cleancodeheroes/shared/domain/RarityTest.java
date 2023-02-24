@@ -14,7 +14,7 @@ public final class RarityTest {
     @Test
     public void shouldThrowErrorForIllegalRarity () {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            var fakeRarity = new Rarity("Fake");
+            new Rarity("Fake");
         });
     }
 

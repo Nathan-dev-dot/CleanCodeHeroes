@@ -13,21 +13,13 @@ public final class Battle {
         this.attackerCard = attackerCard;
         this.defenderCard = defenderCard;
     }
-
+    
     public static Battle of (Card attackerCard, Card defenderCard) throws IllegalArgumentException {
         if (Objects.equals(attackerCard.getUserId(), defenderCard.getUserId()))
             throw new IllegalArgumentException();
         return new Battle(attackerCard, defenderCard);
     }
-
-    public Card getAttackerCard() {
-        return attackerCard;
-    }
-
-    public Card getDefenderCard() {
-        return defenderCard;
-    }
-
+    
     private Card fight(){
         int nbRoundsToKillAttacker = this.roundsToKillCard(defenderCard, attackerCard);
         int nbRoundsToKillDefender = this.roundsToKillCard(attackerCard, defenderCard);

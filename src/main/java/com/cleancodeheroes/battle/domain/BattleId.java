@@ -11,11 +11,7 @@ public final class BattleId {
         this.id = battleId;
     }
 
-    public BattleId() {
-        this.id = new ObjectId().toString();
-    }
-
-    public static BattleId of(String battleId){
+    public static BattleId of(String battleId) throws IllegalArgumentException{
         if (ObjectId.isValid(battleId))
             return new BattleId(battleId);
         throw new IllegalArgumentException(battleId);
