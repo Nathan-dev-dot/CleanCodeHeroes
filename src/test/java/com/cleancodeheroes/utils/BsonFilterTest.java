@@ -24,4 +24,11 @@ public class BsonFilterTest {
         String invalidObjectId = "invalid";
         Assertions.assertThrows(IllegalArgumentException.class, () -> new BsonFilter(invalidObjectId));
     }
+
+    @Test
+    public void shouldCreateCustomFilter () {
+        BsonFilter filter = new BsonFilter("param", "value");
+        Bson expected = Filters.eq("param", "value");
+        Assertions.assertEquals(expected, filter.filter);
+    }
 }
