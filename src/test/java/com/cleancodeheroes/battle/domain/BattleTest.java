@@ -43,8 +43,9 @@ public class BattleTest {
                         new ObjectId().toString()
                 )
         );
-
-        Battle battle = new Battle(attacker, defender);
+        
+        
+        Battle battle = Battle.of(attacker, defender);
         Assertions.assertEquals(battle.getClass(), Battle.class);
     }
 
@@ -82,7 +83,7 @@ public class BattleTest {
                 )
         );
 
-        Battle battle = new Battle(attacker, defender);
+        Battle battle = Battle.of(attacker, defender);
         Assertions.assertEquals(battle.getWinner(), attacker);
     }
 
@@ -120,7 +121,7 @@ public class BattleTest {
                 )
         );
 
-        Battle battle = new Battle(attacker, defender);
+        Battle battle = Battle.of(attacker, defender);
         Assertions.assertEquals(battle.getLoser(), attacker);
     }
 
@@ -158,7 +159,31 @@ public class BattleTest {
                 )
         );
 
-        Battle battle = new Battle(attacker, defender);
+        Battle battle = Battle.of(attacker, defender);
         Assertions.assertEquals(battle.getLoser(), defender);
+    }
+
+    @Test
+    public void shouldThrowIllegalArgumentException() {
+        Card attacker = new Card(
+                new CardProps(
+                        new ObjectId().toString(),
+                        new ObjectId().toString(),
+                        "nathan",
+                        100,
+                        1,
+                        150,
+                        100,
+                        "Assassin",
+                        "Common",
+                        1,
+                        new ObjectId().toString()
+                )
+        );
+
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            Battle.of(attacker, attacker);
+        });
     }
 }
