@@ -16,6 +16,7 @@ public class UserTest {
         Assertions.assertEquals("Test", user.getUsername());
         Assertions.assertEquals(4, user.getToken().value());
         Assertions.assertEquals(new ArrayList<String>(), user.getDeck().getCards());
+        Assertions.assertEquals(0, user.getVictories().value());
     }
 
     @Test
@@ -103,5 +104,51 @@ public class UserTest {
                 new Victories().value()
         ));
         Assertions.assertThrows(RuntimeException.class, () -> user.hasMinimalNumberOfToken(PackType.Diamond));
+    }
+
+    @Test
+    public void shouldAddToken () {
+        User user = new User(new UserProps("Test"));
+        int tokensBeforeUpdate = user.getToken().value();
+        user.addToken();
+        Assertions.assertEquals(tokensBeforeUpdate + 1, user.getToken().value());
+    }
+
+    @Test
+    public void shouldAddVictory () {
+        User user = new User(new UserProps("Test"));
+        int victoriesBeforeUpdate = user.getVictories().value();
+        user.addVictory();
+        Assertions.assertEquals(victoriesBeforeUpdate + 1, user.getVictories().value());
+    }
+
+    @Test
+    public void shouldReceiveNewToken () {
+        User user = new User(new UserProps(
+                new UserId().value(),
+                "Test",
+                0,
+                new ArrayList<String>(),
+                5
+        ));
+        Assertions.assertTrue(user.shouldReceiveNewToken());
+    }
+
+    @Test
+    public void shouldNotReceiveNewTokenAtInit () {
+        User user = new User(new UserProps("Test"));
+        Assertions.assertFalse(user.shouldReceiveNewToken());
+    }
+
+    @Test
+    public void shouldNotReceiveNewToken () {
+        User user = new User(new UserProps(
+                new UserId().value(),
+                "Test",
+                0,
+                new ArrayList<String>(),
+                4
+        ));
+        Assertions.assertFalse(user.shouldReceiveNewToken());
     }
 }

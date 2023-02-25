@@ -65,6 +65,7 @@ public final class User {
     }
 
     public boolean shouldReceiveNewToken () {
+        if (this.victories.value() == 0) return false;
         return this.victories.value() % 5 == 0 ;
     }
 
