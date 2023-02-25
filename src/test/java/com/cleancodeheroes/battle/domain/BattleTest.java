@@ -6,8 +6,6 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
-
 public class BattleTest {
 
     @Test
@@ -75,7 +73,7 @@ public class BattleTest {
                         50,
                         1,
                         101,
-                        100,
+                        151,
                         "Assassin",
                         "Common",
                         1,

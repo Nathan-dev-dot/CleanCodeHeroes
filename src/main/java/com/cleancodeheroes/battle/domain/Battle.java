@@ -35,9 +35,10 @@ public final class Battle {
         SpecialtyCharacteristics attackerSpecialtyCharacteristics = SpecialtyCharacteristics.of(attacker.getSpecialty().value());
         Double augmentedPowerAgainstClass = attackerSpecialtyCharacteristics
                 .getAdditionalDammageAgainstCharacterType(defender.getSpecialty().value())
+                * attacker.getRarity().baseIncreaseFactor()
                 * (1 + attacker.getLevel().value() / 100.0);
         int diminishedPower = attacker.getPower().value() + augmentedPowerAgainstClass.intValue() - defender.getArmour().value();
-        return Math.max(diminishedPower, 0);
+        return Math.max(diminishedPower, 1);
     }
 
     public Card getWinner () {
