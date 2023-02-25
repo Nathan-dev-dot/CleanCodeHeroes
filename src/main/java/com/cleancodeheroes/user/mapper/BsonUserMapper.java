@@ -1,7 +1,8 @@
 package com.cleancodeheroes.user.mapper;
 
 import com.cleancodeheroes.shared.mapper.BsonMapper;
-import com.cleancodeheroes.user.domain.*;
+import com.cleancodeheroes.user.domain.User;
+import com.cleancodeheroes.user.domain.UserProps;
 import com.cleancodeheroes.utils.BsonAdapter;
 import org.bson.Document;
 

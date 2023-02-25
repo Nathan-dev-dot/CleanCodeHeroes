@@ -13,6 +13,7 @@ public final class UserCreationService implements CreateUserUseCase {
     public UserCreationService(CreateUserPort createUserPort){
         this.createUserPort = createUserPort;
     }
+
     @Override
     public UserId handle(CreateUserCommand command) {
         User newUser = new User(new UserProps(command.getUsername()));

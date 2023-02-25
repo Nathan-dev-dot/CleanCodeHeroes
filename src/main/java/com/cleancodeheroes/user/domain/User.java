@@ -72,16 +72,13 @@ public final class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User user)) return false;
-        return Objects.equals(getUserId(), user.getUserId())
-                && Objects.equals(getUsername(), user.getUsername())
-                && Objects.equals(getToken(), user.getToken())
-                && Objects.equals(getDeck(), user.getDeck())
-                && Objects.equals(getVictories(), user.getVictories());
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(token, user.token) && Objects.equals(deck, user.deck) && Objects.equals(victories, user.victories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getUsername(), getToken(), getDeck(), getVictories());
+        return Objects.hash(userId, username, token, deck, victories);
     }
 }

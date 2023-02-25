@@ -15,7 +15,6 @@ public class UpdaterUserService implements UpdateUserUseCase {
 
     @Override
     public UserId handle(UpdateUserCommand command) {
-
         return updateUserPort.update(command.user);
     }
 }

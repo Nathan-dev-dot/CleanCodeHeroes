@@ -6,7 +6,7 @@ import com.cleancodeheroes.user.domain.User;
 
 public class UserUpdateVictoriesService implements UpdateUserVictoryUseCase {
     @Override
-    public User handle(UpdateUserVictoriesQuery query) throws Exception {
+    public User handle(UpdateUserVictoriesQuery query) {
         User user = query.user;
         user.addVictory();
         if (user.shouldReceiveNewToken())
