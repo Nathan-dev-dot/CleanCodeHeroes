@@ -43,9 +43,6 @@ public final class CreationHeroServiceTest {
     public void shouldReturnHeroId(){
         this.createHeroCommand = new CreateHeroCommand(
                 hero.Name(),
-                hero.HealthPoints().value(),
-                hero.Power().value(),
-                hero.Armour().value(),
                 hero.Specialty().value().name(),
                 hero.Rarity().value().toString()
         );

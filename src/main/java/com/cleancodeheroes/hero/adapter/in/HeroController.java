@@ -34,12 +34,10 @@ public final class HeroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String create(@RequestBody @Valid CreateHeroRequest createHeroRequest) throws ResponseStatusException {
+        System.out.println("Coucou");
         try {
             CreateHeroCommand createHeroCommand = new CreateHeroCommand(
                     createHeroRequest.name,
-                    createHeroRequest.healthPoints,
-                    createHeroRequest.power,
-                    createHeroRequest.armour,
                     createHeroRequest.specialty,
                     createHeroRequest.rarity
             );
