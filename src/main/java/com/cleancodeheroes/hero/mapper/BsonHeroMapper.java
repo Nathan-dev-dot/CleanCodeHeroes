@@ -19,9 +19,7 @@ public final class BsonHeroMapper implements BsonMapper<Hero> {
                 .name(heroAdapter.getString("name"))
                 .rarity(heroAdapter.getString("rarity"))
                 .specialty(heroAdapter.getString("specialty"))
-                .healthPoints(heroAdapter.getInt("healthPoints"))
-                .power(heroAdapter.getInt("power"))
-                .armour(heroAdapter.getInt("armour"))
+                .basicStats()
                 .build();
     }
 }

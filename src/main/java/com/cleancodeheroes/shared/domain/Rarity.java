@@ -17,6 +17,18 @@ public final class Rarity {
         return rarity;
     }
 
+    public double baseIncreaseFactor () {
+        switch (rarity) {
+            case Legendary -> {
+                return 1.2;
+            }
+            case Rare -> {
+                return 1.1;
+            }
+        }
+        return 1.0;
+    }
+
     @Override
     public String toString () {
         return rarity.toString();

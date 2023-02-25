@@ -13,9 +13,9 @@ public final class NoSQLHeroPersistenceDTO {
 
     public NoSQLHeroPersistenceDTO(Hero hero) {
         this.name = hero.Name();
-        this.healthPoints = hero.HealthPoints();
-        this.power = hero.Power();
-        this.armour = hero.Armour();
+        this.healthPoints = hero.HealthPoints().value();
+        this.power = hero.Power().value();
+        this.armour = hero.Armour().value();
         this.specialty = hero.Specialty().toString();
         this.rarity = hero.Rarity().toString();
     }

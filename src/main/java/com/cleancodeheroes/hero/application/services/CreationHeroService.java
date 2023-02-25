@@ -22,8 +22,8 @@ public final class CreationHeroService implements CreateHeroUseCase {
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())
                 .specialty(command.getSpecialty())
-                .basicStats()
                 .rarity(command.getRarity())
+                .basicStats()
                 .name(command.getName())
                 .build();
         return this.createHeroPort.save(hero);

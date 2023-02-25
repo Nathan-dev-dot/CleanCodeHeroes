@@ -22,12 +22,13 @@ public final class CreateCardCommand implements Command {
     private final UserId userId;
 
     public CreateCardCommand (Hero hero, UserId userId) {
+        Rarity heroRarity = hero.Rarity();
         this.name = hero.Name();
         this.parentHeroId = hero.Id();
-        this.healthPoints = hero.HealthPoints();
+        this.healthPoints = hero.HealthPoints().value();
         this.experiencePoints = 0;
-        this.power = hero.Power();
-        this.armour = hero.Armour();
+        this.power = hero.Power().value();
+        this.armour = hero.Armour().value();
         this.specialty = hero.Specialty();
         this.rarity = hero.Rarity();
         this.userId = userId;

@@ -1,5 +1,7 @@
 package com.cleancodeheroes.card.domain;
 
+import com.cleancodeheroes.utils.CharacteristicUtils;
+
 import java.util.Objects;
 
 public class Armour implements Characteristic{
@@ -16,7 +18,7 @@ public class Armour implements Characteristic{
 
     @Override
     public Armour increaseByFactor() throws ArithmeticException {
-        int newArmourPoint = (int) Math.abs(this.armour * increaseFactor);
+        int newArmourPoint = CharacteristicUtils.increaseByFactor(this.armour, increaseFactor);
         return Armour.of(newArmourPoint);
     }
     public Integer value() {

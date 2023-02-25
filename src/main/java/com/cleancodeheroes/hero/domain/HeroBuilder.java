@@ -1,18 +1,22 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.card.domain.Armour;
+import com.cleancodeheroes.card.domain.HealthPoint;
+import com.cleancodeheroes.card.domain.Power;
 import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.Specialty;
 import com.cleancodeheroes.shared.domain.SpecialtyCharacteristics;
+import com.cleancodeheroes.utils.CharacteristicUtils;
 
 import java.util.MissingResourceException;
 
 public final class HeroBuilder {
     private HeroId id = null ;
     private String name ;
-    private Integer healthPoints  ;
-    private Integer power ;
+    private HealthPoint healthPoints   ;
+    private Power power ;
     private Specialty specialty;
-    private Integer armour ;
+    private Armour armour ;
     private Rarity rarity ;
     private SpecialtyCharacteristics baseCharacteristics;
 
@@ -20,9 +24,9 @@ public final class HeroBuilder {
         var heroProps = new HeroProps(
                 this.id,
                 this.name,
-                this.healthPoints,
-                this.power,
-                this.armour,
+                this.healthPoints.value(),
+                this.power.value(),
+                this.armour.value(),
                 this.specialty,
                 this.rarity
         );
@@ -55,28 +59,40 @@ public final class HeroBuilder {
         if (this.baseCharacteristics == null) {
             throw new MissingResourceException("Missing ressource", "HeroBuilder", "baseCharacteristics");
         }
-        this.armour = this.baseCharacteristics.getBaseArmour();
-        this.power = this.baseCharacteristics.getBasePower();
-        this.healthPoints = this.baseCharacteristics.getBaseHealthPoints();
+        if (this.rarity == null) {
+            throw new MissingResourceException("Missing resource", "HeroBuilder", "rarity");
+        }
+        this.armour();
+        this.power();
+        this.healthPoints();
         return this;
     }
 
-    public HeroBuilder healthPoints(Integer healthPoints) throws IllegalArgumentException {
-        if (healthPoints < 0) throw new IllegalArgumentException();
-        this.healthPoints = healthPoints;
-        return this;
+    private void healthPoints() throws IllegalArgumentException {
+        this.healthPoints = HealthPoint.of(
+                CharacteristicUtils.increaseByFactor(
+                        this.baseCharacteristics.getBaseHealthPoints(),
+                        this.rarity.baseIncreaseFactor()
+                )
+        );
     }
 
-    public HeroBuilder power(Integer power) throws IllegalArgumentException {
-        if (power < 0) throw new IllegalArgumentException();
-        this.power = power;
-        return this;
+    private void power () throws IllegalArgumentException {
+        this.power = Power.of(
+                CharacteristicUtils.increaseByFactor(
+                        this.baseCharacteristics.getBasePower(),
+                        this.rarity.baseIncreaseFactor()
+                )
+        );
     }
 
-    public HeroBuilder armour(Integer armour) throws IllegalArgumentException {
-        if (armour < 0) throw new IllegalArgumentException();
-        this.armour = armour;
-        return this;
+    private void armour() throws IllegalArgumentException {
+        this.armour = Armour.of(
+                CharacteristicUtils.increaseByFactor(
+                        this.baseCharacteristics.getBaseArmour(),
+                        this.rarity.baseIncreaseFactor()
+                )
+        );
     }
 
     public HeroBuilder rarity (String rarity) throws IllegalArgumentException {

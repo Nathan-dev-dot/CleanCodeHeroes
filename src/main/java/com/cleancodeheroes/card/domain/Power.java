@@ -1,5 +1,7 @@
 package com.cleancodeheroes.card.domain;
 
+import com.cleancodeheroes.utils.CharacteristicUtils;
+
 import java.util.Objects;
 
 public class Power implements Characteristic {
@@ -20,7 +22,7 @@ public class Power implements Characteristic {
 
     @Override
     public Power increaseByFactor() {
-        int newPowerPoint = (int) Math.abs(this.power * increaseFactor);
+        int newPowerPoint = CharacteristicUtils.increaseByFactor(this.power, increaseFactor);
         return Power.of(newPowerPoint);
     }
 

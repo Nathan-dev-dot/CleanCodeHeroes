@@ -1,5 +1,8 @@
 package com.cleancodeheroes.hero.domain;
 
+import com.cleancodeheroes.card.domain.Armour;
+import com.cleancodeheroes.card.domain.HealthPoint;
+import com.cleancodeheroes.card.domain.Power;
 import com.cleancodeheroes.shared.domain.Rarity;
 import com.cleancodeheroes.shared.domain.Specialty;
 
@@ -8,14 +11,13 @@ import java.util.Objects;
 public final class Hero {
     private final HeroId id ;
     private final String name ;
-    private final Integer healthPoints  ;
-    private final Integer power ;
-    private final Integer armour ;
+    private final HealthPoint healthPoints  ;
+    private final Power power ;
+    private final Armour armour ;
     private final Specialty specialty;
     private final Rarity rarity ;
 
     public Hero (HeroProps heroProps) {
-
         this.id = heroProps.id;
         this.name = heroProps.name;
         this.healthPoints = heroProps.healthPoints;
@@ -33,15 +35,15 @@ public final class Hero {
         return name;
     }
 
-    public Integer HealthPoints() {
+    public HealthPoint HealthPoints() {
         return healthPoints;
     }
 
-    public Integer Power() {
+    public Power Power() {
         return power;
     }
 
-    public Integer Armour() {
+    public Armour Armour() {
         return armour;
     }
 
