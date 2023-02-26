@@ -5,12 +5,13 @@ import com.cleancodeheroes.shared.domain.Rarities;
 import com.cleancodeheroes.user.application.port.in.OpenUserPackCommand;
 import com.cleancodeheroes.user.application.port.in.OpenUserPackUseCase;
 import com.cleancodeheroes.user.domain.PackCharacteristics;
-import com.cleancodeheroes.utils.RandomUtils;
+import com.cleancodeheroes.utils.Random;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class OpenerUserPackService implements OpenUserPackUseCase {
+    private Random random = new Random();
 
     @Override
     public ArrayList<Hero> handle(OpenUserPackCommand command) throws IllegalArgumentException {
@@ -28,16 +29,18 @@ public class OpenerUserPackService implements OpenUserPackUseCase {
     }
 
     private Hero selectRandomHeroFromList(List<Hero> heroes) {
-        var randomHeroIndex = RandomUtils.randomToInt() % heroes.size();
+        this.random.run();
+        var randomHeroIndex = this.random.intvalue() % heroes.size();
         return heroes.get(randomHeroIndex);
     }
 
     private Rarities getRandomRarityFromPackCharacteristics (PackCharacteristics packCharacteristics) {
-        double probability = RandomUtils.random();
+        this.random.run();
+        double probability = random.value();
         Rarities cardRarity;
-        if (probability <= packCharacteristics.getLegendaryDropPercentage()) {
+        if (probability < packCharacteristics.getLegendaryDropPercentage()) {
             cardRarity = Rarities.Legendary;
-        } else if (probability <= packCharacteristics.getLegendaryDropPercentage() + packCharacteristics.getRareDropPercentage()) {
+        } else if (probability < packCharacteristics.getLegendaryDropPercentage() + packCharacteristics.getRareDropPercentage()) {
             cardRarity = Rarities.Rare;
         } else {
             cardRarity = Rarities.Common;
