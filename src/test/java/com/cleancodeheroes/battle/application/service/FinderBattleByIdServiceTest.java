@@ -1,9 +1,9 @@
-package com.cleancodeheroes.battle.appllication.service;
+package com.cleancodeheroes.battle.application.service;
 
-import com.cleancodeheroes.battle.adapter.out.NoSQLBattlePersistence;
-import com.cleancodeheroes.battle.application.port.in.CreateBattleCommand;
-import com.cleancodeheroes.battle.application.port.out.CreateBattlePort;
-import com.cleancodeheroes.battle.application.service.BattleCreationService;
+import com.cleancodeheroes.battle.adapter.out.BattleNotFoundException;
+import com.cleancodeheroes.battle.application.port.in.FindBattleByIdQuery;
+import com.cleancodeheroes.battle.application.port.out.FindBattleByIdPort;
+import com.cleancodeheroes.battle.application.service.FinderBattleByIdService;
 import com.cleancodeheroes.battle.domain.Battle;
 import com.cleancodeheroes.battle.domain.BattleId;
 import com.cleancodeheroes.battle.domain.BattleResult;
@@ -16,26 +16,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.mockito.quality.Strictness.LENIENT;
 
 @ExtendWith(MockitoExtension.class)
-public class BattleCreationServiceTest {
+public class FinderBattleByIdServiceTest {
 
     @InjectMocks
-    private BattleCreationService battleCreationService;
+    FinderBattleByIdService finderBattleByIdService;
 
     @Mock
-    CreateBattlePort createBattlePort;
+    FindBattleByIdPort findBattleByIdPort;
 
     @Test
-    public void shouldReturnABattleId(){
-        BattleId battleId = BattleId.of(new ObjectId().toString());
-        when(this.createBattlePort.save(any(BattleResult.class))).thenReturn(battleId);
-        Card attacker = new Card(
+    public void shouldReturnAnBattleResult(){
+        Card winner = new Card(
                 new CardProps(
                         new ObjectId().toString(),
                         new ObjectId().toString(),
@@ -51,7 +47,7 @@ public class BattleCreationServiceTest {
                 )
         );
 
-        Card defender = new Card(
+        Card loser = new Card(
                 new CardProps(
                         new ObjectId().toString(),
                         new ObjectId().toString(),
@@ -67,11 +63,22 @@ public class BattleCreationServiceTest {
                 )
         );
 
-        Battle battle = Battle.of(attacker, defender);
-        CreateBattleCommand createBattleCommand = new CreateBattleCommand(battle);
-        BattleId newBattleId = this.battleCreationService.handle(createBattleCommand);
-        Assertions.assertEquals(newBattleId.getClass(), BattleId.class);
-        Assertions.assertEquals(newBattleId.value(), battleId.value());
+        BattleResult battleResultFistConstructor = new BattleResult(winner, loser);
+        try {
+            when(this.findBattleByIdPort.loadBattleById(any(BattleId.class))).thenReturn(battleResultFistConstructor);
+            FindBattleByIdQuery findBattleByIdQuery = new FindBattleByIdQuery(new ObjectId().toString());
+            BattleResult battleResult = this.finderBattleByIdService.handle(findBattleByIdQuery);
+            Assertions.assertEquals(battleResult.getClass(), BattleResult.class);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    @Test
+    public void shouldThrowAnIllegalArgumentException(){
+        FindBattleByIdQuery findBattleByIdQuery = new FindBattleByIdQuery("wrong id");
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            this.finderBattleByIdService.handle(findBattleByIdQuery);
+        });
+    }
 }

@@ -1,4 +1,4 @@
-package com.cleancodeheroes.battle.appllication.service;
+package com.cleancodeheroes.battle.application.service;
 
 import com.cleancodeheroes.battle.adapter.out.NoBattleFoundException;
 import com.cleancodeheroes.battle.application.port.in.FindBattleByHeroIdQuery;
