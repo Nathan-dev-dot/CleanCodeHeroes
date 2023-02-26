@@ -3,7 +3,7 @@ package com.cleancodeheroes.user.service;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.user.application.port.in.OpenUserPackCommand;
-import com.cleancodeheroes.user.application.services.OpenerUserPackService;
+import com.cleancodeheroes.user.application.services.UserPackOpeningService;
 import com.cleancodeheroes.user.domain.PackType;
 import com.cleancodeheroes.utils.Random;
 import org.junit.jupiter.api.Assertions;
@@ -19,9 +19,9 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class OpenerUserPackServiceTest {
+public class UserPackOpeningServiceTest {
     @InjectMocks
-    OpenerUserPackService openerUserPackService;
+    UserPackOpeningService openerUserPackService;
 
     @Mock
     Random random;

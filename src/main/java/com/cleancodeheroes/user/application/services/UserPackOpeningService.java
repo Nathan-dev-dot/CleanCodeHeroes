@@ -10,7 +10,7 @@ import com.cleancodeheroes.utils.Random;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OpenerUserPackService implements OpenUserPackUseCase {
+public class UserPackOpeningService implements OpenUserPackUseCase {
     private Random random = new Random();
 
     @Override

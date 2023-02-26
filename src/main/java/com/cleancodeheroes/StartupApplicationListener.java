@@ -44,19 +44,19 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final CreationHeroService creationHeroUseCase;
     private final FinderHeroService findHeroUseCase;
     private final FinderHeroesService findHeroesUseCase;
-    private final OpenerUserPackService openerUserPackService;
+    private final UserPackOpeningService userPackOpeningService;
     private final NoSQLCardPersistence noSQLCardPersistence;
     private final CreationCardService creationCardUseCase;
     private final UpdaterCardService updaterCardService;
     private final UpgraderCardService upgraderCardService;
     private final FinderCardService findCardUseCase;
-    private final UpdaterUserService updaterUserService;
-    private final UserUpdateVictoriesService userUpdateVictoriesService;
+    private final UserUpdatingService userUpdatingService;
+    private final UserVictoriesUpdatingService userVictoriesUpdatingService;
 
 
     private final NoSQLUserPersistence noSQLUserPersistence;
     private final UserCreationService createUserUserCase;
-    private final FindUserService findUserUseCase;
+    private final UserFindingService findUserUseCase;
 
     private final FinderBattleByUserIdService finderBattleByUserIdService;
     private final FinderBattleByHeroIdService finderBattleByHeroIdService;
@@ -71,12 +71,12 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
             CreationHeroService creationHeroService,
             FinderHeroService finderHeroService,
             FinderHeroesService finderHeroesService,
-            OpenerUserPackService openerUserPackService,
-            UpgraderCardService upgraderCardService, UpdaterUserService updaterUserService,
+            UserPackOpeningService userPackOpeningService,
+            UpgraderCardService upgraderCardService, UserUpdatingService userUpdatingService,
 
-            UserUpdateVictoriesService userUpdateVictoriesService, NoSQLUserPersistence userPersistenceAdapter,
+            UserVictoriesUpdatingService userVictoriesUpdatingService, NoSQLUserPersistence userPersistenceAdapter,
             UserCreationService createUserUserCase,
-            FindUserService findUserUseCase,
+            UserFindingService findUserUseCase,
 
             NoSQLCardPersistence cardPersistenceAdapter,
             CreationCardService creationCardService,
@@ -95,10 +95,10 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.creationHeroUseCase = creationHeroService;
         this.findHeroUseCase = finderHeroService;
         this.findHeroesUseCase = finderHeroesService;
-        this.openerUserPackService = openerUserPackService;
+        this.userPackOpeningService = userPackOpeningService;
         this.upgraderCardService = upgraderCardService;
-        this.updaterUserService = updaterUserService;
-        this.userUpdateVictoriesService = userUpdateVictoriesService;
+        this.userUpdatingService = userUpdatingService;
+        this.userVictoriesUpdatingService = userVictoriesUpdatingService;
 
         this.noSQLUserPersistence = userPersistenceAdapter;
         this.findUserUseCase = findUserUseCase;
@@ -119,9 +119,9 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         commandBus.register(CreateHeroCommand.class, creationHeroUseCase);
         queryBus.register(FindHeroQuery.class, findHeroUseCase);
         queryBus.register(FindHeroesQuery.class, findHeroesUseCase);
-        commandBus.register(OpenUserPackCommand.class, openerUserPackService);
-        commandBus.register(UpdateUserCommand.class, updaterUserService);
-        queryBus.register(UpdateUserVictoriesQuery.class, userUpdateVictoriesService);
+        commandBus.register(OpenUserPackCommand.class, userPackOpeningService);
+        commandBus.register(UpdateUserCommand.class, userUpdatingService);
+        queryBus.register(UpdateUserVictoriesQuery.class, userVictoriesUpdatingService);
 
         commandBus.register(CreateUserCommand.class, createUserUserCase);
         queryBus.register(FindUserQuery.class, findUserUseCase);

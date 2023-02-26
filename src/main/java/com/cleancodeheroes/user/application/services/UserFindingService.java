@@ -7,11 +7,11 @@ import com.cleancodeheroes.user.application.port.out.FindUserPort;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 
-public final class FindUserService implements FindUserUseCase {
+public final class UserFindingService implements FindUserUseCase {
 
     private final FindUserPort findHeroPort;
 
-    public FindUserService(FindUserPort findHeroPort) {
+    public UserFindingService(FindUserPort findHeroPort) {
         this.findHeroPort = findHeroPort;
     }
 

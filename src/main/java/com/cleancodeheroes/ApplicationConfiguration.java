@@ -77,19 +77,19 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public FindUserService findUserUseCase() {
-        return new FindUserService(userPersistenceAdapter());
+    public UserFindingService findUserUseCase() {
+        return new UserFindingService(userPersistenceAdapter());
     }
 
     @Bean
-    public OpenerUserPackService openerUserPackService() { return new OpenerUserPackService(); };
+    public UserPackOpeningService openerUserPackService() { return new UserPackOpeningService(); };
     @Bean
-    public UpdaterUserService updaterUserService() { return new UpdaterUserService(userPersistenceAdapter()); };
+    public UserUpdatingService updaterUserService() { return new UserUpdatingService(userPersistenceAdapter()); };
     @Bean
     public UpgraderCardService upgraderCardService() {return new UpgraderCardService(); };
 
     @Bean
-    public UserUpdateVictoriesService userUpdateVictoriesService () { return new UserUpdateVictoriesService(); }
+    public UserVictoriesUpdatingService userUpdateVictoriesService () { return new UserVictoriesUpdatingService(); }
     @Bean
     public CreationCardService createCardUseCase () { return new CreationCardService(cardPersistenceAdapter()); }
 

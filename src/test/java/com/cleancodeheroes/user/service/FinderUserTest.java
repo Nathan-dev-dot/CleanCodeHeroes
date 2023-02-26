@@ -3,7 +3,7 @@ package com.cleancodeheroes.user.service;
 import com.cleancodeheroes.user.adapter.out.UserNotFoundException;
 import com.cleancodeheroes.user.application.port.in.FindUserQuery;
 import com.cleancodeheroes.user.application.port.out.FindUserPort;
-import com.cleancodeheroes.user.application.services.FindUserService;
+import com.cleancodeheroes.user.application.services.UserFindingService;
 import com.cleancodeheroes.user.domain.User;
 import com.cleancodeheroes.user.domain.UserId;
 import com.cleancodeheroes.user.domain.UserProps;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class FinderUserTest {
 
     @InjectMocks
-    FindUserService finderUserService;
+    UserFindingService finderUserService;
 
     @Mock
     FindUserPort findUserPort;
