@@ -4,9 +4,9 @@ import com.cleancodeheroes.hero.domain.HeroId;
 import com.cleancodeheroes.kernel.query.Query;
 
 public class FindBattleByHeroIdQuery implements Query {
-    public final HeroId heroId;
+    public final String heroId;
 
     public FindBattleByHeroIdQuery(String heroId) {
-        this.heroId = HeroId.of(heroId);
+        this.heroId = heroId;
     }
 }
