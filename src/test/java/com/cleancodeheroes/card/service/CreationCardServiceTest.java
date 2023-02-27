@@ -27,9 +27,6 @@ public class CreationCardServiceTest {
     @Mock
     CreateCardPort createCardPort;
 
-    @Mock
-    Hero hero;
-
     @Test
     public void shouldCreateNewCard() {
         Hero hero = new HeroBuilder().id().name("Test").specialty("Tank").rarity("Rare").basicStats().build();
@@ -48,6 +45,7 @@ public class CreationCardServiceTest {
         ));
         when(createCardPort.save(any(Card.class))).thenReturn(card.getId());
         CardId cardId = this.creationCardService.handle(new CreateCardCommand(hero, card.getUserId()));
+        Assertions.assertEquals(card.getId(), cardId);
     }
 
     @Test
