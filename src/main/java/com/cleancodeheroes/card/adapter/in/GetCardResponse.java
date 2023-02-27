@@ -20,7 +20,7 @@ public class GetCardResponse {
         this.parentHeroId = card.getParentHeroId().value();
         this.name = card.getName();
         this.healthPoints = card.getHealthPoints().value();
-        this.experiencePoints = card.getExperiencePoints().getExperiencePoint();
+        this.experiencePoints = card.getExperiencePoints().value();
         this.power = card.getPower().value();
         this.armour = card.getArmour().value();
         this.specialty = card.getSpecialty().toString();

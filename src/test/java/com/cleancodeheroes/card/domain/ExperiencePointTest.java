@@ -17,7 +17,7 @@ public class ExperiencePointTest {
     @Test
     public void shouldReturnExperiencePointObjectWithValue1(){
         ExperiencePoint experiencePoint = ExperiencePoint.of(1);
-        Integer newExperiencePoint = experiencePoint.getExperiencePoint();
+        Integer newExperiencePoint = experiencePoint.value();
         Assertions.assertEquals(1, newExperiencePoint);
     }
 

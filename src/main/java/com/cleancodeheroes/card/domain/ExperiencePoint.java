@@ -15,7 +15,7 @@ public class ExperiencePoint{
         return new ExperiencePoint(experiencePoint);
     }
 
-    public Integer getExperiencePoint() {
+    public Integer value() {
         return experiencePoint;
     }
 

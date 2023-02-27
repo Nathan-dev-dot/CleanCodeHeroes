@@ -24,7 +24,7 @@ public class CardPropsTest {
         Assertions.assertTrue(ObjectId.isValid(cardProps.parentHeroId.value()));
         Assertions.assertEquals("Test", cardProps.name);
         Assertions.assertEquals(0, cardProps.healthPoints.value());
-        Assertions.assertEquals(0, cardProps.experiencePoints.getExperiencePoint());
+        Assertions.assertEquals(0, cardProps.experiencePoints.value());
         Assertions.assertEquals(0, cardProps.power.value());
         Assertions.assertEquals(0, cardProps.armour.value());
         Assertions.assertEquals("Tank", cardProps.specialty.toString());

@@ -18,7 +18,7 @@ public final class NoSQLCreateCardDTO {
         this.parentHeroId = cardProps.getParentHeroId().value();
         this.name = cardProps.getName();
         this.healthPoints = cardProps.getHealthPoints().value();
-        this.experiencePoints = cardProps.getExperiencePoints().getExperiencePoint();
+        this.experiencePoints = cardProps.getExperiencePoints().value();
         this.power = cardProps.getPower().value();
         this.armour = cardProps.getArmour().value();
         this.specialty = cardProps.getSpecialty().toString();

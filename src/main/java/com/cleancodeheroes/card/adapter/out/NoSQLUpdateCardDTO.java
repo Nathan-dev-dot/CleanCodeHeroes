@@ -22,7 +22,7 @@ public class NoSQLUpdateCardDTO {
         this.updates = Updates.combine(
                 Updates.set("level", card.getLevel().value()),
                 Updates.set("healthPoints", card.getHealthPoints().value()),
-                Updates.set("experiencePoints", card.getExperiencePoints().getExperiencePoint()),
+                Updates.set("experiencePoints", card.getExperiencePoints().value()),
                 Updates.set("power", card.getPower().value()),
                 Updates.set("armour", card.getArmour().value())
         );

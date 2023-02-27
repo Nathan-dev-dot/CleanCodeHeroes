@@ -51,7 +51,7 @@ public final class CardProps {
                 card.getParentHeroId().value(),
                 card.getName(),
                 card.getHealthPoints().value(),
-                card.getExperiencePoints().getExperiencePoint(),
+                card.getExperiencePoints().value(),
                 card.getPower().value(),
                 card.getArmour().value(),
                 card.getSpecialty().toString(),
