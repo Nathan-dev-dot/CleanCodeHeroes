@@ -6,11 +6,11 @@ import com.cleancodeheroes.card.application.port.out.UpdateCardPort;
 import com.cleancodeheroes.card.domain.Card;
 import com.cleancodeheroes.card.domain.CardId;
 
-public class UpdaterCardService implements UpdateCardUseCase {
+public class CardUpdatingService implements UpdateCardUseCase {
 
     private final UpdateCardPort updateCardPort;
 
-    public UpdaterCardService (UpdateCardPort updateCardPort) { this.updateCardPort = updateCardPort; }
+    public CardUpdatingService(UpdateCardPort updateCardPort) { this.updateCardPort = updateCardPort; }
 
     @Override
     public CardId handle(UpdateCardCommand command) {

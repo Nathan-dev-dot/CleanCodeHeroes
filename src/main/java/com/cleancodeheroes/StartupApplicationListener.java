@@ -15,7 +15,7 @@ import com.cleancodeheroes.card.application.port.in.UpdateCardCommand;
 import com.cleancodeheroes.card.application.port.in.UpgradeCardQuery;
 import com.cleancodeheroes.card.application.service.CreationCardService;
 import com.cleancodeheroes.card.application.service.FinderCardService;
-import com.cleancodeheroes.card.application.service.UpdaterCardService;
+import com.cleancodeheroes.card.application.service.CardUpdatingService;
 import com.cleancodeheroes.card.application.service.UpgraderCardService;
 import com.cleancodeheroes.hero.adapter.out.NoSQLHeroPersistence;
 import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
@@ -47,7 +47,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
     private final UserPackOpeningService userPackOpeningService;
     private final NoSQLCardPersistence noSQLCardPersistence;
     private final CreationCardService creationCardUseCase;
-    private final UpdaterCardService updaterCardService;
+    private final CardUpdatingService cardUpdatingService;
     private final UpgraderCardService upgraderCardService;
     private final FinderCardService findCardUseCase;
     private final UserUpdatingService userUpdatingService;
@@ -81,7 +81,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
             NoSQLCardPersistence cardPersistenceAdapter,
             CreationCardService creationCardService,
             FinderCardService finderCardService,
-            UpdaterCardService updaterCardService,
+            CardUpdatingService cardUpdatingService,
 
             FinderBattleByUserIdService finderBattleByUserIdService,
             FinderBattleByHeroIdService finderBattleByHeroIdService,
@@ -107,7 +107,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
         this.noSQLCardPersistence = cardPersistenceAdapter;
         this.creationCardUseCase = creationCardService;
         this.findCardUseCase = finderCardService;
-        this.updaterCardService = updaterCardService;
+        this.cardUpdatingService = cardUpdatingService;
         this.finderBattleByUserIdService = finderBattleByUserIdService;
         this.finderBattleByHeroIdService = finderBattleByHeroIdService;
         this.finderBattleByIdService = finderBattleByIdService;
@@ -128,7 +128,7 @@ public class StartupApplicationListener implements ApplicationListener<ContextRe
 
         commandBus.register(CreateCardCommand.class, creationCardUseCase);
         queryBus.register(FindCardQuery.class, findCardUseCase);
-        commandBus.register(UpdateCardCommand.class, updaterCardService);
+        commandBus.register(UpdateCardCommand.class, cardUpdatingService);
         queryBus.register(UpgradeCardQuery.class, upgraderCardService);
 
         commandBus.register(CreateBattleCommand.class, battleCreationService);
