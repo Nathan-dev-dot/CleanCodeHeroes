@@ -34,7 +34,6 @@ public final class HeroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public String create(@RequestBody @Valid CreateHeroRequest createHeroRequest) throws ResponseStatusException {
-        System.out.println("Coucou");
         try {
             CreateHeroCommand createHeroCommand = new CreateHeroCommand(
                     createHeroRequest.name,
@@ -44,6 +43,7 @@ public final class HeroController {
             var heroId = (HeroId) commandBus.post(createHeroCommand);
             return heroId.value();
         } catch (Exception e) {
+            System.out.println("e = " + e);
             throw new ResponseStatusException(BAD_REQUEST, "Invalid parameters");
         }
     }

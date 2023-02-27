@@ -16,6 +16,7 @@ public final class FinderHeroService implements FindHeroUseCase {
 
     @Override
     public Hero handle(FindHeroQuery query) throws HeroNotFoundException {
-        return this.findHeroPort.load(HeroId.of(query.heroId));
+        HeroId heroId = HeroId.of(query.heroId);
+        return this.findHeroPort.load(heroId);
     }
 }
