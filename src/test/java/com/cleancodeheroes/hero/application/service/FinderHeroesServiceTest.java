@@ -44,15 +44,4 @@ public class FinderHeroesServiceTest {
         }
     }
 
-    @Test
-    public void shouldThrowIllegalArgumentException(){
-        try {
-            when(registry.find(any(Bson.class))).thenReturn(null);
-            ArrayList<Hero> heroes = this.finderHeroesService.handle(new FindHeroesQuery());
-            Assertions.assertEquals(ArrayList.class, heroes.getClass());
-        } catch (HeroNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

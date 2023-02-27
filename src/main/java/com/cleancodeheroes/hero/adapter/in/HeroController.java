@@ -41,6 +41,7 @@ public final class HeroController {
                     createHeroRequest.rarity
             );
             var heroId = (HeroId) commandBus.post(createHeroCommand);
+            System.out.println(heroId);
             return heroId.value();
         } catch (Exception e) {
             System.out.println("e = " + e);
