@@ -18,6 +18,7 @@ public final class CreationHeroService implements CreateHeroUseCase {
 
     @Override
     public HeroId handle(CreateHeroCommand command) throws IllegalArgumentException {
+        System.out.println("pourquoi je suis là");
         var heroId = new ObjectId();
         Hero hero = new HeroBuilder()
                 .id(heroId.toString())

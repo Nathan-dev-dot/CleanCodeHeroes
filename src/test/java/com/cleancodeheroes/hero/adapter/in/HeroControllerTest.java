@@ -1,6 +1,10 @@
 package com.cleancodeheroes.hero.adapter.in;
 
+import com.cleancodeheroes.hero.application.port.in.CreateHeroCommand;
 import com.cleancodeheroes.hero.application.services.CreationHeroService;
+import com.cleancodeheroes.hero.domain.HeroId;
+import com.cleancodeheroes.kernel.command.CommandBus;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 //@RunWith(SpringRunner.class)
@@ -27,15 +33,14 @@ public final class HeroControllerTest {
 
     @Mock
     private CreationHeroService createHeroUseCase;
-//    @Mock
-//    private CommandBus commandBus = BusFactory.defaultCommandBus();
-    @Autowired
+    @Mock
+    private CommandBus commandBus;
+
+    @Mock
     private MockMvc mockMvc;
 
-//    @BeforeEach
-//    public void initCommandBus(){
-//        commandBus.register(CreateHeroCommand.class, createHeroUseCase);
-//    }
+    ObjectMapper objectMapper = new ObjectMapper();
+
 
     @Test
     public void shouldCreateHero(){
@@ -46,26 +51,19 @@ public final class HeroControllerTest {
         createHeroRequest.name = "TestHero";
         createHeroRequest.specialty = "Assassin";
         createHeroRequest.rarity = "Common";
-        
-//        CreateHeroCommand createAssassinCommand = new CreateHeroCommand(
-//                createHeroRequest.name,
-//                createHeroRequest.specialty,
-//                createHeroRequest.rarity
-//        );
 
         ObjectId createdId = new ObjectId();
-//        when((HeroId)  commandBus.post(createAssassinCommand)).thenReturn(HeroId.of(createdId));
+
         try {
+            when(commandBus.post(any(CreateHeroCommand.class))).thenReturn(HeroId.of(createdId));
             MvcResult result = this.mockMvc.perform(
                     post("/api/hero")
-                            .param("name", createHeroRequest.name)
-                            .param("specialty", createHeroRequest.specialty)
-                            .param("rarity", createHeroRequest.rarity)
+                            .content(objectMapper.writeValueAsString(createHeroRequest))
                             .contentType(MediaType.APPLICATION_JSON)
                             .accept(MediaType.APPLICATION_JSON)
             ).andReturn();
             var content = result.getResponse();
-            System.out.println(content);
+            System.out.println(content.getContentAsString());
             Assertions.assertEquals(createdId.toString(), result.getResponse().getContentAsString());
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -7,6 +7,7 @@ import com.cleancodeheroes.hero.application.services.CreationHeroService;
 import com.cleancodeheroes.hero.domain.Hero;
 import com.cleancodeheroes.hero.domain.HeroBuilder;
 import com.cleancodeheroes.hero.domain.HeroId;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 
+import java.util.MissingResourceException;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.quality.Strictness.LENIENT;
 
@@ -25,22 +29,18 @@ public final class CreationHeroServiceTest {
     private CreationHeroService service;
     @Mock
     private CreateHeroPort createHeroPort;
-    private Hero hero;
     private CreateHeroCommand createHeroCommand;
-
-    @BeforeEach
-    public void setUpHeroAndHeroCommand(){
-        this.hero = new HeroBuilder()
-                .id("636a251153fb870ab055eca6")
-                .specialty("Tank")
-                .basicStats()
-                .rarity("Rare")
-                .name("nathan")
-                .build();
-    }
 
     @Test
     public void shouldReturnHeroId(){
+        Hero hero = new HeroBuilder()
+                .id("636a251153fb870ab055eca6")
+                .specialty("Tank")
+                .rarity("Rare")
+                .basicStats()
+                .name("nathan")
+                .build();
+
         this.createHeroCommand = new CreateHeroCommand(
                 hero.Name(),
                 hero.Specialty().value().name(),
@@ -48,8 +48,9 @@ public final class CreationHeroServiceTest {
         );
 
         final var heroId = HeroId.of("636a251153fb870ab055eca6");
-        when(createHeroPort.save(this.hero)).thenReturn(heroId);
+        when(createHeroPort.save(any(Hero.class))).thenReturn(heroId);
         final var actual = this.service.handle(createHeroCommand);
-        Assertions.assertEquals(this.hero.Id().value(), actual.value());
+        Assertions.assertEquals(actual.value(), hero.Id().value());
+        Assertions.assertEquals(actual.getClass(), HeroId.class);
     }
 }
